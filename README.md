@@ -1,1 +1,1 @@
-# ChatGPT
+# AI workspace
