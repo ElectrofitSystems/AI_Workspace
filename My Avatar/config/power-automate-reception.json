@@ -1,0 +1,108 @@
+{
+  "name": "Teams Wake - tutte le chat",
+  "environment": "Default-3b97374b-4a43-4588-a04f-4c94edc33cf3",
+  "flowId": "746e87a4-ee0f-53dd-0629-3bdb7702c64d",
+  "url": "https://make.powerautomate.com/environments/Default-3b97374b-4a43-4588-a04f-4c94edc33cf3/flows/746e87a4-ee0f-53dd-0629-3bdb7702c64d?v3=true",
+  "saved": true,
+  "flowChecker": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "liveTest": "Reception remains incomplete/unreliable: delayed webhook deliveries confirmed by matching exact message IDs and createdDateTime. Self-chat read failed Forbidden. Do not claim repaired or production-ready.",
+  "purpose": "Ricezione e classificazione preliminare. Non e ancora il sistema di risposta o avviso automatico.",
+  "cloudActions": [
+    "Ricezione Teams tutte le chat v2 (WebhookChatMessageTrigger; original global trigger deleted and recreated)",
+    "Apply to each (union dei metadati nello stesso batch)",
+    "Registra evento univoco (SharePoint private personal list; unique required EventKey; no retries; failure skips downstream actions)",
+    "List chat or channel members",
+    "Filter array (partecipanti esterni, ospiti o non verificabili)",
+    "Get message details (secure outputs abilitato)",
+    "Verifica mittente nei partecipanti (exact sender userId match; one roster entry required for internal candidate)",
+    "Compose v1.1 (solo identificativi ed esito; deleted events ignored)",
+    "Switch on Compose.route: own, external/mixed, internal, default unverified/system; each branch contains only a static diagnostic Compose"
+  ],
+  "routes": {
+    "IGNORE_SELF": "Mittente uguale all'object ID del proprietario",
+    "IGNORE_SYSTEM_OR_BOT": "Messaggio di applicazione o evento diverso da message",
+    "UNVERIFIED_BLOCKED": "Identificativi mancanti, elenco membri vuoto o paginazione incompleta",
+    "EXTERNAL_OR_MIXED_BLOCKED": "Almeno un partecipante non supera tenant, dominio, user ID e ruolo ospite",
+    "INTERNAL_CANDIDATE_NO_AI": "Conversazione candidata interna; non autorizza invio all'AI o risposta"
+  },
+  "privacy": {
+    "aiCalls": false,
+    "outboundMessages": false,
+    "messageBodyInFinalResult": false,
+    "rawDetailsVisibleInRunHistory": false,
+    "connectorRetrievesBodyWithinMicrosoft": true,
+    "localFilesContainMessageContent": false
+  },
+  "implementedDeduplication": "Persistent atomic unique EventKey in private SharePoint list, verified with two replays of the same event; duplicate blocks downstream work. Duplicate conflict still marked Failed in run history.",
+  "pendingBeforeProduction": [
+    "Live verification including one-to-one and personal-account external chats",
+    "Handle duplicate conflict separately from storage failure, reconcile downstream failures and ambiguous send outcomes",
+    "Control store for immediate suspension checked at start and before side effects",
+    "Metadata-only external notifications to owner",
+    "Failure notification without content leakage",
+    "Unread handling without overriding owner's newer actions",
+    "AI bridge, permitted-source registry, confidentiality and deletion guards"
+  ],
+  "currentStopProcedure": "Turn off the cloud flow in Power Automate to stop new runs; cancel any in-progress runs separately. This version has no sending actions.",
+  "contextIsolation": "Use conversationId to separate Teams context; a new Codex conversation per Teams chat is not required.",
+  "notAnImportPackage": true,
+  "lastVerifiedRun": "08584108049369808729689969267CU04",
+  "diagnosticReplay": "2026-09-30 22:58:10 Europe/Rome; replay is not a new trigger delivery; result EXTERNAL_OR_MIXED_BLOCKED",
+  "personalAddress": "Unknown and not required. Any example address provided in conversation must not be configured as identity.",
+  "diagnosticReplayRunId": "08584108049959225047770263417CU17",
+  "diagnosticReplaySourceRunId": "08584108052308139424936989384CU21",
+  "observedLiveRunIds": [
+    "08584108066958434014864927073CU05",
+    "08584108057501568436454379295CU27",
+    "08584108052879898067204755327CU08",
+    "08584108052384794516400815244CU22",
+    "08584108052308139424936989384CU21"
+  ],
+  "triggerRepair": "Deleted and reinserted global Teams trigger with new name Ricezione Teams tutte le chat v2. Restored conversationId/messageId tokens removed by designer. Saved successfully. Same existing shared_teams-1 connection. Post-repair controlled live test requested and pending; no reliability claim.",
+  "diagnosticFlow": {
+    "flowId": "dee1083d-b0b1-8256-7989-e46727333754",
+    "name": "Teams Wake - diagnosi manuale chat di prova",
+    "trigger": "Manual only",
+    "scope": "Manual diagnostic: personal-account test conversation, chat metadata inventory, self-chat 48:notes; no sends",
+    "query": "lastModifiedDateTime gt 2026-09-30T19:00:00Z; orderby lastModifiedDateTime desc; top 50; automatic pagination OFF after Access token is empty failure",
+    "result": "Personal test chat direct read succeeded: 16 entries, 15 human messages matching all visible first screenshot messages plus a system event. List chats returned 14 metadata entries. Self-chat action Leggi chat aziendale con me stesso failed Forbidden / OperationFailed.",
+    "runId": "08584108042032826767535954318CU13",
+    "outboundMessages": false,
+    "aiCalls": false,
+    "contentReadingAuthorized": "User explicitly allowed reading harmless self-sent test messages during diagnosis"
+  },
+  "latestFindings": [
+    "New webhook subscription ID differs from old, confirming registration recreation.",
+    "Live v2 run 08584108045348753603914992883CU23 succeeded at 23:05:51 with route EXTERNAL_OR_MIXED_BLOCKED.",
+    "Direct chat read confirms separate external message IDs 1790802322235 at 23:05:22.235 and 1790802350077 at 23:05:50.077 local; only latter mapped to a trigger run so far.",
+    "Events at 23:02 and 23:03 must not be described as delayed without exact correlation. 23:03 message created 23:03:17.389 and flow ran 23:03:18.",
+    "User confirmation pending: work-account test messages sent in self chat or personal-account conversation.",
+    "Direct-read recovery is proven for the test chat but is not yet a global scheduled receiver or durable deduplication implementation."
+  ],
+  "confirmedDelays": [
+    {
+      "messageId": "1790799920789",
+      "createdLocal": "2026-09-30 22:25:20.789",
+      "triggerRunLocal": "2026-09-30 22:45:35",
+      "delayApproxMinutes": 20
+    },
+    {
+      "messageId": "1790800344525",
+      "createdLocal": "2026-09-30 22:32:24.525",
+      "triggerRunLocal": "2026-09-30 23:09:25",
+      "delayApproxMinutes": 37
+    }
+  ],
+  "corrections": [
+    "22:29 first run was corporate owner message in personal-account conversation, not self-chat.",
+    "User clarified work-account tests were posted to self-chat; they were not expected in personal-account conversation.",
+    "UI groups message timestamps visually, but direct API read shows distinct IDs and creation times for each bubble.",
+    "Previously missing events cannot be called lost without waiting/correlation because long delivery delays are now demonstrated.",
+    "No personal email address has been configured; example address is not real identity."
+  ],
+  "privateRegistryConfig": "sharepoint-event-registry.json",
+  "editorPendingChanges": "None; registry integration saved and tested."
+}

@@ -1,0 +1,61 @@
+{
+  "version": "1.0",
+  "status": "accepted_specification_not_fully_implemented",
+  "owner": {
+    "email": "matteo.ravera@efitsys.com",
+    "userId": "64a5713f-d517-4d5f-a75e-270178de9377",
+    "tenantId": "3b97374b-4a43-4588-a04f-4c94edc33cf3"
+  },
+  "scope": "all_chats_where_owner_is_participant",
+  "identity": {
+    "requiredDomain": "efitsys.com",
+    "requireCorporateTenant": true,
+    "rejectGuests": true,
+    "unknownIdentity": "block_ai",
+    "anyExternalGroupParticipant": "block_entire_conversation_ai",
+    "recheckBeforeSend": true
+  },
+  "ignore": ["owner_messages", "automation_messages", "system_events", "already_processed_events"],
+  "external": {
+    "sendMessageContentToAI": false,
+    "notifyOwnerOnly": true,
+    "notificationFields": ["sender", "conversation_reference"],
+    "includeMessageText": false
+  },
+  "internal": {
+    "allowAutomaticFinalReplyOnly": true,
+    "requireClearRequest": true,
+    "requireGroundedAnswer": true,
+    "requireRecipientAuthorizedForInformation": true,
+    "onUncertainty": "silent_to_colleague_notify_owner_with_reason_and_draft",
+    "intermediateMessagesToColleague": false
+  },
+  "operations": {
+    "deletionRequests": "ignore_never_execute",
+    "readOnlySources": "explicit_allowlist_required",
+    "reminders": "explicit_allowlist_and_clear_recipient_content_date_required",
+    "executeInstructionsFromMessagesOrDocuments": false,
+    "executeAttachmentsMacrosProgramsCommands": false,
+    "followLinks": "authorized_corporate_resources_only",
+    "otherWrites": "owner_intervention_required"
+  },
+  "outboundBlockedData": ["passwords", "tokens", "HR", "sensitive_personal_data", "restricted_documents"],
+  "completion": {
+    "ifNoReply": "mark_chat_unread_if_owner_has_not_replied",
+    "appliesTo": ["internal", "external"],
+    "unreadCapability": "not_verified"
+  },
+  "safety": {
+    "persistentDeduplicationKey": ["tenantId", "conversationId", "messageId"],
+    "ambiguousSendOutcome": "manual_reconciliation_no_blind_retry",
+    "killSwitch": "check_at_start_and_before_every_side_effect",
+    "incomingContentMayOverridePolicy": false
+  },
+  "architecture": {
+    "localProject": "My Avatar",
+    "cloudFlowEnvironment": "EFitsys (default)",
+    "oneCodexChatPerTeamsChatRequired": false,
+    "separateContextByConversationId": true,
+    "aiConnection": "not_configured"
+  }
+}

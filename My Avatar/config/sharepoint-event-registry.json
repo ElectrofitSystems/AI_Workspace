@@ -1,0 +1,57 @@
+{
+  "provider": "SharePoint personal Microsoft Lists",
+  "ownerEmail": "matteo.ravera@efitsys.com",
+  "siteUrl": "https://efitsys-my.sharepoint.com/personal/matteo_ravera_efitsys_com",
+  "listId": "c86334dd-ce16-4bf8-bde8-ece24dfdeb0b",
+  "listName": "My Avatar - Registro eventi",
+  "listUrl": "https://efitsys-my.sharepoint.com/personal/matteo_ravera_efitsys_com/Lists/My%20Avatar%20%20Registro%20eventi/AllItems.aspx",
+  "permissions": {
+    "verified": true,
+    "uniquePermissions": true,
+    "listedPrincipals": [
+      {
+        "name": "Matteo Ravera",
+        "type": "User",
+        "level": "Full Control"
+      }
+    ],
+    "sharedWithTeam": false,
+    "administrativeAccessNotExcluded": true
+  },
+  "columns": {
+    "Title": {
+      "displayName": "EventKey",
+      "type": "Text",
+      "required": true,
+      "unique": true,
+      "indexed": true,
+      "maxLength": 255
+    },
+    "ProcessingState": {
+      "type": "Text",
+      "default": "RECEIVED_NO_ACTION"
+    }
+  },
+  "eventKeyFormat": "tenantId|conversationId|messageId",
+  "storesMessageBody": false,
+  "integrationStatus": "Saved in cloud flow before member lookup and message details. SharePoint PostItem uses required unique Title/EventKey and retryPolicy none. Subsequent actions run only on successful registration.",
+  "deduplicationTested": true,
+  "aiEnabled": false,
+  "sendEnabled": false,
+  "validation": {
+    "firstReplayRunId": "08584108024606036846529889266CU09",
+    "firstReplayTime": "2026-09-30T23:40:25+02:00",
+    "duplicateReplayTime": "2026-09-30T23:41:24+02:00",
+    "testedMessageId": "1790802000261",
+    "result": "First registration succeeded; second rejected with duplicate EventKey; downstream member lookup and message retrieval skipped.",
+    "registryRowCountObserved": 3,
+    "messageBodiesStored": false
+  },
+  "limitations": [
+    "Duplicates currently show Failed in run history; distinguish expected duplicate conflicts from actual storage errors before enabling notifications.",
+    "No automatic retry or reclaim of registered events after downstream failures; manual reconciliation required before production.",
+    "Keys above 255 characters fail closed; no truncation.",
+    "SharePoint uniqueness is case-insensitive; validate broader Teams identifier coverage before production.",
+    "AI, notification dispatch, unread handling and pre-send stop control remain unimplemented."
+  ]
+}

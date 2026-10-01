@@ -1,0 +1,66 @@
+{
+  "status": "SYNTHETIC_CHATGPT_WAKE_VERIFIED_WITHOUT_REFRESH",
+  "event": "myavatar.test.ready",
+  "queue": "synthetic",
+  "mcpProtocolTarget": "2026-07-28",
+  "entrypoint": "src/mcp_events/bridge.py",
+  "localCommand": "python src/mcp_events/bridge.py --serve",
+  "bind": "127.0.0.1:8766",
+  "routes": {"mcp": "/mcp", "syntheticIngress": "/ingress/test"},
+  "requiredEnvironment": ["MYAVATAR_MCP_TOKEN", "MYAVATAR_INGRESS_TOKEN", "MYAVATAR_CALLBACK_HOSTS"],
+  "secrets": "Supply two distinct random bearer tokens through the process environment. Never store them in this file. Callback signing secrets are DPAPI-encrypted for the current Windows user.",
+  "callbackHosts": ["connectors.api.openai.com"],
+  "stateLocation": "%LOCALAPPDATA%/MyAvatarMcpEvents/test-state.sqlite3",
+  "testRequest": {"conversationId": "TEST-chat-001", "messageId": "TEST-message-001"},
+  "modelCallsWhileIdle": 0,
+  "scheduledChatRuns": false,
+  "powerAutomateModified": false,
+  "publicEndpointCreated": true,
+  "chatgptSubscriptionVerified": true,
+  "chatgptWakeVerified": true,
+  "lastVerifiedSyntheticEvent": {
+    "conversationId": "TEST-conversation-wakeup-001",
+    "messageId": "TEST-message-wakeup-001",
+    "deliveryStatus": "accepted",
+    "deliveryAttempts": 1
+  },
+  "repeatWakeTest": {
+    "conversationId": "TEST-MARY-CONVERSATION-001",
+    "messageId": "TEST-MARY-MESSAGE-001",
+    "deliveryStatus": "accepted",
+    "deliveryAttempts": 1,
+    "chatResponseObserved": true,
+    "chatThreadId": "6abe0b43-0fe8-83eb-b20a-6f8eb1fe5294",
+    "note": "A new backend ChatGPT turn containing the exact synthetic identifiers was observed without opening or refreshing the chat page."
+  },
+  "tunnel": {
+    "id": "tunnel_6abd8aa288b48191862b8a38477dd44b",
+    "name": "My Avatar - prova MCP Events",
+    "created": true,
+    "organizationId": "org-edpt5IMWKSY4UCuqamM5khoD",
+    "workspaceId": "986a4db9-7f36-40d2-9906-fff8f702648a",
+    "clientRunning": true,
+    "runtimeCredentialConfigured": true
+  },
+  "chatgptCustomMcpFormVerified": true,
+  "chatgptConnectionOptionsObserved": ["Server URL", "Tunnel"],
+  "chatgptAuthenticationOptionsObserved": ["OAuth", "No authentication", "OAuth or no authentication"],
+  "localTestsPassed": 12,
+  "limitations": [
+    "Protocol spike only, not a production MCP server or a certified MCP 2.0 transport implementation.",
+    "MCP Events subscription, callback delivery and wake from an idle ChatGPT Work conversation were verified without opening or refreshing the chat page. Chat mode and local Codex chats do not expose events/subscribe.",
+    "Secure MCP Tunnel requires a Platform tunnel ID, runtime API key and appropriate organization/workspace permissions. It does not provide Power Automate ingress.",
+    "Bearer authentication is suitable for controlled local tests; production authentication integration remains to be chosen.",
+    "Only synthetic TEST- identifiers accepted; real Teams events deliberately rejected.",
+    "Callback acceptance is not evidence of a ChatGPT turn; verify the actual chat response separately.",
+    "No automatic retries, timers or background model checks. Caller-driven retries capped at three; no replay cursor.",
+    "Tunnel client and encrypted runtime credential are configured for interactive use. No Windows startup installation is configured.",
+    "Power Automate cloud needs an approved authenticated HTTPS endpoint and compatible license/policy.",
+    "Private installation scope must be verified before publishing or distributing any plugin."
+  ],
+  "sources": [
+    "https://developers.openai.com/plugins/build/mcp-events",
+    "https://developers.openai.com/plugins/deploy/connect-chatgpt",
+    "https://developers.openai.com/api/docs/guides/secure-mcp-tunnels"
+  ]
+}
