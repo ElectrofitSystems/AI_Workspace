@@ -14,11 +14,15 @@ Per contenuti e analisi, un'unica sintesi breve ogni due settimane in Scheduled 
 
 ## Controlli operativi — lun–ven 11:00
 
+Aggiornamento successivo del 02/10/2026: riconciliare nel passaggio esistente anche le approvazioni comuni degli input e quelle delle newsletter, secondo docs/company/input-approvals.md e docs/newsletter/workflow.md. Non crea un ulteriore monitor. La preparazione newsletter ha la propria ricorrenza mensile nella chat; i due gruppi LinkedIn e il manifest v05 restano invariati.
+
 1. Inbox e commenti propri: recuperare gli eventi dall'ultimo checkpoint completo, compresi weekend e interruzioni, rispettando baseline e policy delle risposte.
 2. Riconciliare approvazioni pendenti, aggiornare lo stato dei post originali nei loro canali e riprendere follow prospect soltanto quando già autorizzati e approvati.
 3. Engagement esterno nel medesimo passaggio operativo, con approvazioni e limiti propri. Recuperare gli eventi del weekend al successivo passaggio, senza resettare baseline o duplicare digest/proposte.
 
 ## Preparazione e analisi — ogni due settimane
+
+Prima della selezione di fonti e media leggere l'elenco Teams Marketing Inputs in Documentation / General e i dettagli delle approvazioni native; consultare il registro input comune come cache e applicare docs/company/marketing-input-list.md e docs/company/input-approvals.md, anche quando i moduli operativi v02 contengono indicazioni precedenti. Non usare nuove revisioni senza approvazione né duplicare richieste pendenti create dalla newsletter. Marketing/Inputs conserva gli originali. Le fasi indipendenti continuano sulle fonti già autorizzate.
 
 1. Performance degli ultimi 14 giorni completi confrontabili con i 14 precedenti e segnali delle aziende in watchlist. Periodi parziali e dati mancanti espliciti.
 2. Preparare/riprendere il singolo pacchetto bilingue del periodo.

@@ -1,6 +1,6 @@
 # ElectroFit Systems — Product Marketing Context
 
-**Document version:** v8
+**Document version:** v11
 **Last updated:** 2026-10-02
 **Area di lavoro:** ElectroFit Systems — LinkedIn, nel progetto Marketing EFS esistente.
 **Stato:** contesto iniziale documentato; proposte editoriali da revisionare. Non è un'approvazione di post.
@@ -132,6 +132,12 @@ Obiezioni reali, risposte commerciali e anti-personas: da raccogliere. Non inven
 
 ## Goals
 
+**Consegna cloud essenziale — regola permanente del 02/10/2026:** SharePoint Outputs contiene solo i file che il destinatario deve leggere, approvare o usare; catalogo PDF. Markdown, note interne, sorgenti, configurazioni e verifiche restano locali. Manifest/ricevuta richiesti dalle Approvazioni Microsoft restano necessari. Vale per agente e ricorrenze in tutte le chat EFS; procedura e precedenza in docs/company/output-delivery.md. Non autorizza cancellazioni retroattive.
+
+**Fonte input — chiarimento successivo del 02/10/2026:** elenco Microsoft Lists Marketing Inputs aggiunto come scheda Teams Documentation / General, con file allegati o link, contesto, tema, versione e approvazioni moderne. È il punto comune di selezione per post e newsletter; Marketing/Inputs conserva gli originali. Review input nativa dalla voce, senza duplicarla con un manifest Outputs. Flussi finali e calendario mensile/quindicinale restano quelli configurati. Procedura e limiti di accesso in docs/company/marketing-input-list.md. La cache comune non sostituisce la decisione Microsoft.
+
+**Newsletter mensile — richiesta del 02/10/2026:** una edizione al mese, dallo stesso elenco Teams Marketing Inputs di LinkedIn, con preparazione nella chat il primo lunedì alle 10:00 Europe/Rome dal 05/10/2026. Nuovi input/revisioni richiedono approvazione comune per LinkedIn e newsletter secondo docs/company/input-approvals.md; approvazioni pregresse valide conservate per ambito e revisione. La newsletter finale ha review distinta in Outputs/Newsletter e resta approved_pending_send; invio e mailing da autorizzare nel proprio ambito. Skill newsletter-creation-curation installata, procedimento in docs/newsletter/workflow.md. La ricorrenza newsletter si aggiunge alle due LinkedIn senza modificarne la frequenza.
+
 **Business goal confermato:** comunicazione credibile che generi interesse, contatti qualificati e nuovi progetti. [S2]
 **Conversion action proposta:** condividere applicazione/requisiti, confrontare un tema tecnico, avviare un confronto sulla filiera.
 **Current metrics:** baseline UI del 01/10/2026 in `output/Statistics/Linkedin/performance/efs-performance-baseline-2026-10-01-v01.md`: due post del 30/09, uno B2B e uno Nova Energia; impressioni 134/292 e clic LinkedIn 9/13; follower totali attuali visualizzati 299. Fotografia iniziale, non report completo né prova di conversione. Finestre overview e tabella diverse; crescita netta, reach, clic in uscita e risultati commerciali non verificati. Definizioni operative iniziali in `docs/linkedin/measurement-and-sales.md`, criteri commerciali da validare con il team; target non definiti.
@@ -163,6 +169,10 @@ Obiezioni reali, risposte commerciali e anti-personas: da raccogliere. Non inven
 6. Accesso LinkedIn, organizzazione e integrazione Teams-to-publisher: stato da verificare prima di esecuzioni. Non blocca la scrittura locale.
 
 ## Changelog
+
+- v10 (2026-10-02) — Fonte comune trasformata in elenco Teams Marketing Inputs, aggiunto a Documentation / General con allegati/link e approvazioni native; cartella file conservata come archivio. Nuove review input dall'elenco, review derivati nel flusso Outputs.
+
+- v9 (2026-10-02) — Richiesta newsletter mensile dalla fonte LinkedIn, skill installata e nuovo controllo comune delle approvazioni input prima del riuso per entrambi i canali; review finale e invio distinti.
 
 - v8 (2026-10-02) — Rimossi destinatari personali e gruppi di revisione dalle configurazioni operative; tutte le nuove richieste usano Outputs e Approvazioni native, con revisori gestiti nel flusso Microsoft e storico conservato. Cadenze e permessi di esecuzione invariati.
 

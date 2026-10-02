@@ -2,7 +2,13 @@
 
 Aggiornato il 2 ottobre 2026 su indicazione esplicita dell'utente.
 
+## Elenco Teams come fonte comune — chiarimento successivo del 02/10/2026
+
+La fonte di selezione per LinkedIn e newsletter è ora [Marketing Inputs](https://efitsys.sharepoint.com/sites/Documentation/Lists/Marketing%20Inputs/AllItems.aspx), elenco Microsoft Lists aggiunto come scheda in Documentation / General su scelta esplicita dell'utente. Ogni voce contiene un allegato o link al file originale, contesto, tema, versione e stato di approvazione nativo. Applicare docs/company/marketing-input-list.md e docs/company/input-approvals.md. La cartella Marketing/Inputs sotto resta l'archivio degli originali; la presenza di un file non lo inserisce automaticamente nell'elenco né lo approva. Nessun originale spostato o archivio riorganizzato. Output e autorizzazioni di archiviazione restano nelle destinazioni sotto. La lettura/configurazione dell'elenco è stata verificata via browser autenticato; il connettore file SharePoint non espone l'API Lists.
+
 ## Origine degli input e destinazione degli output — 02/10/2026
+
+Regola permanente successiva: docs/company/output-delivery.md limita gli upload ai file necessari e fruibili dal destinatario. Per il catalogo il PDF; nuovi Markdown, note interne, configurazioni e verifiche restano locali. Conservare manifest/ricevute tecnici necessari al flusso Microsoft e gli archivi preesistenti. Prevale sulle descrizioni precedenti di pacchetto completo.
 
 L'utente ha indicato le seguenti cartelle come riferimenti permanenti per i prossimi lavori marketing:
 
@@ -34,6 +40,8 @@ Il materiale del canale **ElectroFit Systems**, individuato nel team **Documenta
 - Questo archivio è il riferimento prodotto indicato dall'utente. L'approvazione esplicita come approved content è stata attribuita al canale ElectroFit Systems sopra: non estenderla automaticamente a tutti gli archivi Nova Energia o a tutti i Teams.
 
 ## Modalità di utilizzo
+
+Aggiornamento successivo del 02/10/2026: i nuovi input e le nuove revisioni di Marketing/Inputs richiedono approvazione prima dell'uso editoriale sia per LinkedIn sia per newsletter. Usare il registro e il flusso comune di `docs/company/input-approvals.md`. Lettura per inventario/review consentita; approvazioni pregresse esplicite conservate nel proprio ambito. Questa regola prevale sui riferimenti generali sotto quando si tratta di nuovi input; l'approvazione della fonte resta distinta da quella del derivato.
 
 - Fonti SharePoint e Teams in **sola lettura**, salvo le autorizzazioni specifiche per Marketing/Outputs e per il registro commerciale: nessun originale spostato, rinominato, modificato o ripubblicato; nessuna riorganizzazione delle cartelle.
 - Mantenere gli originali nelle rispettive posizioni. Nei materiali locali registrare link della fonte, nome/versione, data di consultazione e passaggi utilizzati.

@@ -3,6 +3,11 @@
 Conoscenza, procedure e strumenti di marketing di Electrofit Systems, utilizzabili
 con qualsiasi LLM attraverso documenti e formati aperti.
 
+La chat **MASTER — Marketing EFS** coordina richieste e decisioni. Le chat sono
+organizzate nelle sezioni **EFS — Lavori operativi** e **EFS — Riferimenti e storico**.
+Procedura: [coordinamento delle chat](docs/maintenance/master-coordination.md).
+Stato corrente locale: [registro dei lavori](output/Statistics/coordination/master-register.json).
+
 | Cartella | Cosa contiene | Git |
 | --- | --- | --- |
 | `docs/` | Conoscenza aziendale, procedure e manutenzione | Sì |
@@ -52,11 +57,21 @@ conservano le revisioni storiche necessarie per evitare duplicati.
 
 ## Documenti e strumenti
 
+Per la consegna in SharePoint applicare sempre [Outputs essenziali](docs/company/output-delivery.md): file leggibili e necessari al destinatario; Markdown, sorgenti e note interne restano locali.
+
 Leggere [il contesto aziendale](docs/company/context.md) e la procedura pertinente.
 `docs/company/` contiene la conoscenza aziendale; `docs/linkedin/` le procedure e
 modelli LinkedIn; `docs/brochures/` le istruzioni dei template; `docs/maintenance/`
 la configurazione e la [mappa dei vecchi percorsi](docs/maintenance/paths.json).
 La configurazione `.codex/` rimane un adattatore specifico dell'ambiente.
+
+La [newsletter mensile](docs/newsletter/workflow.md) usa lo stesso
+[elenco Teams Marketing Inputs](docs/company/marketing-input-list.md) dei post
+LinkedIn, in Documentation / General, con allegati o link agli originali.
+I [nuovi input](docs/company/input-approvals.md) richiedono approvazione comune
+per entrambi i canali prima del riuso; ogni
+contenuto finale mantiene la propria review. Preparazione mensile nella chat
+dal 05/10/2026, primo lunedì alle 10:00 Europe/Rome.
 
 Il collegamento sperimentale My Avatar tra Teams e l'agente Marketing è
 documentato in [docs/maintenance/myavatar.md](docs/maintenance/myavatar.md).
