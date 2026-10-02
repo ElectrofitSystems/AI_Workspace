@@ -1,0 +1,40 @@
+const runtimeModules = require('node:path').join(require('node:os').homedir(), '.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules');
+const {chromium} = require(require.resolve('playwright', {paths: [__dirname, runtimeModules]}));
+const {pathToFileURL} = require('node:url');
+const fs = require('node:fs');
+const path = require('node:path');
+const outputDir = path.resolve(__dirname, '../../../output/linkedin/posts');
+const verifyOnly = process.argv.includes('--verify-only');
+(async () => {
+  const browser = await chromium.launch({headless:true,channel:'msedge'});
+  const page = await browser.newPage({viewport:{width:736,height:1100}});
+  const errors=[]; page.on('pageerror',e=>errors.push(e.message));
+  await page.goto(pathToFileURL(path.resolve(outputDir,'previews/review.html')).href);
+  const frame=page.frameLocator('iframe');
+  await frame.locator('.li-post').first().waitFor();
+  const main=page.frames().find(f=>f!==page.mainFrame());
+  const images=await main.evaluate(()=>Array.from(document.querySelectorAll('#efs-linkedin-selected img')).map(x=>x.complete&&x.naturalWidth>0));
+  if(images.length!==4||images.some(x=>!x))throw Error('Images not loaded');
+  for(const [id,file] of [['efs-preview-copy','EFS-001.md'],['ne-preview-copy','NE-001.md']]){
+    const expected=fs.readFileSync(path.resolve(outputDir,file),'utf8').replace(/\r\n/g,'\n').trim();
+    const actual=await frame.locator('#'+id).textContent();
+    if(actual!==expected)throw Error('Copy mismatch '+id);
+  }
+  const expand=frame.locator('.li-expand').first();
+  if(await expand.getAttribute('aria-expanded')!=='true')throw Error('Copy should start expanded');
+  await expand.click();
+  if(await expand.getAttribute('aria-expanded')!=='false')throw Error('Collapse failed');
+  await expand.click();
+  if(await expand.getAttribute('aria-expanded')!=='true')throw Error('Expand failed');
+  const fitFrame=async()=>{const height=await main.evaluate(()=>document.documentElement.scrollHeight);const width=page.viewportSize().width;await page.setViewportSize({width,height:height+64});await page.locator('iframe').evaluate((el,h)=>{el.style.height=h+'px';},height);};
+  await fitFrame();
+  if (!verifyOnly) await frame.locator('#efs-linkedin-selected').screenshot({path:path.resolve(outputDir,'previews/desktop.png')});
+  await page.setViewportSize({width:320,height:1000});
+  await fitFrame();
+  const overflow=await main.evaluate(()=>document.documentElement.scrollWidth>document.documentElement.clientWidth);
+  if(overflow)throw Error('Overflow at 320px');
+  if (!verifyOnly) await frame.locator('#efs-linkedin-selected').screenshot({path:path.resolve(outputDir,'previews/mobile.png')});
+  if(errors.length)throw Error(errors.join('; '));
+  console.log('Verified exact bilingual text, four original images, expand/collapse, no runtime errors, no overflow at 320px.');
+  await browser.close();
+})().catch(e=>{console.error(e.message);process.exit(1)});

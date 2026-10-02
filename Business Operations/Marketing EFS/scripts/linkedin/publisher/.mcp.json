@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "efs_linkedin": {
+      "command": "python",
+      "args": [
+        "-X",
+        "utf8",
+        "-u",
+        "${CLAUDE_PLUGIN_ROOT}/mcp_server.py"
+      ]
+    }
+  }
+}

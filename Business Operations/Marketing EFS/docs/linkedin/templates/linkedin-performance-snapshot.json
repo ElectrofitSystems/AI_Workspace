@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "is_template": true,
+  "actor_organization_id": "103544667",
+  "observed_at": null,
+  "timezone": "Europe/Rome",
+  "source_url": null,
+  "collection_method": null,
+  "coverage": {"status": "not_collected", "pages_read": null, "notes": []},
+  "post_table_window": {"start": null, "end": null},
+  "metric_basis": "unknown",
+  "posts": [],
+  "post_field_contract": ["post_id", "post_url", "published_at", "stream", "format", "impressions", "unique_impressions", "clicks", "outbound_clicks", "reactions", "comments", "reposts", "ctr_platform_pct", "engagement_platform_pct", "metric_basis", "metric_period", "source_url"],
+  "page_kpis": [],
+  "follower_snapshot": {"total": null, "new_followers": null, "lost_followers": null, "net_change": null, "period": null, "source_url": null},
+  "commercial_counts": {"qualified_enquiries": null, "sales_opportunities": null, "confirmed_sales": null, "coverage": "not_checked"},
+  "limitations": []
+}
