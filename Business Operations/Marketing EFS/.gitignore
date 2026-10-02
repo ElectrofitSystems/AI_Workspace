@@ -1,6 +1,7 @@
 # Originali e risultati locali: conservazione documentale separata da Git.
 /input/
 /output/
+/.local/
 
 # Stato runtime, credenziali locali e bytecode.
 **/local-data/

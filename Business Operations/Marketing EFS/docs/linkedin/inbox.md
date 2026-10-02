@@ -34,7 +34,7 @@ Il link è stato osservato nella scheda Lavoro della pagina pubblica ElectroFit 
 - Skill installata: `C:\Users\Operations\.codex\skills\efs-linkedin-inbox\SKILL.md`.
 - Dettaglio decisionale: `references/triage-and-replies.md`; registri operativi: `references/operations.md`.
 - Contesto applicativo: `.agents/product-marketing.md`, tre sottosistemi e tutti gli otto settori obiettivo documentati dalla v12; regole evidenze in `docs/linkedin/editorial.md`.
-- Configurazione e attivazione: `output/linkedin/inbox/config.json`; registri persistenti: state.json, reviews/, replies/, digests/.
+- Configurazione e attivazione: `output/Linkedin/inbox/config.json`; registri persistenti: state.json, reviews/, replies/, digests/.
 - Automazione aggiornata: `electrofit-messaggi-linkedin-e-notifiche-teams`, ACTIVE, stessa ricorrenza e stessa chat Codex.
 
 ## Verifica e limiti

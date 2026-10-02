@@ -2,7 +2,7 @@
 param()
 
 $workspacePath = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
-$expectedTarget = [System.IO.Path]::GetFullPath((Join-Path $workspacePath 'output/_cleanup-pending'))
+$expectedTarget = [System.IO.Path]::GetFullPath((Join-Path $workspacePath '.local/maintenance/cleanup-pending'))
 if (-not (Test-Path -LiteralPath (Join-Path $workspacePath 'AGENTS.md') -PathType Leaf)) {
     throw 'This is not the Marketing EFS workspace.'
 }

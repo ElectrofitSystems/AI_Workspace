@@ -3,7 +3,7 @@
 Leggi README.md, poi docs/rules.md e i documenti pertinenti al compito.
 Il contesto aziendale condiviso è docs/company/context.md.
 Le regole e le procedure in docs/ valgono per qualsiasi LLM; le skill disponibili sono strumenti facoltativi.
-Salva i risultati in output/ e i temporanei in output/_temp/. Conserva gli originali in input/.
+Salva i risultati in output/ e i temporanei in .local/maintenance/temporary/. Conserva gli originali in input/.
 Per istruzioni o registri storici con vecchi percorsi, consulta docs/maintenance/paths.json; usa sempre le nuove destinazioni e non ricreare le vecchie cartelle.
 Le autorizzazioni esistenti rimangono limitate ai rispettivi ambiti: la riorganizzazione non autorizza nuovi invii o pubblicazioni.
 

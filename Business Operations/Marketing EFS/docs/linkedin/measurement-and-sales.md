@@ -13,7 +13,7 @@ Versione 1.1 — 2026-10-01. Stato: configurazione operativa iniziale richiesta 
 | 5 | Registro e passaggio a vendite/engineering | efs-lead-handoff | Registro SharePoint caricato/verificato; revisione settimanale proposta |
 | 6 | Revisione Pagina | efs-company-page-review | Skill disponibile; trimestrale proposto |
 
-Le ricorrenze effettive e gli ID sono in `output/linkedin/config/automations.json`. Tutti gli orari sono Europe/Rome. Le frequenze di analisi non cambiano il ciclo editoriale 6 B2B/4 Nova Energia, né programmano pubblicazioni. Report di performance esplicitamente previsti; monitor opportunità silenzioso se invariato. Nessun nuovo invio Teams autorizzato da questa configurazione: i flussi precedenti conservano i rispettivi invii già autorizzati.
+Le ricorrenze effettive e gli ID sono in `output/Linkedin/config/automations.json`. Tutti gli orari sono Europe/Rome. Le frequenze di analisi non cambiano il ciclo editoriale 6 B2B/4 Nova Energia, né programmano pubblicazioni. Report di performance esplicitamente previsti; monitor opportunità silenzioso se invariato. Nessun nuovo invio Teams autorizzato da questa configurazione: i flussi precedenti conservano i rispettivi invii già autorizzati.
 
 ## Misure da tenere separate
 
@@ -32,7 +32,7 @@ I livelli non sono un funnel attribuibile automaticamente: una richiesta può pr
 
 Registro condiviso canonico: [ElectroFit-Commercial-Register.json](https://efitsys.sharepoint.com/sites/Administration/Shared%20Documents/Operations/Marketing/Commercial%20Register/ElectroFit-Commercial-Register.json), nella cartella scelta dall'utente Administration / Shared Documents / Operations / Marketing / Commercial Register. Creazione e lettura di verifica riuscite il 01/10/2026; revisione 2, nessuna richiesta ancora importata. Cartella verificata anche tramite GUID SharePoint del link utente `98ea91bc-ec76-4270-993a-acbaeb4427e3`.
 
-Copia locale: `output/sales/lead-register-v01.json`; ricevuta con drive/folder/item ID, URL, eTag e hash locale in `output/sales/sharepoint-register-delivery-v01.json`. Prima di aggiornare leggere la versione condivisa, riconciliare lo stato locale e preservare record/eventi/ID esistenti. La copia locale non è una pipeline parallela; in caso di accesso indisponibile conserva le modifiche come pending_sync. Non includere CV, contatti privati non necessari o dettagli personali estranei.
+Copia locale: `output/Linkedin/sales/lead-register-v01.json`; ricevuta con drive/folder/item ID, URL, eTag e hash locale in `output/Linkedin/sales/sharepoint-register-delivery-v01.json`. Prima di aggiornare leggere la versione condivisa, riconciliare lo stato locale e preservare record/eventi/ID esistenti. La copia locale non è una pipeline parallela; in caso di accesso indisponibile conserva le modifiche come pending_sync. Non includere CV, contatti privati non necessari o dettagli personali estranei.
 
 Campi di ogni record:
 

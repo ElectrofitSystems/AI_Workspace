@@ -26,7 +26,7 @@ def handle(request,p):
         supported=('2024-11-05','2025-03-26','2025-06-18')
         version=params.get('protocolVersion')
         return {'protocolVersion':version if version in supported else supported[-1],
-                'capabilities':{'tools':{}},'serverInfo':{'name':'efs-linkedin-publisher','version':'0.1.5'},
+                'capabilities':{'tools':{}},'serverInfo':{'name':'efs-linkedin-publisher','version':'0.1.6'},
                 'instructions':'Draft-only by default. Read the persistent company context and draft in Italian first. LinkedIn publication requires an explicit user execution request and authenticated approval of the exact content revision; approval alone does not trigger publication. Teams approval ingestion is not yet supported: never forge a terminal approval, supply a reviewer password or change live settings on behalf of the user. No automatic retries after an unknown publishing outcome.'}
     if method=='ping': return {}
     if method=='tools/list': return {'tools':tool_list()}

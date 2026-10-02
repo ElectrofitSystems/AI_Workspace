@@ -22,7 +22,7 @@ from urllib.error import HTTPError, URLError
 
 ROOT = Path(__file__).resolve().parent
 WORKSPACE = next((p for p in ROOT.parents if (p / 'AGENTS.md').is_file()), None)
-DEFAULT_DATA = WORKSPACE / 'output/linkedin/publisher' if WORKSPACE else ROOT / 'local-data'
+DEFAULT_DATA = WORKSPACE / 'output/Linkedin/publisher' if WORKSPACE else ROOT / 'local-data'
 ROLES = {'ADMINISTRATOR', 'CONTENT_ADMIN'}
 
 class GuardError(Exception):

@@ -1,6 +1,6 @@
 # ElectroFit Systems — LinkedIn: flusso editoriale
 
-Versione 1.0 — 2026-10-01. Workspace riutilizzato: Marketing EFS. Contesto condiviso: `docs/company/context.md`. Bozze e note interne: `output/linkedin/`. Brief: `docs/linkedin/templates/linkedin-content-brief.md`.
+Versione 1.0 — 2026-10-01. Workspace riutilizzato: Marketing EFS. Contesto condiviso: `docs/company/context.md`. Bozze e note interne: `output/Linkedin/`. Brief: `docs/linkedin/templates/linkedin-content-brief.md`.
 
 ## Fonte delle istruzioni
 
@@ -42,7 +42,7 @@ La prima bozza e la revisione sono in italiano. Un adattamento inglese deve cons
 
 Preparazione: lunedì 09:00 Europe/Rome, ora legale/solare inclusa. Ciclo: B2B/NE; B2B/NE; B2B/B2B; NE/B2B; B2B/NE. Iniziare da EFS-001 e NE-001, senza duplicarle. Martedì e giovedì restano proposte editoriali, non invii programmati. Conservare richieste pendenti, evitare duplicati e nessun recupero automatico di pubblicazioni.
 
-Scelta editoriale dell'utente del 01/10: per EFS-001 mantenere la riformulazione v02; per NE-001 mantenere il testo iniziale v01. Prima della prossima revisione leggere `output/linkedin/posts/selection.md` e il relativo pacchetto JSON. Questa scelta non equivale ad approvazione Teams o richiesta di pubblicazione.
+Scelta editoriale dell'utente del 01/10: per EFS-001 mantenere la riformulazione v02; per NE-001 mantenere il testo iniziale v01. Prima della prossima revisione leggere `output/Linkedin/posts/selection.md` e il relativo pacchetto JSON. Questa scelta non equivale ad approvazione Teams o richiesta di pubblicazione.
 
 ## Grafica e caroselli
 

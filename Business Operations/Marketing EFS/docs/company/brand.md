@@ -10,11 +10,11 @@ L’utente ha indicato **Efitsys_Corporate_Design_Kit.zip** come handbook e desi
 
 I percorsi di questa lista sono relativi alla radice del progetto.
 
-- Archivio originale: `input/brand/Efitsys_Corporate_Design_Kit.zip`.
-- Cartella master: `input/brand/Efitsys_Corporate_Design_Kit/`.
-- Handbook: `input/brand/Efitsys_Corporate_Design_Kit/01_Handbook/Efitsys_Corporate_Design_Handbook.pdf`.
-- Estrazione testuale delle 28 pagine: `input/brand/handbook-extracted.md`.
-- Inventario fornito: `input/brand/Efitsys_Corporate_Design_Kit/08_Reference/asset_inventory.csv`.
+- Archivio originale: `input/Brand identity/Efitsys_Corporate_Design_Kit.zip`.
+- Cartella master: `input/Brand identity/Efitsys_Corporate_Design_Kit/`.
+- Handbook: `input/Brand identity/Efitsys_Corporate_Design_Kit/01_Handbook/Efitsys_Corporate_Design_Handbook.pdf`.
+- Estrazione testuale delle 28 pagine: `input/Brand identity/handbook-extracted.md`.
+- Inventario fornito: `input/Brand identity/Efitsys_Corporate_Design_Kit/08_Reference/asset_inventory.csv`.
 
 Letto il testo completo e controllate visivamente le pagine 5, 6, 11, 17, 19 e 25 per loghi, spaziature, tipografia e applicazioni. I master rimangono originali: produrre copie di lavoro per ogni materiale.
 

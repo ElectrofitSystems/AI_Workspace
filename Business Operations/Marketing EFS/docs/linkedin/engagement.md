@@ -2,7 +2,7 @@
 
 1 ottobre 2026 — versione 1.
 
-Richiesta: ricercare post e interagire come pagina Electrofit ogni giorno alle 10:00, 14:00 e 17:00, Europe/Rome, weekend inclusi. Ricorrenza gestita tramite heartbeat di questa chat; configurazione operativa in `output/linkedin/engagement/config.json`.
+Richiesta: ricercare post e interagire come pagina Electrofit ogni giorno alle 10:00, 14:00 e 17:00, Europe/Rome, weekend inclusi. Ricorrenza gestita tramite heartbeat di questa chat; configurazione operativa in `output/Linkedin/engagement/config.json`.
 
 La richiesta costituisce autorizzazione ricorrente di esecuzione nel perimetro concordato. Non serve una seconda richiesta di esecuzione per ciascuna interazione già esattamente approvata e tecnicamente eseguibile. L'utente ha scelto esplicitamente «Revisione di commenti e reazioni (consigliata per iniziare)». È quindi confermata la revisione di commenti e reazioni da parte di Francesco oppure Mohammad, senza necessità di entrambi.
 

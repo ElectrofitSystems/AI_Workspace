@@ -20,9 +20,9 @@ from PIL import Image
 from pypdf import PdfReader, PdfWriter
 
 PROJECT = Path(__file__).resolve().parents[2]
-BASE = PROJECT / 'output/brochures/applications'
+BASE = PROJECT / 'output/Documentation/Brochures/applications'
 parser = argparse.ArgumentParser()
-parser.add_argument('--logo', type=Path, default=PROJECT / 'input/brand/Efitsys_Corporate_Design_Kit/02_Logos/PNG/efitsys-logo-primary-1280w.png')
+parser.add_argument('--logo', type=Path, default=PROJECT / 'input/Brand identity/Efitsys_Corporate_Design_Kit/02_Logos/PNG/efitsys-logo-primary-1280w.png')
 parser.add_argument('--arial', type=Path, default=Path('C:/Windows/Fonts/arial.ttf'))
 parser.add_argument('--arial-bold', type=Path, default=Path('C:/Windows/Fonts/arialbd.ttf'))
 args = parser.parse_args()

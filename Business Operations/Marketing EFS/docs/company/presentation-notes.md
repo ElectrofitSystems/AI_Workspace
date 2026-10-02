@@ -10,7 +10,7 @@ Fonte selezionata dall’utente: **ElectroFit Systems - Company Presentation  v1
 
 Nella stessa cartella sono presenti un PDF v12 e un PDF v12 Customers, entrambi modificati il 9 settembre 2026. Non sono stati trattati come equivalenti al PowerPoint più recente né letti in questa acquisizione. I file in Next Versions non sono stati selezionati al posto della v12 richiesta.
 
-L’estrazione completa è in `input/efitsys-company-presentation-v12-en-extracted.md`, rispetto alla radice del progetto. Le presenti note organizzano il contenuto, senza certificare la validità tecnica, commerciale o la divulgabilità di ogni affermazione. Immagini e diagrammi non sono stati esaminati: le slide 14 e 25 restituiscono solo titolo e numero. Per riusare tali elementi serve il file originale.
+L’estrazione completa è in `input/Technical documentation/efitsys-company-presentation-v12-en-extracted.md`, rispetto alla radice del progetto. Le presenti note organizzano il contenuto, senza certificare la validità tecnica, commerciale o la divulgabilità di ogni affermazione. Immagini e diagrammi non sono stati esaminati: le slide 14 e 25 restituiscono solo titolo e numero. Per riusare tali elementi serve il file originale.
 
 ## Missione e strategia — slide 3
 

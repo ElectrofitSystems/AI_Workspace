@@ -3,7 +3,7 @@ const {chromium} = require(require.resolve('playwright', {paths: [__dirname, run
 const {pathToFileURL} = require('node:url');
 const fs = require('node:fs');
 const path = require('node:path');
-const outputDir = path.resolve(__dirname, '../../../output/linkedin/posts');
+const outputDir = path.resolve(__dirname, '../../../output/Linkedin/posts');
 (async()=>{
   const browser=await chromium.launch({headless:true,channel:'msedge'});
   const page=await browser.newPage({viewport:{width:736,height:4000}});
@@ -36,7 +36,7 @@ const outputDir = path.resolve(__dirname, '../../../output/linkedin/posts');
     }
     const name=prefix+'-copy.md';fs.writeFileSync(path.join(dir,name),p.body.commentary+'\n','utf8');
     files.push({post_id:p.id,editorial_version:version,kind:'copy',name,path:path.join(dir,name),mime:'text/markdown'});
-    const media=path.resolve(outputDir,'media',p.body.media.file);
+    const media=path.resolve(__dirname, '../../../input/Media/Pictures', p.body.media.file);
     const mediaName=prefix+'-original-media'+path.extname(media);
     fs.copyFileSync(media,path.join(dir,mediaName));
     files.push({post_id:p.id,editorial_version:version,kind:'media',name:mediaName,path:path.join(dir,mediaName),mime:p.body.media.mime});

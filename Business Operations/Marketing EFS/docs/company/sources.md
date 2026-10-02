@@ -2,7 +2,7 @@
 
 Aggiornato il 29 settembre 2026 su indicazione esplicita dell'utente.
 
-Eccezione specifica del 01/10/2026: l'utente ha indicato e autorizzato la cartella Administration / Shared Documents / Operations / Marketing / Commercial Register per il registro commerciale. Il file `ElectroFit-Commercial-Register.json` è stato caricato e riletto con successo; destinazione/ricevuta in `output/sales/sharepoint-register-delivery-v01.json`. Scritture limitate al registro in questa cartella, con preservazione e riconciliazione delle versioni. Non estende l'autorizzazione agli archivi/fonti sotto né modifica i gruppi Teams o i permessi.
+Eccezione specifica del 01/10/2026: l'utente ha indicato e autorizzato la cartella Administration / Shared Documents / Operations / Marketing / Commercial Register per il registro commerciale. Il file `ElectroFit-Commercial-Register.json` è stato caricato e riletto con successo; destinazione/ricevuta in `output/Linkedin/sales/sharepoint-register-delivery-v01.json`. Scritture limitate al registro in questa cartella, con preservazione e riconciliazione delle versioni. Non estende l'autorizzazione agli archivi/fonti sotto né modifica i gruppi Teams o i permessi.
 
 ## Fonte approvata per il marketing
 

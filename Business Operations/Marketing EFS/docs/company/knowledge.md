@@ -23,7 +23,7 @@ Valori confermati: attenzione al cliente, affidabilità, visione di lungo period
 
 La vision richiama sistemi certificati, modulari e definiti dal software come direzione aziendale; non costituisce da sola prova tecnica sul catalogo. Il purpose nel framework è indicato come ultima formulazione discussa, senza promuoverlo qui a definitiva approvazione.
 
-Il framework mantiene tutti i differenzianti selezionati nella presentazione. La v12 è ora acquisita: la mappa di strategia, competenze, cinque proposte di valore e otto mercati è in `docs/company/presentation-notes.md`, con riferimenti alle slide e punti da verificare. L’estrazione completa è in `input/efitsys-company-presentation-v12-en-extracted.md`. Diagrammi e immagini non sono stati esaminati.
+Il framework mantiene tutti i differenzianti selezionati nella presentazione. La v12 è ora acquisita: la mappa di strategia, competenze, cinque proposte di valore e otto mercati è in `docs/company/presentation-notes.md`, con riferimenti alle slide e punti da verificare. L’estrazione completa è in `input/Technical documentation/efitsys-company-presentation-v12-en-extracted.md`. Diagrammi e immagini non sono stati esaminati.
 
 ## Decisioni di configurazione confermate
 
