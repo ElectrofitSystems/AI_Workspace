@@ -1,0 +1,2 @@
+# Preserve the original plugin bytes so CHECKSUMS.sha256 also works on Windows.
+"Business Operations/Marketing EFS/plugins/my-avatar-teams-automation/**" text eol=lf

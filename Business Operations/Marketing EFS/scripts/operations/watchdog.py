@@ -1,6 +1,8 @@
 """Windows logon launcher; stdlib only. One watchdog per workspace."""
+import argparse
 import json
 import os
+import shutil
 import subprocess
 import sys
 import time
@@ -9,7 +11,19 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 STATE=ROOT/'.local/operations-teams'
 
+def resolve_codex(explicit=None):
+    value=explicit or os.environ.get('OPERATIONS_CODEX') or shutil.which('codex.exe')
+    if not value or not Path(value).is_file():
+        raise FileNotFoundError('Specify an existing Codex executable with --codex or OPERATIONS_CODEX.')
+    return Path(value).resolve()
+
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--codex',type=Path)
+    args=parser.parse_args()
+    if not (STATE/'service.enabled').exists():
+        return
+    codex=resolve_codex(args.codex)
     import msvcrt
     STATE.mkdir(parents=True,exist_ok=True)
     with (STATE/'watchdog.lock').open('a+b') as lock:
@@ -21,7 +35,6 @@ def main():
         except OSError:return
         (STATE/'watchdog.json').write_text(json.dumps({'pid':os.getpid()}),encoding='utf-8')
         python=Path(sys.executable).with_name('python.exe')
-        codex=Path('C:/Users/Operations/AppData/Local/OpenAI/Codex/bin/a51e250fa15c740a/codex.exe')
         service=ROOT/'scripts/operations/teams_service.py'
         try:
             while (STATE/'service.enabled').exists():

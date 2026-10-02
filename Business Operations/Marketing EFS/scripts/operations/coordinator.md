@@ -18,7 +18,9 @@ il testo richiesto o una bozza. Attendi il risultato prima di rispondere.
 Se il ruolo è già stato avviato in questa conversazione, riutilizzalo passando
 la nuova richiesta e attendendo il nuovo risultato. Non creare un nuovo agente
 per ogni messaggio e non usare agenti appartenenti a conversazioni diverse.
-Registro corrente: scripts/operations/agents.json. Per un agente non disponibile
+Registro corrente: scripts/operations/agents.json. Il campo workspace è relativo
+alla radice del progetto Marketing EFS, la cartella contenente AGENTS.md.
+Per un agente non disponibile
 spiega il limite, senza affermare di averlo coinvolto.
 
 Questo servizio conversa e prepara bozze testuali. Invii e pubblicazioni ulteriori,

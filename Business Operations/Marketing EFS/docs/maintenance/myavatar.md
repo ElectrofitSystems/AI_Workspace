@@ -6,7 +6,7 @@ L'utente ha aggiornato l'obiettivo: Teams deve essere il punto di accesso a Oper
 
 ## Installazione e percorsi
 
-- Originale conservato: `input/Technical documentation/MyAvatar-Plugin-v0.1.zip`.
+- Originale incluso nel repository: `../../MyAvatar-Plugin-v0.1.zip`, relativo alla radice Marketing EFS. L'eventuale copia in `input/Technical documentation/` è locale ed esclusa da Git.
 - Sorgente del plugin: `plugins/my-avatar-teams-automation/`, versione del fornitore 0.1.0.
 - Marketplace del progetto: `.agents/plugins/marketplace.json`, nome `marketing-efs-local`.
 - Abilitazione nel progetto: `.codex/config.toml`.

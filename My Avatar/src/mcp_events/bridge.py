@@ -272,7 +272,9 @@ class Bridge:
                 raise Rejected('Unknown skill resource')
             uri = params['uri']
             return {'contents': [{'uri': uri, 'mimeType': 'text/markdown',
-                                  'text': SKILL_URIS[uri].read_text(encoding='utf-8')}]}
+                                  # Preserve the exact bytes hashed in skills/list,
+                                  # including CRLF line endings on Windows.
+                                  'text': SKILL_URIS[uri].read_bytes().decode('utf-8')}]}
         if method == 'tools/list':
             return {'tools': [{
                 'name': STATUS_TOOL,

@@ -1,15 +1,42 @@
-param([ValidateSet('Start','Stop','Status','Watchdog','InstallStartup')][string]$Action='Status')
+param(
+    [ValidateSet('Start','Stop','Status','Watchdog','InstallStartup')][string]$Action='Status',
+    [string]$PythonPath=$env:OPERATIONS_PYTHON,
+    [string]$CodexPath=$env:OPERATIONS_CODEX
+)
 $ErrorActionPreference='Stop'
 $projectRoot=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../..'))
 $statePath=Join-Path $projectRoot '.local/operations-teams'
 $enabledPath=Join-Path $statePath 'service.enabled'
 $healthPath=Join-Path $statePath 'health.json'
-$servicePath=Join-Path $PSScriptRoot 'teams_service.py'
-$pythonPath='C:/Users/Operations/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'
-$pythonWindowless=Join-Path (Split-Path $pythonPath) 'pythonw.exe'
 $watchdogPath=Join-Path $PSScriptRoot 'watchdog.py'
-$codexPath='C:/Users/Operations/AppData/Local/OpenAI/Codex/bin/a51e250fa15c740a/codex.exe'
 $taskName='EFitsys Operations Teams'
+function Resolve-RuntimePath([string]$ExplicitPath,[string]$CommandName) {
+    if($ExplicitPath){
+        if(-not (Test-Path -LiteralPath $ExplicitPath -PathType Leaf)){
+            throw "Eseguibile non trovato: $ExplicitPath"
+        }
+        return (Resolve-Path -LiteralPath $ExplicitPath).Path
+    }
+    $command=Get-Command $CommandName -CommandType Application -ErrorAction SilentlyContinue | Select-Object -First 1
+    if(-not $command){throw "Specificare il percorso di $CommandName tramite -PythonPath o -CodexPath."}
+    return $command.Source
+}
+if($Action -in @('Start','Watchdog','InstallStartup')){
+    if(-not (Test-Path -LiteralPath (Join-Path $statePath 'config.json') -PathType Leaf)){
+        throw 'Configurazione locale assente: recuperare .local/operations-teams/config.json prima di avviare il servizio.'
+    }
+    if(-not $PythonPath){
+        $bundledPython=Join-Path $env:USERPROFILE '.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe'
+        if(Test-Path -LiteralPath $bundledPython -PathType Leaf){$PythonPath=$bundledPython}
+    }
+    $PythonPath=Resolve-RuntimePath $PythonPath 'python.exe'
+    $CodexPath=Resolve-RuntimePath $CodexPath 'codex.exe'
+    $pythonWindowless=Join-Path (Split-Path $PythonPath) 'pythonw.exe'
+    if($Action -ne 'Watchdog' -and -not (Test-Path -LiteralPath $pythonWindowless -PathType Leaf)){
+        throw "Python senza console non trovato: $pythonWindowless"
+    }
+    $watchdogArguments='"{0}" --codex "{1}"' -f $watchdogPath,$CodexPath
+}
 function Read-ServiceHealth {
     if(Test-Path -LiteralPath $healthPath){Get-Content -LiteralPath $healthPath -Raw | ConvertFrom-Json}
 }
@@ -29,7 +56,7 @@ switch($Action){
         'Arresto richiesto. Il servizio verifica il blocco anche prima di ogni invio.'
     }
     'Watchdog' {
-        & $pythonPath $watchdogPath
+        & $PythonPath $watchdogPath --codex $CodexPath
     }
     'Start' {
         New-Item -ItemType File -Path $enabledPath -Force | Out-Null
@@ -44,7 +71,7 @@ switch($Action){
             $_.CommandLine -and $_.CommandLine.Contains($watchdogPath)
         }
         if($watchdog){'Il watchdog è già attivo; il servizio riparte al prossimo controllo.';return}
-        Start-Process -FilePath $pythonWindowless -ArgumentList ('"'+$watchdogPath+'"') -WorkingDirectory $projectRoot -WindowStyle Hidden
+        Start-Process -FilePath $pythonWindowless -ArgumentList $watchdogArguments -WorkingDirectory $projectRoot -WindowStyle Hidden
         'Servizio avviato; verificare Status dopo il primo controllo Teams.'
     }
     'InstallStartup' {
@@ -52,7 +79,7 @@ switch($Action){
         if($existing -and $existing.Description -ne 'EFitsys: servizio locale autorizzato Operations nelle chat individuali Teams.'){
             throw 'Esiste già un task con questo nome e un altro mandato; non sostituito.'
         }
-        $startupAction=New-ScheduledTaskAction -Execute $pythonWindowless -Argument ('"'+$watchdogPath+'"') -WorkingDirectory $projectRoot
+        $startupAction=New-ScheduledTaskAction -Execute $pythonWindowless -Argument $watchdogArguments -WorkingDirectory $projectRoot
         $identity=[Security.Principal.WindowsIdentity]::GetCurrent().Name
         $trigger=New-ScheduledTaskTrigger -AtLogOn -User $identity
         $principal=New-ScheduledTaskPrincipal -UserId $identity -LogonType Interactive -RunLevel Limited

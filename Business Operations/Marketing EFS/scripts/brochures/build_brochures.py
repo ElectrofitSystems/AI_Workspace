@@ -1,5 +1,7 @@
 """Build the eight Efitsys A4 brochures and their combined collection.
 
+Historical generator for the previous design kit (Arial and old logo).
+For new materials, apply docs/company/brand.md and adapt a working copy first.
 Source: content.json. Run with Python with reportlab, Pillow and pypdf installed.
 Fonts and original logo are external assets, configurable with command arguments.
 No source assets are modified. All coordinates are points measured from page top.

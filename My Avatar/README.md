@@ -1,4 +1,17 @@
-# Teams Wake — prova locale Windows
+# My Avatar — prototipi Windows e MCP Events
+
+Questa cartella conserva due esperimenti distinti: `src/TeamsWake/` è il listener
+Windows descritto sotto; `src/mcp_events/` contiene il bridge MCP Events con i
+propri test, configurazioni in `config/` e policy in `skills/teams-auto-responder/`.
+Gli stati nei JSON sono evidenze delle prove sul PC originale, non verifiche
+dell'ambiente corrente. `Start-McpTunnel.ps1` usa il client in
+`tools/tunnel-client/v0.0.15/`, passato tramite `-TunnelClientPath`.
+
+Il servizio Operations Teams di Marketing EFS usa un trasporto diverso; vedere
+il [runbook](../Business%20Operations/Marketing%20EFS/docs/maintenance/operations-teams-runbook.md).
+Il plugin distribuibile v0.1.0 è conservato separatamente nel progetto Marketing.
+
+## Teams Wake — prova locale Windows
 
 Programma Windows/.NET 8 con `UserNotificationListener`, icona nell'area di notifica,
 coda locale e segnale di test. Non usa Microsoft Graph, non invia messaggi e non
@@ -16,8 +29,8 @@ lo stato lo espone come `assistantWake: NOT_CONFIGURED`.
   è già attivo, aprire lo stato dall'icona nell'area di notifica.
 - Chiudere la finestra lascia il listener attivo; “Arresta ed esci” lo termina.
 
-I collegamenti nella cartella del progetto permettono le stesse operazioni senza
-eseguire script PowerShell.
+Usare gli script PowerShell sopra. I vecchi collegamenti `.lnk` puntavano al
+Desktop del PC originale e sono stati rimossi dal repository.
 
 ## Accesso notifiche
 

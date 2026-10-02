@@ -8,6 +8,11 @@ organizzate nelle sezioni **EFS — Lavori operativi** e **EFS — Riferimenti e
 Procedura: [coordinamento delle chat](docs/maintenance/master-coordination.md).
 Stato corrente locale: [registro dei lavori](output/Statistics/coordination/master-register.json).
 
+In una nuova copia Git, `input/`, `output/` e `.local/` possono essere assenti:
+sono dati locali esclusi dal repository. Anche il registro dei lavori richiede
+il recupero della copia operativa. Le installazioni e le prove riportate sotto
+descrivono l'ambiente Operations originale, non lo stato di ogni clone.
+
 | Cartella | Cosa contiene | Git |
 | --- | --- | --- |
 | `docs/` | Conoscenza aziendale, procedure e manutenzione | Sì |
@@ -86,7 +91,8 @@ Il flusso [Teams Approvazioni per Marketing](docs/maintenance/teams-approvals.md
 collegare e richiede accesso API operativo.
 
 Gli [strumenti LinkedIn](scripts/linkedin/README.md) sono in `scripts/linkedin/`;
-il generatore delle brochure è in `scripts/brochures/`.
+il generatore storico delle brochure è in `scripts/brochures/` e usa ancora il
+kit precedente. Per nuove consegne prevalgono `docs/company/brand.md` e il kit 3.4.
 
 Fonti e output sono esclusi da Git. Dal 2 ottobre 2026 usare come origine dei nuovi
 input la cartella SharePoint [Marketing/Inputs](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Inputs)
@@ -99,7 +105,8 @@ automatica di tutto il workspace.
 
 ## Manutenzione locale
 
-Temporanei e verifiche sono in `.local/maintenance/`. I residui della precedente
-pulizia bloccata sono conservati in `.local/maintenance/cleanup-pending/`.
+Temporanei e verifiche sono in `.local/maintenance/`. Gli eventuali residui della
+precedente pulizia sono in `.local/maintenance/cleanup-pending/`, solo sulla copia
+locale dove sono stati conservati.
 Lo script `scripts/maintenance/cleanup_obsolete.ps1` agisce soltanto su quella
 cartella quando eseguito manualmente. La riorganizzazione non esegue cancellazioni.

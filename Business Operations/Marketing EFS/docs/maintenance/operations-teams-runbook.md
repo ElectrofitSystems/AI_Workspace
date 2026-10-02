@@ -52,6 +52,19 @@ Da PowerShell nella cartella canonica:
 ```
 
 `Status` verifica sia il processo sia health.json, con ora dell'ultima scansione.
+Su una nuova copia Git la configurazione `.local/operations-teams/config.json`
+deve essere recuperata dall'installazione autorizzata; la sua assenza blocca
+Start, Watchdog e InstallStartup prima di creare il file di abilitazione.
+I percorsi degli eseguibili non dipendono più dal PC Operations: Python viene
+cercato nel runtime dell'utente corrente e poi nel PATH; `codex.exe` nel PATH.
+Si possono specificare `-PythonPath` e `-CodexPath`, oppure le variabili
+`OPERATIONS_PYTHON` e `OPERATIONS_CODEX`. Per Start e InstallStartup è richiesto
+anche `pythonw.exe` accanto a `python.exe`. Dopo uno spostamento, l'eventuale task
+Windows preesistente conserva i vecchi percorsi: aggiornarlo esplicitamente con
+InstallStartup nella configurazione operativa. La pulizia del repository non
+installa né avvia task. Nel registro `scripts/operations/agents.json`, workspace
+`.` indica la radice Marketing EFS, non la directory del registro.
+
 `Stop` rimuove soltanto `.local/operations-teams/service.enabled`; il blocco viene
 ricontrollato anche prima degli invii. Il watchdog riavvia un processo terminato
 solo finché il file di abilitazione esiste. Non riavviare prima che il precedente

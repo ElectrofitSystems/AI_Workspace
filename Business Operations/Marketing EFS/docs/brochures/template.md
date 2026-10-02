@@ -1,5 +1,11 @@
 # Efitsys brochure master v02
 
+This document describes the historical v02 master. For new materials, apply
+[the current brand rules](../company/brand.md) and Corporate Design Kit 3.4:
+Barlow / Barlow Condensed and the original uppercase EFITSYS logo. Preserve the
+old master; adapt a working copy before using it for a new delivery. The legacy
+`scripts/brochures/build_brochures.py` still reproduces the previous kit.
+
 Open the DOTX file in Word to create a new brochure, then save it with the product name and revision. The DOCX is an editable working copy. The PDF shows the unfilled master. The separate PDU design study illustrates the first page with documented product content.
 
 Click a content control and replace the complete field text. Header and footer fields repeat across all pages. Values repeated in separate specification areas must be kept consistent manually.
@@ -10,6 +16,6 @@ Use approximately 100–140 words for the description and 35–50 words for the 
 
 Keep the three-page sequence. Adapt labels and remove irrelevant specification rows, application bullets and related-product entries in the working copy. Describe cooling or service interfaces only when applicable. State rated and peak conditions and the configuration scope. Do not invent values or compliance claims to complete a slot.
 
-Keep Arial, the original logo, the brand palette and **Your vision. Our drive.** Use the source's compact datasheet hierarchy: the first-page specification list has no enclosing grid and the engineering tables use light gray headers and subtle shading. Avoid adding cards, badges, heavy frames or additional dark section bars.
+For reproduction of the historical master only, keep Arial and its original logo and palette. For new materials, use the current brand rules linked above. Keep **Your vision. Our drive.** Use the source's compact datasheet hierarchy: the first-page specification list has no enclosing grid and the engineering tables use light gray headers and subtle shading. Avoid adding cards, badges, heavy frames or additional dark section bars.
 
 Fill the document ID, revision, issue date and contact fields. Convert URLs and email addresses into actual hyperlinks. Remove every bracketed field before publishing. Verify units, conditions, table consistency, image readability and final pagination. The brochure requires technical and communication checks and final approval from the reviewer configured in the Microsoft flow before distribution.

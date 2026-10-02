@@ -1,0 +1,7 @@
+# Local editor, OS and Python artifacts; project data rules live in each project.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+Thumbs.db
+Desktop.ini

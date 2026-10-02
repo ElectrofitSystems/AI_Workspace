@@ -1,6 +1,5 @@
 """Local, approval-gated LinkedIn publisher. Python standard library only."""
 import argparse
-import base64
 import ctypes
 import getpass
 import hashlib

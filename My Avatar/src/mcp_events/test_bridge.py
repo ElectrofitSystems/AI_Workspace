@@ -229,6 +229,21 @@ class BridgeTests(unittest.TestCase):
             content = result['contents'][0]['text'].encode()
             self.assertEqual(resource['digest'], 'sha256:' + __import__('hashlib').sha256(content).hexdigest())
 
+    def test_skill_digest_preserves_windows_line_endings(self):
+        from pathlib import Path
+        import bridge
+
+        with tempfile.TemporaryDirectory() as directory:
+            resource_path = Path(directory) / 'SKILL.md'
+            original = '# Policy\r\nRisposta gi\u00e0 verificata.\r\n'.encode('utf-8')
+            resource_path.write_bytes(original)
+            uri = 'skill://my-avatar/teams-auto-responder/SKILL.md'
+            with patch.dict(bridge.SKILL_URIS, {uri: resource_path}, clear=True):
+                resource = self.bridge.rpc('skills/list', {})['skills'][0]['resources'][0]
+                text = self.bridge.rpc('resources/read', {'uri': uri})['contents'][0]['text']
+            self.assertEqual(text.encode('utf-8'), original)
+            self.assertEqual(resource['digest'], 'sha256:' + __import__('hashlib').sha256(original).hexdigest())
+
     @unittest.skipUnless(os.name == 'nt', 'Windows-only secret protection')
     def test_dpapi_roundtrip(self):
         vault = Dpapi()
