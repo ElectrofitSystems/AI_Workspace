@@ -8,8 +8,7 @@ personalizzato disponibile è «Agente marketing EFS».
 
 `scripts/operations/teams_service.py` usa il Codex app-server locale su stdio e il
 connettore Teams già collegato. Nessun nuovo token Microsoft, applicazione Entra,
-tunnel pubblico, Power Automate o coda OneDrive. My Avatar 0.1 resta installato e
-conservato; il suo bridge non esegue questo servizio.
+tunnel pubblico, Power Automate o coda OneDrive.
 
 Il servizio controlla le chat con intervallo obiettivo di 2 secondi. La durata
 effettiva include le chiamate al connettore e può superare l'intervallo. I controlli
@@ -130,4 +129,3 @@ collaudo di tutti gli utenti dell'organizzazione.
 - [Codex app-server](https://learn.chatgpt.com/docs/app-server): JSON-RPC,
   mcpServer/tool/call, thread/start e turn/start.
 - [Configurazione Codex](https://learn.chatgpt.com/docs/config-file/config-reference).
-- [My Avatar: audit locale](myavatar.md), con problemi della versione originale.

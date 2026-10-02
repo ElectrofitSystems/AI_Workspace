@@ -2,7 +2,7 @@
 
 Decisione dell'utente del 2 ottobre 2026: il punto di accesso desiderato sono **chat individuali con l'account Operations**, operations@efitsys.com. Ogni collega deve poter dialogare con Operations e, tramite il coordinatore, con i suoi agenti. Al momento l'unico agente specialistico configurato nel progetto è «Agente marketing EFS».
 
-Questo documento conserva il progetto iniziale e le decisioni. L'implementazione locale e le prove effettive del 02/10/2026 sono nel [runbook Operations Teams](operations-teams-runbook.md), che prevale sulle sezioni storiche «implementazione ancora necessaria» sotto. Il plugin My Avatar è installato localmente; il suo bridge resta fermo, sostituito dal trasporto diretto tramite il connettore Teams esistente.
+Questo documento descrive il perimetro e le decisioni del servizio. L'implementazione locale usa direttamente il connettore Teams esistente tramite Codex app-server; configurazione, avvio e prove effettive del 02/10/2026 sono nel [runbook Operations Teams](operations-teams-runbook.md). Le prove riguardano l'ambiente Operations originale e non attestano l'attivazione su una nuova copia del repository.
 
 ## Conversazione prevista
 
@@ -14,9 +14,9 @@ Operations conserva il filo della conversazione, risponde direttamente alle rich
 
 L'utente ha scelto chat individuali con Operations; la chat di gruppo «Noi & Operations», osservata con sei membri, non è la destinazione di questo servizio. Non è stata rinominata, non sono stati modificati membri e non sono stati inviati messaggi.
 
-Ogni chat individuale ha due partecipanti, perciò il limite maxParticipants=3 della v0.1 non ostacola il modello. Per il servizio è proposto un filtro esplicito oneOnOne con Operations e un collega interno verificato: le chat di gruppo rimangono fuori dal perimetro. La presenza di un'email efitsys.com non sostituisce la verifica di tenant e guest status.
+Ogni chat individuale ha due partecipanti. Il servizio applica un filtro esplicito oneOnOne con Operations e un collega interno verificato: le chat di gruppo rimangono fuori dal perimetro. La presenza di un'email efitsys.com non sostituisce la verifica di tenant e guest status.
 
-## Regole proposte
+## Regole del servizio
 
 - Ascolto iniziale limitato alle chat individuali con Operations e colleghi interni verificati, escludendo gruppi, ospiti, esterni e messaggi del proprietario o di bot.
 - Domande, analisi, aggiornamenti e bozze sono il primo perimetro del servizio; le azioni esterne rispettano autorizzazioni, ruoli e approvazioni già documentati. Una richiesta da un membro non diventa automaticamente un'approvazione editoriale valida.
@@ -26,10 +26,8 @@ Ogni chat individuale ha due partecipanti, perciò il limite maxParticipants=3 d
 - Registro degli agenti iniziale: Marketing → definizione personalizzata «Agente marketing EFS», workspace canonico Marketing EFS, regole in AGENTS.md e docs/. Un thread ID non equivale a quella definizione.
 - Restano necessarie verifiche di identità e permessi, deduplicazione, gestione degli esiti incerti e arresto. I messaggi Teams sono richieste e dati del canale previsto, ma non possono riscrivere policy o espandere autonomamente i privilegi.
 
-## Implementazione ancora necessaria
+## Implementazione e verifiche
 
-Il modulo coordinator del pacchetto è soltanto una predisposizione e diventa il centro di questo progetto. Occorre implementare e testare invocazione dello specialista, attesa/esito, ritorno a Operations e invio Teams correlato. Non è stato creato un agente Operations o un nuovo thread: l'utente ha espresso l'obiettivo, senza chiedere di creare una nuova chat Codex.
+Il codice è in `scripts/operations/`: `teams_service.py` gestisce il trasporto e le sessioni, `coordinator.md` definisce le istruzioni di Operations, `agents.json` registra gli specialisti e `teams_state.py` conserva deduplicazione e stato degli invii. `service-control.ps1` gestisce stato, avvio e arresto sulla macchina configurata.
 
-La scelta dell'host è ancora aperta. Il percorso MCP Events ufficiale richiede ChatGPT Work Cloud; da quell'host non si può presumere accesso ai file o alla definizione personalizzata su questo PC. Serve un'integrazione esplicita con l'ambiente che esegue gli agenti, oppure un backend che renda disponibili le loro definizioni e fonti. Il semplice inoltro a coordinator.threadId non risolve questo confine.
-
-Prima del pilota vanno corretti gli errori di formato evento, claim e recupero descritti in myavatar.md; configurati il filtro oneOnOne, trasporto, connessioni e percorso di esecuzione degli agenti; verificata una richiesta Marketing con risultato nella stessa chat e un successivo messaggio di revisione. La prova deve includere due colleghi in chat diverse, per verificare isolamento del contesto e del destinatario. La destinazione è decisa; non è stata ancora attivata.
+Il runbook documenta prove in due chat distinte, invocazione del ruolo Marketing e ritorno della risposta nella conversazione di origine. Per nuove installazioni verificare nuovamente account, permessi, configurazione locale e disponibilità del ruolo prima dell'attivazione. I test locali non sostituiscono il collaudo del connettore autenticato.

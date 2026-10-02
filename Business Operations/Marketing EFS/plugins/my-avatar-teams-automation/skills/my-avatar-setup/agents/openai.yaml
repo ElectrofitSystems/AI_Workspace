@@ -1,4 +1,0 @@
-interface:
-  display_name: "My Avatar Setup"
-  short_description: "Configura Teams, OneDrive e MCP Events"
-  default_prompt: "Installa e configura My Avatar in questo progetto"

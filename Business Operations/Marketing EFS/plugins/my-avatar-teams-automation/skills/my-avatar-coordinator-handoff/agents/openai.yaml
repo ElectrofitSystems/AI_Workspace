@@ -1,4 +1,0 @@
-interface:
-  display_name: "My Avatar Coordinator Handoff"
-  short_description: "Passa un evento al coordinatore del progetto"
-  default_prompt: "Instrada questo evento My Avatar al coordinatore configurato"

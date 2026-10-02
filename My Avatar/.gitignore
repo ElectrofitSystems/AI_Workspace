@@ -1,7 +1,0 @@
-.tools/
-artifacts/
-**/bin/
-**/obj/
-**/__pycache__/
-# Windows shortcuts contain machine-specific absolute paths. Use the .ps1 scripts.
-*.lnk

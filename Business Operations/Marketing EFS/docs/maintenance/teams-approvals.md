@@ -35,4 +35,4 @@ Conservare bozze, baseline, checkpoint, batch, prove e ricevute originali. I nom
 
 Prova preesistente verificata: approval ID `d5531920-9f76-466a-901f-472432aa1db8`, run ID `08584106617972095678573697754CU24`, ricevuta `efs-teams-approvals-test-v01-approval-receipt.json` creata il 02/10/2026 alle 12:46:29Z. Risposte native simultanee, esito aggregato `Approve, Approve`: verificare le singole risposte e la regola effettiva, non solo una stringa aggregata.
 
-Il flusso termina con la ricevuta: non pubblica né risponde su LinkedIn. Bridge autenticato verso publisher non configurato; API in revisione; live disabilitato. Non creare firme o record di approvazione come agente, non cambiare credenziali o impostazioni live. Il servizio Operations/My Avatar rimane distinto.
+Il flusso termina con la ricevuta: non pubblica né risponde su LinkedIn. Bridge autenticato verso publisher non configurato; API in revisione; live disabilitato. Non creare firme o record di approvazione come agente, non cambiare credenziali o impostazioni live. Il servizio Operations Teams rimane distinto.

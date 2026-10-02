@@ -78,9 +78,6 @@ per entrambi i canali prima del riuso; ogni
 contenuto finale mantiene la propria review. Preparazione mensile nella chat
 dal 05/10/2026, primo lunedì alle 10:00 Europe/Rome.
 
-Il collegamento sperimentale My Avatar tra Teams e l'agente Marketing è
-documentato in [docs/maintenance/myavatar.md](docs/maintenance/myavatar.md).
-Il plugin locale è installato; il bridge originale resta disabilitato.
 Il servizio locale Operations usa direttamente il connettore Teams esistente;
 configurazione, prove e limiti sono nel
 [runbook Operations Teams](docs/maintenance/operations-teams-runbook.md).
