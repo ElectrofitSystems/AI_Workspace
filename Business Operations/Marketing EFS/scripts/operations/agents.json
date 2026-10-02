@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "coordinator": "Operations",
+  "agents": [
+    {
+      "key": "marketing",
+      "display_name": "Agente marketing EFS",
+      "runtime_role": "Agente marketing EFS",
+      "definition": ".codex/agents/agente-marketing-EFS.toml",
+      "workspace": "C:/Users/Operations/Documents/AI_Workspace/Business Operations/Marketing EFS",
+      "enabled": true,
+      "request_scope": "Domande, ricerca pertinente, contenuti, materiali commerciali e revisioni; applicare AGENTS.md e docs/rules.md"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 # ElectroFit Systems — Product Marketing Context
 
-**Document version:** v3
-**Last updated:** 2026-10-01
+**Document version:** v8
+**Last updated:** 2026-10-02
 **Area di lavoro:** ElectroFit Systems — LinkedIn, nel progetto Marketing EFS esistente.
 **Stato:** contesto iniziale documentato; proposte editoriali da revisionare. Non è un'approvazione di post.
 
@@ -113,7 +113,7 @@ Obiezioni reali, risposte commerciali e anti-personas: da raccogliere. Non inven
 **Tone:** professionale, concreto, comprensibile a interlocutori tecnici.
 **Style:** italiano per la prima bozza e revisione; inglese tecnico come adattamento quando richiesto o previsto dal pacchetto bilingue ricorrente. Un pubblico, un messaggio e un invito all'azione per post.
 **Personality:** competente, rigorosa, collaborativa, onesta, vicina al cliente.
-**Identità visiva:** Corporate Design Kit originale, Arial, loghi efitsys forniti. Motti confermati: «La vostra visione. La nostra propulsione.» / «Your vision. Our drive.». La descrizione del fornitore integrato non sostituisce i motti. [S2, S3]
+**Identità visiva:** dal 02/10/2026 usare il Corporate Design Kit 3.4 EN indicato dall'utente in SharePoint Marketing/Inputs: logo originale EFITSYS con orbite cyan/lime e font Barlow / Barlow Condensed dei template. Sostituisce logo minuscolo e Arial del kit precedente. Motti confermati: «La vostra visione. La nostra propulsione.» / «Your vision. Our drive.»; conservarli anche se il nuovo kit presenta diversa punteggiatura o maiuscole. La descrizione del fornitore integrato non sostituisce i motti. Asset e verifiche in `docs/company/brand.md`. [S2, S3]
 
 ## Proof Points
 
@@ -136,8 +136,10 @@ Obiezioni reali, risposte commerciali e anti-personas: da raccogliere. Non inven
 **Conversion action proposta:** condividere applicazione/requisiti, confrontare un tema tecnico, avviare un confronto sulla filiera.
 **Current metrics:** baseline UI del 01/10/2026 in `output/Statistics/Linkedin/performance/efs-performance-baseline-2026-10-01-v01.md`: due post del 30/09, uno B2B e uno Nova Energia; impressioni 134/292 e clic LinkedIn 9/13; follower totali attuali visualizzati 299. Fotografia iniziale, non report completo né prova di conversione. Finestre overview e tabella diverse; crescita netta, reach, clic in uscita e risultati commerciali non verificati. Definizioni operative iniziali in `docs/linkedin/measurement-and-sales.md`, criteri commerciali da validare con il team; target non definiti.
 **Feedback e opportunità:** richiesta del 01/10/2026 per performance e monitor opportunità come priorità iniziali. Skill dedicate con report settimanale/revisione mensile e riesame shortlist; ricorrenze effettive in `output/Linkedin/config/automations.json`. Intelligence, registro lead e audit Pagina disponibili; non cambiano posizionamento o ciclo. Inbound mantiene inbox/commenti distinti. Richieste qualificate, opportunità accettate e vendite richiedono evidenza separata; clienti e fornitori hanno categorie distinte. Registro condiviso `ElectroFit-Commercial-Register.json` caricato e verificato nella cartella Administration / Operations / Marketing / Commercial Register scelta dall'utente il 01/10/2026; copia locale e ricevuta in `output/Linkedin/sales/`. Scrittura autorizzata per questo registro nella destinazione esatta; nessuna estensione ad altre fonti o azioni LinkedIn. Nessuna richiesta ancora importata: non equivale a zero richieste ricevute.
-**Canale:** LinkedIn organico; pubblicità a pagamento esclusa. Ricorrenza di preparazione esistente: due post bilingui ogni lunedì 09:00 Europe/Rome, ciclo cinque settimane 6 B2B / 4 Nova Energia. Non è uno scheduler di pubblicazione.
-**Esecuzione:** le nuove richieste Teams vanno alla chat LinkedIn Post Approval. Basta una approvazione verificata di Francesco o Mohammad della revisione esatta; pubblicazione e messaggi su LinkedIn richiedono inoltre una richiesta esplicita dell'utente. Il live rimane disabilitato finché accessi e integrazione Teams-to-publisher non sono operativi.
+**Canale:** LinkedIn organico; pubblicità a pagamento esclusa. La richiesta del 02/10/2026 per la startup di sei persone riduce preparazione, prospecting e analisi a ogni 14 giorni, lunedì 09:00 Europe/Rome dal 05/10/2026, con un solo nuovo post bilingue e una breve sintesi. La correzione successiva ripristina inbox, commenti, approvazioni e il modulo engagement esterno lun–ven 11:00 nella schedule autonoma daily operations. Riprendere le revisioni pendenti prima di aggiungerne altre. Conservare sequenza a dieci post 6 B2B / 4 Nova Energia e punto corrente, ora distribuiti su venti settimane. Il martedì successivo 16:00 è una proposta editoriale; non è uno scheduler di pubblicazione. Due schedule autonome attive; configurazione in docs/linkedin/scheduling.md e output/Linkedin/config/schedule-consolidation-20261002-v05.json.
+**Esecuzione:** dal 02/10/2026 tutte le nuove revisioni marketing (post, commenti, engagement, prospect e segnalazioni inbox) usano Teams Approvazioni native, generate dal manifest caricato per ultimo nel pacchetto SharePoint Outputs. Approvatore e regola sono gestiti nel flusso Microsoft, senza nomi/email/ID di persone o gruppi nel progetto. Flusso testato fino alla ricevuta; procedura in `docs/maintenance/teams-approvals.md`. Conservare richieste pregresse senza duplicarle. Approvazione ed esecuzione restano distinte per workflow: non ripetere autorizzazioni già valide. Pubblicazione automatica non collegata: live disabilitato, API in revisione e bridge da completare.
+
+**Archiviazione marketing:** dal 02/10/2026 acquisire nuovi input da SharePoint Documentation / Shared Documents / General / Marketing / Inputs e caricare risultati in Marketing / Outputs usando le sottocartelle già create. Autorizzazione permanente per l'archiviazione di risultati e bozze con stato dichiarato, distinta da approvazione editoriale e pubblicazione. Copie locali in `input/` e `output/`, temporanei in `.local/maintenance/temporary/`; preservare gerarchie, master e versioni. Link esatti e perimetro in `docs/company/sources.md`.
 
 ## Fonti e stato di verifica
 
@@ -145,9 +147,9 @@ Obiezioni reali, risposte commerciali e anti-personas: da raccogliere. Non inven
 | --- | --- | --- |
 | S1 | [Company Presentation v12 EN originale](https://efitsys.sharepoint.com/sites/Documentation-Development/_layouts/15/Doc.aspx?sourcedoc=%7BF6250C24-E39C-4D42-92A5-8B7E35BBE60A%7D&file=ElectroFit%20Systems%20-%20Company%20Presentation%20%20v12.pptx&action=edit&mobileredirect=true); note in `docs/company/presentation-notes.md` | Riletta via SharePoint 2026-10-01; versione file 7.0; ultima modifica 2026-09-23T15:25:33Z. GUID sourcedoc F6250C24-E39C-4D42-92A5-8B7E35BBE60A; Graph item ID/eTag non restituiti. Verifica testuale, non audit di certificati/immagini |
 | S2 | `docs/company/framework.md`, `docs/company/mandate.md`, AGENTS.md e istruzioni dell'utente in questa chat | Decisioni aziendali; le istruzioni esplicite più recenti prevalgono. Conservare proposte e questioni aperte |
-| S3 | `docs/company/brand.md` e Corporate Design Kit | Asset originali già acquisiti; eccezione sui motti e Arial confermata dall'utente |
+| S3 | `docs/company/brand.md` e Corporate Design Kit 3.4 EN | Nuovo ZIP individuato e handbook letto il 02/10/2026 in Marketing/Inputs/Brand Identity; font Barlow / Barlow Condensed e logo EFITSYS originali. Eccezione sui motti mantenuta; il kit precedente resta conservato |
 | S4 | Skill del publisher e `sharepoint-teams-workflow.md` | Architettura a tre sottosistemi e repository designati; verificare accessi/media per ogni pacchetto |
-| S5 | `docs/company/sources.md` | Perimetro approved content del canale ElectroFit Systems; non esteso a tutti i documenti tecnici/clienti |
+| S5 | `docs/company/sources.md` | Perimetro approved content del canale ElectroFit Systems; non esteso a tutti i documenti tecnici/clienti. Nuova origine Marketing/Inputs e destinazione Marketing/Outputs indicate il 02/10/2026, lettura delle cartelle verificata |
 | S6 | efitsys.com e nova-energia.it | Il 2026-10-01 il lettore web non ha estratto testo dal sito efitsys; Nova Energia ha restituito un timeout. Non si dichiara una nuova verifica dei loro claim. Le osservazioni del 29/09 sono in `docs/company/knowledge.md` |
 | S7 | [MathWorks — Hardware-in-the-Loop](https://www.mathworks.com/discovery/hardware-in-the-loop-hil.html) | Fonte tecnica primaria letta il 2026-10-01 per la definizione generale HiL. Non dimostra strumenti utilizzati, certificazioni o risultati di Electrofit Systems |
 
@@ -162,6 +164,10 @@ Obiezioni reali, risposte commerciali e anti-personas: da raccogliere. Non inven
 
 ## Changelog
 
+- v8 (2026-10-02) — Rimossi destinatari personali e gruppi di revisione dalle configurazioni operative; tutte le nuove richieste usano Outputs e Approvazioni native, con revisori gestiti nel flusso Microsoft e storico conservato. Cadenze e permessi di esecuzione invariati.
+
+- v5 (2026-10-02) — Attivato e testato il canale Teams Approvazioni native tramite SharePoint Outputs fino alla ricevuta; registrati limiti della prosecuzione LinkedIn e conservazione delle richieste pregresse.
+- v4 (2026-10-02) — Brand Voice, Goals e fonti: recepita richiesta dell'utente di usare nuovo kit 3.4 da SharePoint Marketing/Inputs e caricare risultati in Marketing/Outputs nelle cartelle esistenti; aggiornati logo/font, preservati motti e distinzione tra archiviazione e pubblicazione.
 - v3 (2026-10-01) — Goals: registrata destinazione SharePoint scelta dall'utente, caricamento e readback del registro commerciale; copia cloud di riferimento e locale mirror, autorizzazione limitata al registro.
 - v2 (2026-10-01) — Aggiornati Goals con baseline analytics osservata, limiti e flussi di misurazione/opportunità richiesti; nessuna ridefinizione di posizionamento, target o approvazioni.
 - v1 (2026-10-01) — Contesto iniziale dal framework, design kit e v12 originale riletta; integrate le cinque skill e la nuova richiesta esplicita per esecuzioni su LinkedIn, distinguendo fatti e proposte.

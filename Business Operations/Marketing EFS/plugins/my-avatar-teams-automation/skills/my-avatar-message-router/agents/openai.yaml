@@ -1,0 +1,4 @@
+interface:
+  display_name: "My Avatar Message Router"
+  short_description: "Filtra e gestisce un evento Teams verificato"
+  default_prompt: "Elabora il prossimo evento My Avatar verificato"

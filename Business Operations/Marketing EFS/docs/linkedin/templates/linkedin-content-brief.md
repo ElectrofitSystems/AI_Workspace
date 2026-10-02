@@ -38,8 +38,8 @@ Inserire soltanto testo destinato al pubblico, separato da questo brief e dalle 
 - **Pacchetto SharePoint Drafts:** URL, ID/versione e fingerprint
 - **Anteprima LinkedIn:** PNG feed e vista bilingue completa; URL/ID/versione/hash; confronto con copy e visual esatti
 - **Consegna visual in Teams:** immagine nativa verificata / link PNG SharePoint (apertura richiesta); evidenza dell'esito
-- **Richiesta Teams:** chat LinkedIn Post Approval, messaggio/path, data e revisione; controllare duplicati
-- **Approvazione contenuto:** una risposta originale verificata di Francesco o Mohammad; autore ID, messaggio, data, payload esatto
+- **Richiesta nativa:** URL manifest e pacchetto Outputs/LinkedIn, approval ID/run ID verificati, data e revisione; controllare duplicati
+- **Approvazione contenuto:** risposta Microsoft originale verificata, regola e approvatore della richiesta, data, target e payload/hash esatti
 - **Richiesta esplicita utente per LinkedIn:** evidenza nella chat, azione, revisione, destinazione e data/modalità autorizzate; non presunta dalla risposta Teams
 - **Esecuzione:** solo se richiesta, approvata e supportata; ID/permalink restituito, esito verificato
 

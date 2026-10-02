@@ -58,11 +58,29 @@ modelli LinkedIn; `docs/brochures/` le istruzioni dei template; `docs/maintenanc
 la configurazione e la [mappa dei vecchi percorsi](docs/maintenance/paths.json).
 La configurazione `.codex/` rimane un adattatore specifico dell'ambiente.
 
+Il collegamento sperimentale My Avatar tra Teams e l'agente Marketing è
+documentato in [docs/maintenance/myavatar.md](docs/maintenance/myavatar.md).
+Il plugin locale è installato; il bridge originale resta disabilitato.
+Il servizio locale Operations usa direttamente il connettore Teams esistente;
+configurazione, prove e limiti sono nel
+[runbook Operations Teams](docs/maintenance/operations-teams-runbook.md).
+
+Il flusso [Teams Approvazioni per Marketing](docs/maintenance/teams-approvals.md)
+è attivo e testato: pacchetto completo in SharePoint Outputs → richiesta nativa
+→ ricevuta nella stessa cartella. La pubblicazione automatica LinkedIn resta da
+collegare e richiede accesso API operativo.
+
 Gli [strumenti LinkedIn](scripts/linkedin/README.md) sono in `scripts/linkedin/`;
 il generatore delle brochure è in `scripts/brochures/`.
 
-Fonti e output sono esclusi da Git e non vengono caricati automaticamente su
-SharePoint. Le fonti autorizzate sono documentate in `docs/company/sources.md`.
+Fonti e output sono esclusi da Git. Dal 2 ottobre 2026 usare come origine dei nuovi
+input la cartella SharePoint [Marketing/Inputs](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Inputs)
+e caricare i risultati in [Marketing/Outputs](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Outputs),
+nelle sottocartelle già create. Conservare la stessa organizzazione delle copie
+locali; cataloghi in `output/Documentation/Catalogues/`. Non spostare gli originali
+né riorganizzare le cartelle condivise. Destinazioni, perimetro e verifiche di
+accesso sono documentati in `docs/company/sources.md`. Non è una sincronizzazione
+automatica di tutto il workspace.
 
 ## Manutenzione locale
 

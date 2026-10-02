@@ -93,7 +93,7 @@ Miglioramenti proposti da formalizzare: requisiti e criteri di accettazione prim
 **Flusso confermato:** idea → bozza → verifica tecnica → verifica della comunicazione → approvazione umana → pubblicazione.
 
 - Usare documentazione interna e materiale approvati.
-- Approvazione finale dei contenuti: **Francesco Lucherini**.
+- Approvazione finale dei contenuti: **il referente configurato nel flusso Microsoft**.
 - Indirizzo email dettato oralmente: da confermare per iscritto prima della configurazione delle notifiche; non ricostruirlo per supposizione.
 - Responsabili della verifica tecnica e della comunicazione: da definire.
 - L’approvazione delle fonti non sostituisce l’approvazione del post o del materiale elaborato.

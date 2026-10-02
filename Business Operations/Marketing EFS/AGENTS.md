@@ -7,7 +7,10 @@ Salva i risultati in output/ e i temporanei in .local/maintenance/temporary/. Co
 Per istruzioni o registri storici con vecchi percorsi, consulta docs/maintenance/paths.json; usa sempre le nuove destinazioni e non ricreare le vecchie cartelle.
 Le autorizzazioni esistenti rimangono limitate ai rispettivi ambiti: la riorganizzazione non autorizza nuovi invii o pubblicazioni.
 
+Dal 2 ottobre 2026 i nuovi input provengono da SharePoint Documentation / Shared Documents / General / Marketing / Inputs; i risultati vanno caricati in Marketing / Outputs nelle sottocartelle già create. Link esatti, autorizzazione all'archiviazione e perimetro in docs/company/sources.md. Conserva gerarchie, originali e revisioni; non chiedere di ripetere questi link nelle nuove chat.
+
 ## Adattatore Codex
 
 La definizione dedicata è .codex/agents/agente-marketing-EFS.toml, nome esatto “Agente marketing EFS”.
+Una definizione personale in C:/Users/Operations/.codex/agents/agente-marketing-EFS.toml e le istruzioni C:/Users/Operations/.codex/AGENTS.md rimandano a questo workspace anche per chat esterne al progetto. Il contesto canonico resta nei documenti docs/, senza duplicarlo in skill o archivi di altre chat.
 Quando l’utente chiede questo agente, delega alla definizione personalizzata se il runtime la espone; se manca, comunica il limite senza sostituirla silenziosamente. L’agente specializzato non deve delegare a se stesso.

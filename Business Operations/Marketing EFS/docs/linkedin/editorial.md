@@ -1,6 +1,6 @@
 # ElectroFit Systems — LinkedIn: flusso editoriale
 
-Versione 1.0 — 2026-10-01. Workspace riutilizzato: Marketing EFS. Contesto condiviso: `docs/company/context.md`. Bozze e note interne: `output/Linkedin/`. Brief: `docs/linkedin/templates/linkedin-content-brief.md`.
+Versione 1.1 — 2026-10-02. Workspace riutilizzato: Marketing EFS. Contesto condiviso: `docs/company/context.md`. Bozze e note interne: `output/Linkedin/`. Brief: `docs/linkedin/templates/linkedin-content-brief.md`.
 
 ## Fonte delle istruzioni
 
@@ -38,9 +38,9 @@ Distinguere prototipo, sistema validato, soluzione industrializzata, prodotto ce
 
 ## Lingue e ricorrenza
 
-La prima bozza e la revisione sono in italiano. Un adattamento inglese deve conservare significato tecnico, condizioni e qualifiche; non è una traduzione meccanica. La ricorrenza già autorizzata continua a preparare due pacchetti bilingui: ordine finale EN/IT per B2B, IT/EN per Nova Energia, salvo diversa indicazione nel brief. Italiano iniziale e ordine finale del pacchetto sono due passaggi distinti.
+La prima bozza e la revisione sono in italiano. Un adattamento inglese deve conservare significato tecnico, condizioni e qualifiche; non è una traduzione meccanica. Dal 02/10/2026, per il carico sostenibile richiesto dall'utente, la ricorrenza prepara un solo pacchetto bilingue ogni due settimane: ordine finale EN/IT per B2B, IT/EN per Nova Energia, salvo diversa indicazione nel brief. Se una revisione è ancora pendente, riprenderla senza aggiungere un secondo pacchetto. Italiano iniziale e ordine finale del pacchetto sono due passaggi distinti.
 
-Preparazione: lunedì 09:00 Europe/Rome, ora legale/solare inclusa. Ciclo: B2B/NE; B2B/NE; B2B/B2B; NE/B2B; B2B/NE. Iniziare da EFS-001 e NE-001, senza duplicarle. Martedì e giovedì restano proposte editoriali, non invii programmati. Conservare richieste pendenti, evitare duplicati e nessun recupero automatico di pubblicazioni.
+Preparazione: lunedì 09:00 Europe/Rome ogni 14 giorni dal 05/10/2026, nella schedule autonoma LinkedIn fortnightly insieme alla breve review e al prospecting. Inbox, commenti, approvazioni e modulo engagement esterno restano nella schedule daily operations, lun–ven 11:00. Sequenza conservata: B2B, NE, B2B, NE, B2B, B2B, NE, B2B, B2B, NE; un solo elemento ogni due settimane, senza azzerare il punto corrente. Riprendere EFS-001 e NE-001 nelle rispettive revisioni, senza duplicarle o consegnarle insieme automaticamente. Martedì successivo alle 16:00 Europe/Rome è lo slot editoriale proposto per il singolo post, senza invii programmati. Le seconde bozze già esistenti restano in coda per il periodo successivo. Cadenze e riesame in `docs/linkedin/scheduling.md`. Conservare richieste pendenti, evitare duplicati e nessun recupero automatico di pubblicazioni.
 
 Scelta editoriale dell'utente del 01/10: per EFS-001 mantenere la riformulazione v02; per NE-001 mantenere il testo iniziale v01. Prima della prossima revisione leggere `output/Linkedin/posts/selection.md` e il relativo pacchetto JSON. Questa scelta non equivale ad approvazione Teams o richiesta di pubblicazione.
 
@@ -48,7 +48,7 @@ Scelta editoriale dell'utente del 01/10: per EFS-001 mantenere la riformulazione
 
 | Risorsa disponibile | Uso nel flusso |
 | --- | --- |
-| brand | Identità e tono secondo `docs/company/brand.md`, loghi originali, Arial e motti confermati |
+| brand | Identità e tono secondo `docs/company/brand.md`, loghi originali, Barlow / Barlow Condensed del kit 3.4 e motti confermati |
 | banner-design | Impaginazione di cover e grafiche con gerarchia e leggibilità, applicando il kit aziendale; non ridefinisce il brand |
 | imagegen | Illustrazioni concettuali soltanto quando utili e richieste dal formato. Renderle riconoscibili e denominarle come illustrazioni; non simularle come fotografie di prodotti, installazioni o prove reali |
 | Presentazioni | Sorgente editabile delle slide; usare i template del kit quando pertinenti |
@@ -60,13 +60,13 @@ Il publisher attuale accetta PNG/JPEG per il media singolo; non è verificato un
 
 ## Revisione e azioni esterne
 
-I post reali completi della preparazione ricorrente continuano a essere salvati nella cartella SharePoint Drafts e sottoposti in un unico messaggio per revisione alla chat **LinkedIn Post Approval**, ID `19:277f693956674b50840046b181255e92@thread.v2`, dopo verifica dei membri Francesco e Mohammad. Questo invio Teams resta autorizzato dal flusso già richiesto. Le tre bozze dimostrative di questa attività rimangono locali, senza invii automatici.
+Dal 02/10/2026 i nuovi pacchetti completi con testo, visual e anteprime vanno in SharePoint Marketing/Outputs/LinkedIn. Usare Teams Approvazioni native: approvatori gestiti nel flusso, manifest caricato per ultimo e ricevuta accanto ai file, secondo docs/maintenance/teams-approvals.md. Conservare richieste pregresse senza duplicarle e senza ereditare destinatari. Le bozze dimostrative restano locali.
 
-Una sola approvazione verificata di Francesco o Mohammad è sufficiente per la revisione esatta. Separare **approvazione del contenuto** e **richiesta di esecuzione su LinkedIn**. La richiesta esplicita dell'utente è necessaria per pubblicare, programmare un invio LinkedIn o inviare un messaggio LinkedIn; non discende da una risposta Teams, dalla presenza di un pacchetto in Approved Content o dalla ricorrenza di preparazione. Una richiesta esplicita già ricevuta e valida per quella revisione/ambito non va chiesta di nuovo.
+Una sola approvazione verificata di un approvatore configurato nel flusso Microsoft è sufficiente per la revisione esatta. Separare **approvazione del contenuto** e **richiesta di esecuzione su LinkedIn**. La richiesta esplicita dell'utente è necessaria per pubblicare, programmare un invio LinkedIn o inviare un messaggio LinkedIn; non discende da una risposta Teams, dalla presenza di un pacchetto in Approved Content o dalla ricorrenza di preparazione. Una richiesta esplicita già ricevuta e valida per quella revisione/ambito non va chiesta di nuovo.
 
 Registrare separatamente revisione, hash, testo/media, approvatore originale, evidenza Teams, eventuale richiesta utente e suo ambito. Un'approvazione non autorizza modifiche successive. Le informazioni di stato non sostituiscono un'approvazione autenticata. Il messaggio di approvazione deve spiegare che la pubblicazione richiede anche la richiesta esplicita dell'utente.
 
-Ogni richiesta Teams include un'anteprima visiva LinkedIn per quella revisione: PNG del feed e vista bilingue completa, oltre al testo selezionabile e al visual originale nel pacchetto SharePoint Drafts. Preferire immagini native incorporate quando un percorso di chat supportato è verificato; il connettore attuale non espone upload inline nella chat di gruppo, quindi usare link SharePoint alle PNG indicando che si aprono dal link. Non inviare un pacchetto completo di revisione soltanto come testo, non promettere miniature automatiche e non cambiare gruppo o permessi. Registrare ID/versioni/hash delle anteprime e modalità di consegna. Per test con fatti/diritti aperti chiedere feedback, senza presentarli come pronti all'approvazione finale.
+Ogni richiesta Teams include un'anteprima visiva LinkedIn per quella revisione: PNG del feed e vista bilingue completa, oltre al testo selezionabile e al visual originale nel pacchetto SharePoint Outputs. Il manifest elenca i link e gli hash di tutti i file di revisione; le anteprime si aprono dal link. Non inviare un pacchetto completo di revisione soltanto come testo, non promettere miniature automatiche e non creare chat o modificare permessi. Registrare ID/versioni/hash delle anteprime e modalità di consegna. Per test con fatti/diritti aperti chiedere feedback, senza presentarli come pronti all'approvazione finale.
 
 Mantenere live disabilitato fino a LinkedIn API/Page role/OAuth e integrazione Teams-to-publisher verificati. Non inserire password o creare firme come agente. Il publisher non gestisce inbox, DMs o following: queste skill non ne ampliano gli strumenti.
 

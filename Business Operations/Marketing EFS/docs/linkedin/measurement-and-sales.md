@@ -52,9 +52,9 @@ L'atomicità della copia locale non implica atomicità cloud. L'azione SharePoin
 
 ## Passaggi fra i flussi
 
-Inbox: preservare customer-first, formato e gruppo LinkedIn Messages, frequenze e autorizzazione limitata per risposte candidature. Quando emerge una richiesta commerciale reale, aggiornare il registro condiviso secondo efs-lead-handoff e preparare l'handoff locale, senza secondo digest Teams. In caso di blocco conservare la modifica locale pending_sync. Un aggiornamento del registro non implica risposta al cliente.
+Inbox: preservare customer-first, formato e consegna mediante pacchetto Outputs/LinkedIn e Approvazioni native, frequenze e autorizzazione limitata per risposte candidature. Quando emerge una richiesta commerciale reale, aggiornare il registro condiviso secondo efs-lead-handoff e preparare l'handoff locale, senza secondo digest Teams. In caso di blocco conservare la modifica locale pending_sync. Un aggiornamento del registro non implica risposta al cliente.
 
-Commenti nostri post: preservare contesto/thread, gruppo LinkedIn Engagement, approvazione della revisione esatta e richiesta distinta di invio pubblico. Una domanda tecnica generica è engagement finché la conversazione non sostiene un intento commerciale. Non mescolare con commenti su post di altre aziende.
+Commenti nostri post: preservare contesto/thread, canale nativo Approvazioni da Outputs/LinkedIn, approvazione della revisione esatta e richiesta distinta di invio pubblico. Una domanda tecnica generica è engagement finché la conversazione non sostiene un intento commerciale. Non mescolare con commenti su post di altre aziende.
 
 Prospecting: ricerca nuove aziende e follow rimangono nel flusso esistente. Monitor opportunità: riesame della shortlist e segnali datati, senza follow o outreach. Le nuove shortlist non devono essere riscritte dalla watchlist storica. Rapporti esistenti e disponibilità fornitori sono incognite fino a verifica.
 

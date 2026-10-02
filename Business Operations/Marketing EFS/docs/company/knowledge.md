@@ -78,7 +78,7 @@ Il wordmark fornito è minuscolo e convertito in tracciati: non ridisegnarlo né
 
 **Per produrre materiali specifici:** prodotto/applicazione; obiettivo; fonti tecniche e prove divulgabili; eventuali mercati geografici e lingua. Non imporre una definizione delle personas che l’azienda ha già rinviato.
 
-**Per il flusso editoriale:** referenti tecnici e comunicazione; capacità reale di revisione; calendario; struttura e permessi SharePoint. Approvatore finale già confermato: Francesco Lucherini. Indirizzo per notifiche ancora da confermare per iscritto.
+**Per il flusso editoriale:** referenti tecnici e comunicazione; capacità reale di revisione; calendario; struttura e permessi SharePoint. Approvatore finale già confermato: il referente configurato nel flusso Microsoft. Le notifiche di revisione sono gestite dal flusso Microsoft, senza indirizzi personali nel progetto.
 
 **Per la misurazione:** fonti e accesso ai dati, definizione di contatto qualificato, baseline, obiettivi e responsabilità. Controllo mensile e revisione trimestrale già confermati; non equivalgono ad automazioni attivate.
 

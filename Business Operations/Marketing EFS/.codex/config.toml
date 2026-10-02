@@ -1,0 +1,3 @@
+# Local skills are enabled; the bridge and automatic replies remain stopped.
+[plugins."my-avatar-teams-automation@marketing-efs-local"]
+enabled = true

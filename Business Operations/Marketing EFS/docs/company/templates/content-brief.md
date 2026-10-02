@@ -28,7 +28,7 @@ Inserire il testo o il collegamento all’artefatto. Tenere le note interne fuor
 
 - Verifica tecnica: referente, data, esito, versione
 - Verifica comunicazione: referente, data, esito, versione
-- Approvazione finale: Francesco Lucherini, data, versione e destinazione approvata
+- Approvazione finale: il referente configurato nel flusso Microsoft, data, versione e destinazione approvata
 - Esecuzione: richiesta ricevuta, canale, data e risultato verificato
 
 Lasciare non compilati i passaggi non ancora avvenuti. Una bozza non costituisce approvazione o autorizzazione all’invio.
