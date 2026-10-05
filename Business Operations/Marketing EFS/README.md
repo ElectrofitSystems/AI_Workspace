@@ -1,114 +1,73 @@
 # Marketing EFS
 
-La newsletter mensile usa, per decisione del 5 ottobre 2026, solo la newsletter
-nativa della Pagina LinkedIn Electrofit Systems. Preparazione e review in
-[workflow newsletter](docs/newsletter/workflow.md); pubblicazione della revisione
-esatta da autorizzare separatamente. I post mantengono le cadenze esistenti.
+Agente dedicato al marketing B2B tecnico di ElectroFit Systems, in italiano e
+inglese. Produce contenuti, materiali commerciali, ricerca e report sulla base
+delle fonti e delle decisioni aziendali.
 
-Conoscenza, procedure e strumenti di marketing di Electrofit Systems, utilizzabili
-con qualsiasi LLM attraverso documenti e formati aperti.
+La chat **MASTER — Marketing EFS** raccoglie richieste, priorità e decisioni.
+Le chat operative conservano i propri lavori; il
+[registro Master](output/Statistics/coordination/master-register.json) collega
+stato e risultati secondo il [coordinamento](docs/maintenance/master-coordination.md).
 
-La chat **MASTER — Marketing EFS** coordina richieste e decisioni. Le chat sono
-organizzate nelle sezioni **EFS — Lavori operativi** e **EFS — Riferimenti e storico**.
-Procedura: [coordinamento delle chat](docs/maintenance/master-coordination.md).
-Stato corrente locale: [registro dei lavori](output/Statistics/coordination/master-register.json).
+## Flusso di lavoro
 
-In una nuova copia Git, `input/`, `output/` e `.local/` possono essere assenti:
-sono dati locali esclusi dal repository. Anche il registro dei lavori richiede
-il recupero della copia operativa. Le installazioni e le prove riportate sotto
-descrivono l'ambiente Operations originale, non lo stato di ogni clone.
+1. Recuperare le fonti da SharePoint
+   [Marketing/Inputs](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Inputs),
+   seguendo i collegamenti ai documenti originali.
+2. Verificare approvazione, revisione e ambito degli input prima del riuso.
+3. Produrre e verificare i materiali, conservandone le versioni locali.
+4. Consegnare in
+   [Marketing/Outputs](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Outputs)
+   soltanto i file leggibili e necessari, nella categoria esistente.
+5. Per materiali editoriali e commerciali, avviare la review Microsoft del
+   pacchetto completo. Pubblicare o inviare la revisione approvata quando
+   l’esecuzione è autorizzata.
 
-| Cartella | Cosa contiene | Git |
-| --- | --- | --- |
-| `docs/` | Conoscenza aziendale, procedure e manutenzione | Sì |
-| `scripts/` | Programmi utilizzati dal progetto | Sì |
-| `input/` | Fonti originali e media di riferimento | No |
-| `output/` | Materiali prodotti, report e registri operativi | No |
-| `.local/` | Temporanei e registri di manutenzione locali | No |
+I nuovi file e collegamenti in Inputs avviano il flusso di revisione configurato.
+I report informativi, come Statistics, vengono consegnati senza una richiesta
+di approvazione automatica. Note interne, sorgenti e verifiche restano locali.
+Procedure: [input](docs/company/marketing-input-folder.md),
+[consegna](docs/company/output-delivery.md),
+[approvazioni](docs/maintenance/teams-approvals.md).
 
-## Input
+## Attività e ricorrenze
 
-```text
-input/
-├── Brand identity/
-├── Technical documentation/
-└── Media/
-    ├── Pictures/
-    └── Videos/
-```
+| Attività | Cadenza, Europe/Rome |
+| --- | --- |
+| Inbox, commenti, engagement e approvazioni LinkedIn | Lun–ven, 11:00 |
+| Un post bilingue, prospecting, performance e segnali di opportunità | Lunedì, 09:00 ogni 14 giorni dal 05/10/2026 |
+| Preparazione newsletter della Pagina LinkedIn EFS | Primo lunedì del mese, 10:00 |
+| Recap marketing in Statistics e nella Master | Primo lunedì del mese, 12:00 dal 02/11/2026 |
 
-`Brand identity` conserva il kit originale: loghi, handbook e master.
-`Technical documentation` contiene presentazioni, estrazioni e riferimenti tecnici.
-`Media` raccoglie le immagini e i video da riutilizzare nei materiali.
+Le ricorrenze riprendono le revisioni pendenti e riutilizzano le analisi già
+disponibili. Procedure: [LinkedIn](docs/linkedin/scheduling.md),
+[newsletter](docs/newsletter/workflow.md),
+[statistiche](docs/marketing-statistics.md).
+La pubblicazione automatica LinkedIn tramite API resta da completare.
 
-## Output
+Cataloghi, brochure, presentazioni, white paper, audit della Pagina,
+intelligence di settore e supporto commerciale sono disponibili su richiesta.
 
-```text
-output/
-├── Documentation/
-│   ├── Brochures/
-│   ├── Catalogues/
-│   └── Whitepapers/
-├── Linkedin/
-├── Newsletter/
-└── Statistics/
-```
+## Documenti e cartelle
 
-- `Documentation/Brochures/`: brochure applicative, di sottosistema e template corrente.
-- `Documentation/Catalogues/`: cataloghi per lingua e formato.
-- `Documentation/Whitepapers/`: documenti tecnici prodotti per i clienti.
-- `Linkedin/`: post, revisioni, commenti, inbox, engagement, prospect e stato del publisher.
-- `Newsletter/`: contenuti e pacchetti di revisione delle newsletter.
-- `Statistics/Linkedin/`: report di performance e segnali di opportunità.
+Leggere [regole](docs/rules.md), [mandato](docs/company/mandate.md),
+[contesto aziendale](docs/company/context.md) e
+[fonti](docs/company/sources.md). Per grafica e template vale il
+[kit corrente verificato](docs/company/brand.md).
 
-Whitepapers, Newsletter e Videos sono pronti per i primi materiali; non sono stati
-creati contenuti dimostrativi per riempirli. I registri di consegna e approvazione
-conservano le revisioni storiche necessarie per evitare duplicati.
+| Cartella | Uso |
+| --- | --- |
+| `docs/` | Conoscenza aziendale e procedure |
+| `scripts/` | Strumenti del progetto |
+| `input/` | Originali, brand e media |
+| `output/Documentation/` | Brochures, Catalogues e Whitepapers |
+| `output/Linkedin/` | Contenuti e registri LinkedIn |
+| `output/Newsletter/` | Newsletter e review |
+| `output/Statistics/` | Report, dati e coordinamento |
+| `.local/maintenance/temporary/` | Temporanei e verifiche |
 
-## Documenti e strumenti
-
-Per la consegna in SharePoint applicare sempre [Outputs essenziali](docs/company/output-delivery.md): file leggibili e necessari al destinatario; Markdown, sorgenti e note interne restano locali.
-
-Leggere [il contesto aziendale](docs/company/context.md) e la procedura pertinente.
-`docs/company/` contiene la conoscenza aziendale; `docs/linkedin/` le procedure e
-modelli LinkedIn; `docs/brochures/` le istruzioni dei template; `docs/maintenance/`
-la configurazione e la [mappa dei vecchi percorsi](docs/maintenance/paths.json).
-La configurazione `.codex/` rimane un adattatore specifico dell'ambiente.
-
-La [newsletter mensile](docs/newsletter/workflow.md) usa lo stesso
-[archivio Marketing Inputs](docs/company/marketing-input-folder.md) dei post
-LinkedIn: collegamenti nativi .url nelle categorie di SharePoint Inputs; originali conservati. Le review dei link identificano anche la revisione esatta del documento originale.
-I [nuovi input](docs/company/input-approvals.md) richiedono approvazione comune
-per entrambi i canali prima del riuso; ogni
-contenuto finale mantiene la propria review. Preparazione mensile nella chat
-dal 05/10/2026, primo lunedì alle 10:00 Europe/Rome.
-
-Il servizio locale Operations usa direttamente il connettore Teams esistente;
-configurazione, prove e limiti sono nel
-[runbook Operations Teams](docs/maintenance/operations-teams-runbook.md).
-
-Il flusso [Teams Approvazioni per Marketing](docs/maintenance/teams-approvals.md)
-è attivo e testato: pacchetto completo in SharePoint Outputs → richiesta nativa
-→ ricevuta nella stessa cartella. La pubblicazione automatica LinkedIn resta da
-collegare e richiede accesso API operativo.
-
-Gli [strumenti LinkedIn](scripts/linkedin/README.md) sono in `scripts/linkedin/`;
-il generatore storico delle brochure è in `scripts/brochures/` e usa ancora il
-kit precedente. Per nuove consegne prevalgono `docs/company/brand.md` e il kit 3.4.
-
-Fonti e output sono esclusi da Git. Dal 2 ottobre 2026 usare come origine dei nuovi
-input la cartella SharePoint [Marketing/Inputs](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Inputs)
-e caricare i risultati in [Marketing/Outputs](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Outputs),
-nelle sottocartelle già create. Conservare la stessa organizzazione delle copie
-locali; cataloghi in `output/Documentation/Catalogues/`. Non spostare gli originali
-né riorganizzare le cartelle condivise. Destinazioni, perimetro e verifiche di
-accesso sono documentati in `docs/company/sources.md`. Non è una sincronizzazione
-automatica di tutto il workspace.
-
-## Manutenzione locale
-
-Temporanei e verifiche sono in `.local/maintenance/`. Gli eventuali residui della
-precedente pulizia sono in `.local/maintenance/cleanup-pending/`, solo sulla copia
-locale dove sono stati conservati.
-Lo script `scripts/maintenance/cleanup_obsolete.ps1` agisce soltanto su quella
-cartella quando eseguito manualmente. La riorganizzazione non esegue cancellazioni.
+Originali, master, revisioni e prove restano conservati. Non riorganizzare gli
+archivi condivisi. `input/`, `output/` e `.local/` sono esclusi da Git e devono
+essere recuperati dalla copia operativa su un nuovo host; accessi e installazioni
+vanno verificati nell’ambiente effettivo. Per vecchi percorsi consultare la
+[mappa di migrazione](docs/maintenance/paths.json).
