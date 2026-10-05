@@ -1,5 +1,11 @@
 # Fonti marketing — perimetro confermato
 
+## Fonte corrente — 5 ottobre 2026
+
+Nuova richiesta successiva dell'utente: le nuove aggiunte di file e collegamenti in Inputs avviano automaticamente una review. Flusso cloud Inputs attivo e creazione approvazione collaudata secondo [collegamenti e approvazioni](marketing-input-folder.md); riferimenti locali in `output/Linkedin/config/input-approval-automation.json`. Nessun invio retroattivo o approvazione automatica del contenuto. Prima del riuso resta obbligatoria la verifica della decisione autentica e della revisione esatta dell'originale.
+
+L'utente ha corretto la richiesta: in Marketing/Inputs vuole collegamenti nativi .url ai documenti originali, equivalenti a Nuovo > Collegamento in Teams/SharePoint. Le 67 copie create per errore devono essere sostituite con link, conservando le fonti originali e il kit già presente. Applicare [collegamenti e approvazioni](marketing-input-folder.md). Nuove review sul collegamento e sulla revisione esatta dell'originale; decisioni e richieste Lists pregresse restano nel servizio originario senza duplicazioni. La rimozione riguarda solo le copie identificate nel registro del trasferimento, con cestino recuperabile; nessuna cancellazione definitiva, modifica delle fonti o ampliamento dei permessi.
+
 Aggiornato il 2 ottobre 2026 su indicazione esplicita dell'utente.
 
 ## Elenco Teams come fonte comune — chiarimento successivo del 02/10/2026

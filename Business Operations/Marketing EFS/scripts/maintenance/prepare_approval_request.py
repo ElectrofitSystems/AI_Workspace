@@ -33,7 +33,7 @@ def prepare(title, revision, category, action, pairs, destination, authorization
         raise ValueError("At least one review file is required")
     payload = {"schema_version": 1, "title": title, "revision": revision, "category": category, "requested_action": action, "execution_authorization": authorization, "files": files}
     digest = hashlib.sha256(json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode()).hexdigest()
-    payload.update({"created_at": datetime.now(timezone.utc).isoformat(), "package_sha256": digest, "review_url": files[0]["url"], "review_details": "\n\n".join(f"[{f['name']}]({f['url']})\nSHA256: {f['sha256']}" for f in files)})
+    payload.update({"created_at": datetime.now(timezone.utc).isoformat(), "package_sha256": digest, "review_url": files[0]["url"], "review_details": "\n\n".join(f"- [{f['name']}]({f['url']})" for f in files)})
     target.parent.mkdir(parents=True, exist_ok=True)
     with target.open("x", encoding="utf-8") as stream:
         json.dump(payload, stream, ensure_ascii=False, indent=2)

@@ -2,7 +2,8 @@
 
 Mandato del 02/10/2026: chat individuali con operations@efitsys.com per colleghi
 interni verificati di efitsys.com. Operations coordina gli agenti; oggi il ruolo
-personalizzato disponibile è «Agente marketing EFS».
+personalizzato marketing è «Agente marketing EFS». Dal 05/10/2026 è disponibile
+anche «Agente ERP EFS» per il pilota scadenzario fornitori.
 
 ## Trasporto ed esecuzione
 
@@ -33,6 +34,24 @@ eseguiti soltanto dal trasporto verificato. Il servizio non pubblica su LinkedIn
 non concede permessi e non acquisisce automaticamente allegati. Le azioni ulteriori
 richiedono gli strumenti e le autorizzazioni del progetto. Non dichiarare allegati,
 upload o operazioni che il servizio non ha eseguito.
+
+Estensione ERP del 05/10/2026: progetto canonico ERP EFS, accesso finanziario
+limitato al solo Francesco Lucherini tramite confronto user ID + email + tenant.
+La policy è ERP EFS/config/access.json. Il trasporto legge lo snapshot validato
+solo dopo il controllo; lo ricontrolla prima dell'invio insieme alla versione
+e alla scadenza dei dati. Gli altri colleghi ricevono un diniego deterministico.
+I worker adottano il profilo operations_teams con rete comandi disabilitata,
+Apps/MCP/plugin/browser disabilitati e cartelle ERP input/output/.local negate.
+Le istruzioni pubbliche sono leggibili. Il sandbox nativo richiede root read:
+il profilo protegge esplicitamente i dati, senza dichiarare una whitelist globale.
+Il runtime verificato è codex 0.160.0 (f544b3844e0f14e9).
+Le richieste ERP sono elaborate in sessioni nuove per non riutilizzare importi
+obsoleti; la conversazione Marketing conserva la propria sessione.
+Fonte iniziale: esportazione EC742 manuale, senza aggiornamento automatico.
+Lo snapshot scade al cambio della data Europe/Rome o dopo 24 ore. Nessuna
+ricorrenza ERP, messaggio proattivo o scrittura contabile è stata attivata.
+Prove locali e stato corrente: ERP EFS/docs/status.md; il collaudo reale ERP
+in Teams va eseguito da Francesco con una sua richiesta nella chat individuale.
 
 L'account e le connessioni sono quelli locali esistenti. Il PC Operations deve
 rimanere acceso, con sessione Windows attiva e accesso Internet. Il servizio usa

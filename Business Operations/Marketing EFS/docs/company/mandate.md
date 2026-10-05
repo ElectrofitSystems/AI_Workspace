@@ -1,5 +1,7 @@
 # Efitsys — Agente marketing EFS
 
+**Fonte corrente - correzione del 5 ottobre 2026:** collegamenti nativi .url agli originali in SharePoint Marketing/Inputs, nelle categorie esistenti; conservare gli originali e il kit già presente. Applicare docs/company/marketing-input-folder.md per review del collegamento e della revisione esatta del documento collegato. Le copie create per errore vengono sostituite, senza alterare fonti o decisioni pregresse. Questa decisione supera i riferimenti alla lista come punto di selezione nel mandato sotto.
+
 Versione 0.5 — 2 ottobre 2026 (nome file mantenuto per continuità)
 Stato: configurazione locale per questo progetto Codex, richiamata da `AGENTS.md`. Priorità confermata: produzione di contenuti e materiali commerciali. Archiviazione SharePoint Outputs e flusso Teams Approvazioni attivi e verificati; pubblicazione automatica LinkedIn da collegare. Stato in `docs/maintenance/teams-approvals.md`.
 

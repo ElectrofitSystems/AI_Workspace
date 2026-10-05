@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "coordinator": "Operations",
   "agents": [
     {
@@ -10,6 +10,15 @@
       "workspace": ".",
       "enabled": true,
       "request_scope": "Domande, ricerca pertinente, contenuti, materiali commerciali e revisioni; applicare AGENTS.md e docs/rules.md"
+    },
+    {
+      "key": "erp",
+      "display_name": "Agente ERP EFS",
+      "runtime_role": "Agente ERP EFS",
+      "definition": "C:/Users/Operations/.codex/agents/agente-ERP-EFS.toml",
+      "workspace": "C:/Users/Operations/Documents/AI_Workspace/Business Operations/ERP EFS",
+      "enabled": true,
+      "request_scope": "Scadenzario fornitori: solo payload verificato per Francesco Lucherini; nessuna scrittura ERP o pagamento"
     }
   ]
 }

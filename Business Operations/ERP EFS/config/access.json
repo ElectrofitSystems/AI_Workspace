@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "tenant_id": "3b97374b-4a43-4588-a04f-4c94edc33cf3",
+  "operations": {
+    "user_id": "74ea6b2b-69f5-48dd-95bd-5edb7a4aad38",
+    "email": "operations@efitsys.com"
+  },
+  "financial_readers": [
+    {
+      "user_id": "5c179398-bc3c-42e2-8e34-8e71e6a92623",
+      "display_name": "Francesco Lucherini",
+      "email": "francesco.lucherini@efitsys.com",
+      "scope": "supplier_payables_read",
+      "authorized_on": "2026-10-05",
+      "source": "Explicit user reply in ERP setup chat; exact Teams Entra match"
+    }
+  ],
+  "proactive_notifications": {"enabled": false, "reason": "Schedule not defined"}
+}

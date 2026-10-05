@@ -1,5 +1,9 @@
 # ElectroFit Systems — Product Marketing Context
 
+**Newsletter — decisione del 5 ottobre 2026:** per ora il canale esclusivo è la newsletter nativa della Pagina LinkedIn Electrofit Systems, una edizione mensile. Titoli, sommario e CTA sono adattati a LinkedIn; il PDF resta anteprima per la review Microsoft. Dopo approvazione: approved_pending_linkedin_publication, con pubblicazione della revisione esatta da autorizzare separatamente. La scelta supera i precedenti riferimenti a mailing, destinatari email e approved_pending_send. Procedura in docs/newsletter/workflow.md; le cadenze dei post restano quelle esistenti.
+
+**Input - correzione del 5 ottobre 2026:** fonte comune LinkedIn/newsletter nella cartella SharePoint Marketing/Inputs tramite collegamenti nativi .url agli originali nelle categorie esistenti. Sostituire le copie create per errore; conservare gli originali e il kit già presente. Review nativa sul collegamento, vincolata anche alla revisione esatta dell'originale secondo docs/company/marketing-input-folder.md. La lista conserva lo storico e le decisioni pregresse senza duplicazioni; nessun collegamento approva automaticamente il riuso.
+
 **Document version:** v11
 **Last updated:** 2026-10-02
 **Area di lavoro:** ElectroFit Systems — LinkedIn, nel progetto Marketing EFS esistente.

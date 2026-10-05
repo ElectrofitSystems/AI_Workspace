@@ -1,5 +1,10 @@
 # Marketing EFS
 
+La newsletter mensile usa, per decisione del 5 ottobre 2026, solo la newsletter
+nativa della Pagina LinkedIn Electrofit Systems. Preparazione e review in
+[workflow newsletter](docs/newsletter/workflow.md); pubblicazione della revisione
+esatta da autorizzare separatamente. I post mantengono le cadenze esistenti.
+
 Conoscenza, procedure e strumenti di marketing di Electrofit Systems, utilizzabili
 con qualsiasi LLM attraverso documenti e formati aperti.
 
@@ -71,8 +76,8 @@ la configurazione e la [mappa dei vecchi percorsi](docs/maintenance/paths.json).
 La configurazione `.codex/` rimane un adattatore specifico dell'ambiente.
 
 La [newsletter mensile](docs/newsletter/workflow.md) usa lo stesso
-[elenco Teams Marketing Inputs](docs/company/marketing-input-list.md) dei post
-LinkedIn, in Documentation / General, con allegati o link agli originali.
+[archivio Marketing Inputs](docs/company/marketing-input-folder.md) dei post
+LinkedIn: collegamenti nativi .url nelle categorie di SharePoint Inputs; originali conservati. Le review dei link identificano anche la revisione esatta del documento originale.
 I [nuovi input](docs/company/input-approvals.md) richiedono approvazione comune
 per entrambi i canali prima del riuso; ogni
 contenuto finale mantiene la propria review. Preparazione mensile nella chat

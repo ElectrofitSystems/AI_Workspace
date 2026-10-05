@@ -1,5 +1,13 @@
 # Approvazione degli input — LinkedIn e newsletter
 
+**Canale newsletter — 5 ottobre 2026:** la newsletter è per ora solo quella nativa della Pagina LinkedIn EFS. Ambiti, limiti e revisioni delle approvazioni input comuni restano invariati. La review finale del derivato è distinta; il suo stato dopo approvazione è approved_pending_linkedin_publication. I riferimenti storici sotto a mailing e approved_pending_send sono superati da docs/newsletter/workflow.md.
+
+## Procedura corrente — 5 ottobre 2026
+
+Le nuove aggiunte in Marketing/Inputs ora avviano automaticamente la richiesta mediante il flusso cloud dedicato documentato in `docs/company/marketing-input-folder.md`, su ulteriore richiesta esplicita dell'utente. Questo automatizza soltanto la creazione della review: non costituisce approvazione, non reinvia il pregresso e non autorizza il riuso senza controllo della versione originale.
+
+La correzione più recente sostituisce la lista con collegamenti nativi .url agli originali in SharePoint Marketing/Inputs. Applicare [Marketing Inputs - collegamenti e approvazioni](marketing-input-folder.md) per nuove selezioni e review native del collegamento, vincolate anche alla revisione del file originale. Conservare le decisioni originali Lists e riconciliare le richieste pregresse, senza duplicarle. Ambito comune LinkedIn/newsletter, cache con lock e separazione dal derivato restano validi. Lo stato del collegamento non approva automaticamente successive modifiche del documento originale. I paragrafi sotto conservano il flusso storico.
+
 Versione 1.1 — 2 ottobre 2026. Richiesta esplicita dell'utente: approvare i nuovi input prima di usarli per entrambi i canali, usando un elenco Teams con allegati o link. Percorso corrente: approvazioni native delle voci di Marketing Inputs, secondo docs/company/marketing-input-list.md. Questo aggiornamento supera il precedente invio di manifest per nuove richieste input; conservare i pacchetti e le richieste pregresse.
 
 ## Fonte comune e perimetro

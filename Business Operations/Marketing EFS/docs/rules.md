@@ -1,5 +1,13 @@
 # Efitsys — Regole operative
 
+## Newsletter su LinkedIn — decisione del 5 ottobre 2026
+
+Per ora gestire la newsletter esclusivamente sulla Pagina LinkedIn Electrofit Systems, con preparazione mensile e review della revisione esatta. Applicare docs/newsletter/workflow.md: articolo nativo con titolo, sommario e CTA per LinkedIn; PDF leggibile in Outputs per la review. Dopo approvazione finale: approved_pending_linkedin_publication. La ricorrenza non autorizza la pubblicazione della serie o di una specifica edizione; preparare i materiali e verificare la funzione della Pagina prima dell'esecuzione. Questa decisione supera i precedenti riferimenti alla configurazione di mailing e approved_pending_send.
+
+## Input in cartella — decisione del 5 ottobre 2026
+
+La correzione più recente mantiene SharePoint Marketing/Inputs come fonte comune per LinkedIn e newsletter tramite collegamenti nativi .url ai documenti originali, nelle categorie esistenti. Sostituire soltanto le 67 copie create per errore; conservare gli originali e il kit già in Inputs. Applicare docs/company/marketing-input-folder.md: review del collegamento vincolata alla revisione esatta dell'originale, preservando decisioni e review Lists pregresse senza duplicazioni. Questa decisione prevale sui riferimenti storici a copie o lista primaria, anche nelle ricorrenze e skill. Non cancellare lista/scheda né storico; nessun nuovo calendario.
+
 ## Coordinamento delle chat del 2 ottobre 2026
 
 MASTER — Marketing EFS è il punto principale per nuove richieste, priorità e decisioni. Applicare docs/maintenance/master-coordination.md e il registro locale output/Statistics/coordination/master-register.json. Riprendere le chat operative esistenti e preservarne checkpoint, prove e revisioni; i messaggi verso altre chat richiedono autorizzazione esplicita dell'utente nel relativo ambito. La sidebar organizza le conversazioni, senza unirne le memorie. La Master riconcilia lo stato quando attivata: nessun monitor o nuovo invio automatico. Le schedule consolidate e il heartbeat newsletter rimangono nei propri contesti, con cadenze e autorizzazioni correnti. Registri e note di coordinamento restano locali secondo la regola di consegna essenziale.

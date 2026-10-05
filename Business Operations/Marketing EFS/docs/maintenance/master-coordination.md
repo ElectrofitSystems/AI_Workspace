@@ -42,6 +42,8 @@ Ogni chat operativa lascia nelle proprie note: revisione corrente, file e fonti,
 
 Le due schedule LinkedIn autonome e la newsletter mensile mantengono ID, istruzioni, stato, orari e destinazioni correnti. La newsletter resta collegata alla propria chat operativa. Le esecuzioni autonome producono i propri risultati; la Master li consulta quando richiesta. Non creare monitor, heartbeat, notifiche o messaggi di ritorno soltanto per tenere viva la Master.
 
+Eccezione richiesta esplicitamente dall’utente il 05/10/2026: recap statistiche marketing mensile nella Master, con PDF in Outputs/Statistics, primo lunedì ore 12:00 dal 02/11/2026. Procedura `docs/marketing-statistics.md`; heartbeat `efs-monthly-schedule-marketing-statistics`. Riutilizza la review del passaggio quindicinale senza doppioni. Non sincronizza le altre chat né autorizza nuovi invii o pubblicazioni.
+
 Le procedure LinkedIn e newsletter prevalgono sui vecchi messaggi delle chat. Conservare lock, deduplicazione, revisioni e decisioni Microsoft. Le schedule consolidate eseguono i moduli in sequenza senza subagenti secondo `docs/linkedin/scheduling.md`. Il coordinamento non estende autorizzazioni Teams, pubblicazioni, follow o invii esterni.
 
 ## Verifica del censimento

@@ -1,5 +1,7 @@
 # Marketing Inputs — elenco comune in Teams
 
+**Storico dal 5 ottobre 2026.** L'utente ha sostituito questa lista come punto di selezione con collegamenti nativi .url agli originali in SharePoint Marketing/Inputs. Procedura corrente: [collegamenti e approvazioni](marketing-input-folder.md). Conservare lista, scheda, voci e decisioni pregresse; non aprire nuove richieste nella lista né duplicare quelle pendenti. I paragrafi sotto documentano il precedente flusso.
+
 Versione 1.1 — 2 ottobre 2026. Richiesta dell'utente: gli input devono essere un elenco Teams con file direttamente o link al file; destinazione confermata Documentation / General.
 
 ## Riferimento permanente

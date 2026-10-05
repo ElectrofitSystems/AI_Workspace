@@ -28,7 +28,7 @@ Prima della selezione di fonti e media leggere l'elenco Teams Marketing Inputs i
 2. Preparare/riprendere il singolo pacchetto bilingue del periodo.
 3. Prospecting mirato, senza richieste di riempire una coda o attività senza evidenze utili. Il monitor approvazioni/follow resta nel passaggio operativo: non duplicarne gli invii.
 
-La prima esecuzione quindicinale disponibile del mese include una breve review del mese solare precedente, se non già completata. Integrarla nella stessa sintesi e nelle note locali; nessun ulteriore report da revisionare per il team o trigger mensile. Conservare fonti e report locali necessari alla tracciabilità.
+La prima esecuzione quindicinale disponibile del mese include una breve review del mese solare precedente, se non già completata. Integrarla nella stessa sintesi e nelle note locali. Aggiornamento esplicito dell’utente del 05/10/2026: il recap marketing leggibile in Outputs/Statistics ha una ricorrenza mensile nella Master, secondo `docs/marketing-statistics.md`; riutilizza questa review e le sue evidenze senza duplicare analisi o richieste al team. Conservare fonti e report locali necessari alla tracciabilità. Le frequenze dei due gruppi LinkedIn restano invariate.
 
 ## Ripresa e confini
 

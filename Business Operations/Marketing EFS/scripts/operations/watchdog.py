@@ -35,6 +35,10 @@ def main():
         except OSError:return
         (STATE/'watchdog.json').write_text(json.dumps({'pid':os.getpid()}),encoding='utf-8')
         python=Path(sys.executable).with_name('python.exe')
+<<<<<<< HEAD
+=======
+        codex=Path('C:/Users/Operations/AppData/Local/OpenAI/Codex/bin/f544b3844e0f14e9/codex.exe')
+>>>>>>> c3a7a30 (Update for erp and marketing)
         service=ROOT/'scripts/operations/teams_service.py'
         try:
             while (STATE/'service.enabled').exists():

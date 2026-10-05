@@ -1,8 +1,20 @@
 # Teams Approvazioni — procedura unica Marketing EFS
 
+**Newsletter — canale aggiornato il 5 ottobre 2026:** solo newsletter della Pagina LinkedIn EFS. La review finale continua in Outputs/Newsletter, categoria newsletter, review_only. Daily operations riconcilia le decisioni come prima; dopo approvazione autenticata registra approved_pending_linkedin_publication. Una conversione da email a LinkedIn conserva l'edizione e lo storico ma richiede nuova review della revisione modificata. I riferimenti storici a approved_pending_send e mailing sono superati. Nessuna pubblicazione autorizzata dalla sola approvazione del contenuto.
+
+## Input — aggiornamento del 5 ottobre 2026
+
+Ulteriore richiesta esplicita dell'utente: ogni nuovo file/link aggiunto a Marketing/Inputs deve avviare automaticamente la review. Flusso cloud dedicato **EFS Marketing - Inputs - Automatic Approvals**, ID `d566e7c1-4941-77a4-abcc-752887b781dc`, attivo e collaudato mediante azione SharePoint nativa CreateApprovalRequest. Configurazione e prova in `output/Linkedin/config/input-approval-automation.json`; perimetro ricorsivo, esclusioni, controllo della revisione originale e gestione errori in `docs/company/marketing-input-folder.md`. Nessun invio retroattivo dei materiali già presenti, nessun manifest input in Outputs, nessuna nuova schedule Codex. Il flusso Outputs sotto resta invariato.
+
+Nuovi input selezionati dai collegamenti nativi .url in SharePoint Marketing/Inputs, con approvazioni moderne sul collegamento vincolate alla revisione esatta dell'originale secondo docs/company/marketing-input-folder.md. Non approvare automaticamente il documento originale in base al solo stato del link; verificare versione/eTag/hash del target prima del riuso. Questo supera i riferimenti alla lista sotto per nuove review. Preservare e riconciliare decisioni Lists pregresse senza duplicarle. Il flusso Outputs dei derivati e le sue autorizzazioni rimangono validi.
+
 Aggiornamento richiesto dall'utente il 02/10/2026. Tutte le nuove richieste di revisione marketing usano la cartella Outputs e Approvazioni native. Nessun destinatario personale, email, Entra ID o gruppo/chat di revisione è codificato nel progetto. Approvatore e regola applicabile sono gestiti nella configurazione del flusso Microsoft: verificarli nella richiesta autentica, senza dedurli da vecchie ricevute.
 
 ## Flusso esistente e destinazione
+
+### Leggibilità delle richieste — 5 ottobre 2026
+
+Su richiesta dell'utente, aggiornati i testi dei flussi Inputs e Outputs: titolo breve, documento/link, revisione e decisione richiesta; istruzioni essenziali in italiano. Per Outputs, i nuovi manifest generati da `prepare_approval_request.py` presentano i documenti come collegamenti leggibili, senza ripetere gli SHA256 nel messaggio. Hash dei file e digest del pacchetto rimangono integralmente nel manifest e nella verifica della ricevuta. Le richieste già create e i manifest storici restano invariati; nessun reinvio per il solo cambio di formato. Approvatori, regola di risposta, trigger e autorizzazioni di esecuzione non sono modificati.
 
 Flusso **EFS Marketing - SharePoint Outputs - Teams Approvals**, ID `bb8897f8-00c8-53f1-0473-6662fdf71cb4`, ambiente `Default-3b97374b-4a43-4588-a04f-4c94edc33cf3`. [Dettagli del flusso](https://make.powerautomate.com/environments/Default-3b97374b-4a43-4588-a04f-4c94edc33cf3/flows/bb8897f8-00c8-53f1-0473-6662fdf71cb4/details).
 

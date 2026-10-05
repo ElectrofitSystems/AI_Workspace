@@ -16,11 +16,21 @@ class RateLimited(RpcError):
         self.retry_after=max(1,int(seconds))
         super().__init__('connector_rate_limited; retry_after='+str(self.retry_after))
 
+def config_value(value):
+    if isinstance(value,dict):
+        return '{'+', '.join(json.dumps(k)+' = '+config_value(v) for k,v in value.items())+'}'
+    return json.dumps(value,ensure_ascii=False)
+
 class AppServer:
-    def __init__(self, executable, cwd):
+    def __init__(self, executable, cwd, process_config=None):
         self.cwd = str(Path(cwd).resolve())
         self.cooldown=Path(self.cwd)/'.local/operations-teams/cooldown.json'
-        self.process = subprocess.Popen([str(executable), 'app-server', '--stdio'],
+        command=[str(executable)]
+        for key,value in (process_config or {}).items():
+            command.extend(['-c',key+'='+config_value(value)])
+        command.extend(['app-server','--stdio'])
+        self.permission_profile=bool((process_config or {}).get('default_permissions'))
+        self.process = subprocess.Popen(command,
             cwd=self.cwd, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
             stderr=subprocess.DEVNULL, text=True, encoding='utf-8', bufsize=1,
             creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
@@ -76,7 +86,8 @@ class AppServer:
 
     def start_thread(self, developer=None, config=None):
         params={'cwd':self.cwd,'ephemeral':True,'approvalPolicy':'never',
-            'sandbox':'read-only','serviceName':'efs_operations_local'}
+            'serviceName':'efs_operations_local'}
+        if not self.permission_profile:params['sandbox']='read-only'
         if developer:params['developerInstructions']=developer
         if config:params['config']=config
         return self.request('thread/start',params)['thread']['id']
