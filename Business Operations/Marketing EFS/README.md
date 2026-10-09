@@ -53,7 +53,8 @@ intelligence di settore e supporto commerciale sono disponibili su richiesta.
 Leggere [regole](docs/rules.md), [mandato](docs/company/mandate.md),
 [contesto aziendale](docs/company/context.md) e
 [fonti](docs/company/sources.md). Per grafica e template vale il
-[kit corrente verificato](docs/company/brand.md).
+[Corporate Design Kit 4.0](docs/company/brand.md), predefinito per tutti i nuovi
+documenti e revisioni dal 6 ottobre 2026, salvo diverse indicazioni dell'utente.
 
 | Cartella | Uso |
 | --- | --- |

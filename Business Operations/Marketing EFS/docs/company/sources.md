@@ -1,5 +1,9 @@
 # Fonti marketing — perimetro confermato
 
+## Brand identity predefinita — 6 ottobre 2026
+
+Per decisione esplicita dell'utente, usare sempre [EFITSYS_Corporate_Design_Kit_4.0.zip](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Inputs/Brand%20Identity/EFITSYS_Corporate_Design_Kit_4.0.zip) per nuovi documenti e revisioni Marketing EFS, salvo diverse indicazioni. Archivio esatto verificato: 23.941.936 byte, SHA-256 `9d0f4be256ceeb917d5462d603c354398721cec073ccb48e055b9e25f0667b09`; copia locale e regole in `docs/company/brand.md`. L'autorizzazione diretta riguarda la brand identity in tutte le chat e ricorrenze del progetto; supera il precedente ambito limitato alla newsletter, senza approvare nuovi claim o pubblicazioni. Non attribuirle una decisione Microsoft inesistente. Kit e revisioni precedenti restano conservati.
+
 ## Fonte corrente — 5 ottobre 2026
 
 Nuova richiesta successiva dell'utente: le nuove aggiunte di file e collegamenti in Inputs avviano automaticamente una review. Flusso cloud Inputs attivo e creazione approvazione collaudata secondo [collegamenti e approvazioni](marketing-input-folder.md); riferimenti locali in `output/Linkedin/config/input-approval-automation.json`. Nessun invio retroattivo o approvazione automatica del contenuto. Prima del riuso resta obbligatoria la verifica della decisione autentica e della revisione esatta dell'originale.

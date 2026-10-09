@@ -1,5 +1,7 @@
 # Newsletter EFS mensile su LinkedIn
 
+Regola corrente del 6 ottobre 2026: per nuove edizioni e revisioni usare il Corporate Design Kit 4.0 esatto di `docs/company/brand.md`, salvo diverse indicazioni dell'utente. L'autorizzazione della brand identity è ora permanente per tutti i documenti Marketing EFS; la v03 sotto conserva le proprie fonti, prove e approvazioni storiche.
+
 ## Qualità editoriale e visiva — revisione richiesta il 5 ottobre 2026
 
 Aggiornamento v03 del 5 ottobre: l'utente ha confermato «Sì, usa il kit 4.0» per la newsletter. Copertina e schema usano il logo originale e i font del Corporate Design Kit 4.0 EN corrente; identità del kit e ambito dell'autorizzazione diretta in output/Newsletter/efs-newsletter-2026-10-v03-kit40-identity.json. Non attribuire una decisione Microsoft a questa autorizzazione e non estenderla ad altri canali. La presentazione tecnica FPC originale, pagine 14–16, conserva l'autorizzazione pregressa del canale ElectroFit Systems documentata in docs/company/sources.md ed è stata verificata sulla revisione esatta.

@@ -23,7 +23,7 @@ La review mensile eventualmente già prodotta dal passaggio LinkedIn quindicinal
 7. Totali mensili da eventi giornalieri confrontabili; anche medie giornaliere per mesi di durata diversa. CTR da somma clic / somma impressioni, non media semplice. Snapshot dei post separati dalle metriche per data di esposizione; non sommare snapshot successivi. Per lo stesso post non sommare righe organico/sponsorizzato e Totale.
 8. Paid storico distinto da organico corrente. Nessuna spesa/ROI inventata. Lead, richieste e opportunità soltanto da registro commerciale canonico riconciliato; un registro vuoto non prova zero lead.
 9. Newsletter, sito e altri analytics: usare solo fonti realmente accessibili. Dati mancanti N.D., mai zero. Nessuna nuova connessione, credenziale, installazione, campagna, invito o invio.
-10. PDF: font Barlow e logo/palette del Corporate Design Kit 3.4, KPI chiari, periodi, confronto, andamento, post, audience e copertura. Render e verifica visiva, poi upload del solo PDF e readback di metadata/contenuto; archivi precedenti conservati.
+10. PDF: font Barlow e logo/palette del Corporate Design Kit 4.0 esatto indicato in `docs/company/brand.md`, salvo diverse indicazioni dell'utente; KPI chiari, periodi, confronto, andamento, post, audience e copertura. Render e verifica visiva, poi upload del solo PDF e readback di metadata/contenuto; archivi precedenti conservati.
 
 ## Primo rilevamento
 
