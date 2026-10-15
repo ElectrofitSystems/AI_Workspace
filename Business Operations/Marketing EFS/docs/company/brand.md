@@ -1,71 +1,56 @@
 # Efitsys — Regole operative di identità visiva
 
-Versione 3.0 — 6 ottobre 2026. Riferimento corrente: Corporate Design Kit 4.0 esatto indicato dall'utente. Sostituisce le regole grafiche dei kit precedenti; strategia e stato delle approvazioni restano nei documenti aziendali.
+Aggiornate il 15 ottobre 2026. Riferimento corrente: **Corporate Design Kit 4.1 EN**.
 
-## Regola permanente — 6 ottobre 2026
+## Regola permanente
 
-Usare sempre questa brand identity per generare nuovi documenti e nuove revisioni Marketing EFS, salvo diverse indicazioni esplicite dell'utente. Vale per qualsiasi assistente, chat del progetto e attività ricorrente: PDF, documenti Office, cataloghi, brochure, presentazioni, newsletter, report e relativi visual. La scelta è autorizzata direttamente dall'utente; non attribuirle una decisione Microsoft inesistente. Non chiedere nuovamente quale kit usare. Conservare master e consegne storiche, senza aggiornarle retroattivamente in assenza di un incarico.
+L'utente richiede il kit 4.1 per l'Agente marketing EFS, tutte le chat e tutte le ricorrenze che usavano kit precedenti, salvo sue diverse indicazioni. Vale per nuovi documenti, revisioni, PDF, Word, presentazioni, report, newsletter, visual e animazioni. Prima di produrre un nuovo materiale rileggere questo documento e `brand-kit.json`, senza usare un percorso memorizzato da una vecchia chat.
 
-## Fonte corrente
+**Chiarimento esplicito dell'utente: il kit 4.1 aggiorna anche il logo rispetto al 4.0.** Usare esclusivamente gli asset logo, le varianti e le animazioni presenti nel 4.1. Non riutilizzare il logo 4.0 o precedente, non dedurre intercambiabilità dalla somiglianza grafica e non ricreare il logo a mano. I materiali storici restano conservati e non vengono rigenerati o ripubblicati senza un incarico.
 
-Fonte esatta scelta dall'utente: [EFITSYS_Corporate_Design_Kit_4.0.zip](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Inputs/Brand%20Identity/EFITSYS_Corporate_Design_Kit_4.0.zip), edizione del 5 ottobre 2026, modifica SharePoint 2026-10-05T12:36:53Z, 23.941.936 byte. Scaricato e verificato il 6 ottobre: dimensione e QuickXorHash coincidono con SharePoint. SHA-256: `9d0f4be256ceeb917d5462d603c354398721cec073ccb48e055b9e25f0667b09`. La copia `_4.0_EN.zip` è una revisione precedente diversa e non sostituisce questo file.
+La scelta è autorizzata direttamente dall'utente il 15 ottobre 2026; non attribuirle una decisione Microsoft inesistente. Le approvazioni dei contenuti e l'autorizzazione di pubblicazione restano distinte dall'adozione del kit.
 
-- Archivio originale: `input/Brand identity/EFITSYS_Corporate_Design_Kit_4.0.zip`.
-- Radice asset: `input/Brand identity/EFITSYS_Corporate_Design_Kit_4.0/EFITSYS_Corporate_Design_Kit_4.0_EN/`.
-- Handbook: `01_Handbook/EFITSYS_Corporate_Design_Handbook_EN.pdf`, 16 pagine lette integralmente.
-- Palette: `08_Reference/Palette.json`; inventario: `08_Reference/Inventory.json`.
-- Catalogo: `06_Print/EFITSYS_Product_Catalogue_Template_A4.pdf`; sorgenti SVG in `06_Print/Editable/`.
-- Indice e limiti: `START_HERE.html` e `START_HERE.txt`.
+## Fonte verificata Teams / SharePoint
 
-Conservare archivi e master intatti in input; creare copie di lavoro. Campi illustrativi dei template non sono affermazioni aziendali verificate.
+[EFITSYS_Corporate_Design_Kit_4.1_EN.zip](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Inputs/Brand%20Identity/EFITSYS_Corporate_Design_Kit_4.1_EN.zip) nella cartella del team Documentation / General / Marketing / Inputs / Brand Identity. Edizione del 7 ottobre 2026; modifica SharePoint `2026-10-07T15:38:36Z`; 26.427.030 byte. Download del 15 ottobre verificato con dimensione e QuickXorHash. SHA-256: `e3e1fca1d8c482acb2d64e89f7895cffb0aea82e383ac3462e04f42af91f44d5`.
 
-## Decisioni correnti
+- Archivio originale: `input/Brand identity/EFITSYS_Corporate_Design_Kit_4.1_EN.zip`.
+- Radice asset: `input/Brand identity/EFITSYS_Corporate_Design_Kit_4.1_EN/EFITSYS_Corporate_Design_Kit_4.1_EN/`.
+- Riferimento macchina con percorsi e hash delle varianti: `docs/company/brand-kit.json`.
+- Handbook: `01_Handbook/EFITSYS_Corporate_Design_Handbook_EN.pdf`, 16 pagine lette.
+- Indice: `START_HERE.txt` e `START_HERE.html`; istruzioni Office: `04_Office/README.txt`.
+- Inventario: `08_Reference/Inventory.json`, 154 file verificati per dimensione e SHA-256, senza difformità.
 
-1. Logo ufficiale EFITSYS del kit 4.0, con lettering compatto maiuscolo e simbolo composto da tre bande curve di punti con gradiente. I loghi a orbite continue e il wordmark minuscolo sono storici.
-2. Barlow Regular/Bold e Barlow Condensed Bold per i titoli editoriali, secondo kit corrente. Arial era il font del kit precedente. Font e licenze in `08_Reference/Fonts/`.
-3. Nella firma grafica mantenere il motto originale «Your Vision, Our Drive.», con maiuscole iniziali, virgola e punto finale. Non ridigitarlo o sostituirlo nell'artwork. È facoltativo: firma completa per copertine/introduzioni quando leggibile, logo senza motto per intestazioni, tabelle e spazi compatti. La formulazione italiana aziendale «La vostra visione. La nostra propulsione.» può restare nel testo, separata dal logo.
-4. Template e asset non approvano nuove capacità, mercati, clienti o canali. LinkedIn organico resta l'unico social previsto.
+Conservare archivio e master; lavorare su copie. I campi di esempio dei template non costituiscono claim aziendali approvati.
 
-## Logo — pagine 3–6
+## Logo 4.1 e varianti
 
-`02_Logos/EFITSYS_Logo.png`: lettering navy senza motto; `EFITSYS_Logo_White.png`: lettering bianco senza motto per fondo navy/scuro. Le firme `EFITSYS_Logo_With_Motto` e `EFITSYS_Logo_White_With_Motto` conservano il motto ufficiale. Tutte sono trasparenti con simbolo puntinato originale. Preferire SVG/PDF vettoriali quando il formato lo consente; usare PNG ad alta risoluzione per Office o strumenti che richiedono raster.
+Usare i file originali in `02_Logos/`: `EFITSYS_Logo` senza motto, `EFITSYS_Logo_With_Motto` con motto, e le corrispondenti varianti `White` su sfondo scuro. SVG e PDF contengono geometria vettoriale; PNG trasparenti disponibili per Office e strumenti raster. Il nome del master sorgente `image-vector.svg` è citato dal kit ma non è presente come file separato: usare i derivati ufficiali disponibili senza inventarne un percorso.
 
-Preservare forme, posizioni, proporzioni, gradiente e ogni punto del simbolo. Non ridigitare, ridisegnare, deformare, tracciare a mano o disseminare i punti come decorazione. Su scuro usare lettering bianco senza pannelli bianchi.
+Preservare lettering, tre bande curve di punti, gradiente, proporzioni e posizione. Non ridigitare lettering o motto, non ricolorare, non semplificare i punti e non usarli come decorazione dietro i testi. Su scuro usare il logo bianco senza pannelli bianchi. La configurazione con motto mantiene «Your Vision, Our Drive.»; quella senza motto è adatta a intestazioni, tabelle e spazi compatti.
 
-Spazio di rispetto: almeno metà dell'altezza della E oltre il bordo esterno del simbolo completo. Misure iniziali per revisione: senza motto da 200 px digitale / 45 mm stampa; con motto da 320 px / 70 mm; icona da 48 px da controllare alla misura reale. Non sono limiti produttivi certificati.
+Spazio di rispetto: almeno metà altezza della E oltre il simbolo completo. Misure iniziali per verifica: senza motto 200 px / 45 mm, con motto 320 px / 70 mm, simbolo 48 px da controllare alla misura reale. Non sono limiti produttivi certificati. Per incisione verificare il master e la conversione monocromatica con il produttore; nessuna dimensione minima dei punti è validata.
 
-Questo archivio contiene SVG/PDF con path e cerchi derivati dal master vettoriale fornito dall'utente; i PNG sono esportazioni trasparenti. Non confonderlo con la precedente copia 4.0_EN a contenitori raster. Per incisione usare il master esatto e verificarne la conversione monocromatica con il produttore; nessuna dimensione minima dei punti è stata validata.
+## Palette e tipografia
 
-## Palette e leggibilità — pagine 7–8
+Palette di supporto da `08_Reference/Palette.json`: navy `#0B2348`, cyan `#00A8C6`, teal `#007A8F`, lime `#BDD63A`, white `#FFFFFF`, ice `#F2F6F8`, graphite `#27343D`, slate `#60717E`, line `#CED7DE`. Il logo conserva il proprio blu e gradiente originali: non ricolorarlo secondo le tinte del documento.
 
-| Colore | HEX | Impiego |
-| --- | --- | --- |
-| Navy | #0B2348 | Titoli, lettura e campi aziendali |
-| Cyan | #00A8C6 | Accenti grafici |
-| Teal | #007A8F | Link, etichette e navigazione |
-| Lime | #BDD63A | Piccoli richiami |
-| White | #FFFFFF | Fondo principale |
-| Ice | #F2F6F8 | Fondi secondari |
-| Graphite | #27343D | Corpo testo |
-| Slate | #60717E | Testi secondari |
-| Line | #CED7DE | Separatori |
+Barlow Regular per il corpo, Barlow Bold per sezioni e dati, Barlow Condensed Bold per titoli editoriali. Font e licenze in `08_Reference/Fonts/`. Riferimenti: corpo 11 pt, tabelle 10–11 pt. Bianco dominante, gerarchia navy, accenti misurati; evitare testo piccolo cyan/lime su bianco. Non distinguere informazioni soltanto con il colore.
 
-Bianco dominante, gerarchia navy e accenti misurati. Navy/bianco 15,58:1 e teal/bianco 5,02:1. Evitare testo piccolo cyan/lime su bianco. Non distinguere informazioni solo con il colore; mantenere unità, condizioni ed etichette dei dati. Il logo conserva il proprio blu #012C59 e il gradiente originale: non ricolorarlo secondo la palette di supporto.
+## Template Office 4.1
 
-## Tipografia e composizione — pagine 9–10
+Usare copie dei **sette DOCX** in `04_Office/`, compatibili con Word per il web: Business Letter, Letterhead, Datasheet, Invoice, Proposal, Order e Report. Le anteprime PDF servono alla verifica visiva, non sono sorgenti editabili. Non cercare i DOTX rimossi dal kit 4.1. PowerPoint usa i PPTX/POTX forniti.
 
-Barlow Condensed Bold per titoli editoriali; Barlow Bold per sezioni/dati; Barlow Regular per corpo. Riferimenti documenti: corpo 11 pt, tabelle 10–11 pt. Titoli dominanti, spazio libero, logo senza motto nelle intestazioni e fotografie pertinenti al contenuto. Il lettering del logo resta un asset, mai un titolo composto con font.
+Conservare i footer ufficiali dei DOCX e dei PDF che ne derivano: logo 4.1, linea fine, **ElectroFit Systems S.r.l.**, **Str. del Portone, 129 · 10095 Grugliasco (TO) · Italy**, **VAT No. 12781700013**, **info@efitsys.com**, **www.efitsys.com**. Il telefono aziendale è omesso intenzionalmente. Carta intestata e report conservano le rispettive intestazioni di prima pagina e successive; aggiornare sommario automatico e campi pagina prima dell'esportazione.
 
-Template catalogo: copertina, portfolio, scheda prodotto e chiusura A4 verticale. Adattarne i principi al catalogo orizzontale esistente quando necessario per mantenere leggibilità delle schede e degli schemi. Fotografie e specifiche sono proprie del prodotto, non elementi fissi del brand.
+Order è una conferma d'ordine aziendale basata su proposta accettata: verificare riferimenti cliente, oggetto, consegna e pagamento. Invoice è un layout senza calcoli automatici: l'emissione rimane nel processo contabile aziendale. Il datasheet non approva prestazioni o fotografie di prodotto. Il template non autorizza operazioni ERP.
 
-## Asset e produzione
+## Animazione e altri formati
 
-`04_Office/`: Word/PowerPoint; `05_Social/`: LinkedIn; `06_Print/`: catalogo, company profile, biglietti, flyer/poster; `07_Web/`: token, esempio sito e firma; `03_Icons/`: icone/favicon. Font e licenze originali restano nel kit; nessuna installazione sistema richiesta per incorporarli nel PDF.
+Usare la libreria originale **del 4.1** in `02_Logos/Animation/`: video, GIF, poster e sorgenti. Per PowerPoint incorporare il video adatto al fondo e conservare proporzioni, geometria e timing. Scegliere il formato orizzontale, quadrato o verticale corretto senza ritagliare l'animazione. Distinguere media incorporato, effetti PowerPoint e video esportato; dichiarare soltanto le verifiche eseguite.
 
-PDF del kit: prove RGB. Biglietti/flyer/poster hanno 3 mm di abbondanza e TrimBox. Verificare risoluzione logo, colore e supporto con lo stampatore; non presumere PDF/X o idoneità all'incisione.
+`05_Social/` contiene i template LinkedIn; `06_Print/` catalogo, company profile, biglietti, flyer e poster; `07_Web/` token ed esempi. I PDF di stampa sono prove RGB: controllare abbondanze, risoluzione e conversione colore con lo stampatore.
 
-Verificare render, logo, motto, font, immagini, link, numerazione e segnaposto. Note interne separate dal contenuto per clienti. Il caricamento autorizzato nella cartella Outputs non approva la pubblicazione: resta il flusso di verifica e approvazione finale del referente configurato nel flusso Microsoft.
+## Verifica e storico
 
-## Fonti storiche
-
-I kit 1.0, 3.4 e la precedente copia `EFITSYS_Corporate_Design_Kit_4.0_EN.zip` restano conservati per storico e riproducibilità. Per nuovi lavori usare il file 4.0 esatto sopra, salvo diverse indicazioni dell'utente. La precedente autorizzazione limitata alla newsletter è superata, per il solo uso della brand identity, dalla regola permanente del 6 ottobre 2026.
+Verificare logo 4.1, varianti, font, immagini, contatti, link, numerazione, segnaposto e render. Consegnare i soli file necessari secondo `output-delivery.md`; note, sorgenti, log e configurazioni restano locali. Conservare i precedenti kit 1.0, 3.4 e 4.0 e i relativi output per storico e riproducibilità; i loro percorsi non sono il default per nuovi lavori. La migrazione non estende approvazioni pregresse a nuove revisioni.

@@ -25,6 +25,12 @@ def utc(value):
 def digest(text):
     value = html.unescape(re.sub(r"<[^>]+>", " ", text or ""))
     value = re.sub(r"\\([\-_*])", r"\1", value)
+    # The connector wraps long Markdown link targets onto several lines.
+    # Fold only newline continuations inside an explicit URL target. Keep
+    # ordinary spaces, link paths, queries and the surrounding text intact.
+    value = re.sub(r"(\]\()((?:https?://|[A-Za-z]:/)[^)]*)(\))",
+        lambda match: match[1]+re.sub(r"[ \t]*\r?\n[ \t]*", "", match[2])+match[3],
+        value, flags=re.I)
     return hashlib.sha256(" ".join(value.split()).encode()).hexdigest()
 
 def internal_email(value):
@@ -117,6 +123,13 @@ class Store:
     def failed(self, token, chat, message):
         self.db.execute("UPDATE requests SET state='needs_review',updated=? WHERE chat=? AND message=? AND token=? AND state='claimed'",
             (self.clock(), chat, message, token))
+        self.db.commit()
+
+    def approval_required(self, token, chat, message):
+        # Retain any prepared hash/receipt: a blocked send must never replay.
+        self.db.execute("UPDATE requests SET state='approval_required',updated=? "
+            "WHERE chat=? AND message=? AND token=? AND state IN ('claimed','sending','sent')",
+            (self.clock(),chat,message,token))
         self.db.commit()
 
     def ack_prepare(self, payload):
@@ -229,7 +242,12 @@ class Store:
             raise GuardError("no_prepared_send")
         reply = payload["reply"]
         if (reply.get("chat_id") != row["chat"] or reply.get("author_user_id") != self.config["owner_id"]
-            or not reply.get("message_id") or digest(reply.get("content")) != row["response_hash"]):
+            or not reply.get("message_id")
+            or (payload.get('expected_response_id') is not None
+                and reply.get('message_id') != payload['expected_response_id'])
+            or reply.get('deleted_at') or reply.get('author_application_id')
+            or reply.get('message_type','message') != 'message'
+            or digest(reply.get("content")) != row["response_hash"]):
             raise GuardError("receipt_mismatch")
         self.db.execute("UPDATE requests SET state='sent',response_id=?,updated=? WHERE chat=? AND message=?",
             (reply["message_id"],self.clock(),row["chat"],row["message"]))

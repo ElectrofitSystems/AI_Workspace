@@ -1,7 +1,7 @@
 # Efitsys brochure master v02
 
 This document describes the historical v02 master. For new materials, apply
-[the current brand rules](../company/brand.md) and the exact Corporate Design Kit 4.0 selected by the user, unless instructed otherwise:
+[the current brand rules](../company/brand.md) and the exact Corporate Design Kit 4.1 selected by the user, unless instructed otherwise:
 Barlow / Barlow Condensed and the official EFITSYS logo with its dotted symbol. Preserve the
 old master; adapt a working copy before using it for a new delivery. The legacy
 `scripts/brochures/build_brochures.py` still reproduces the previous kit.

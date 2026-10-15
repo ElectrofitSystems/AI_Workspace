@@ -4,7 +4,7 @@ import threading
 import unittest
 from unittest.mock import Mock,patch
 from erp_followups import erp_follow_up,explicit_erp_request
-from teams_service import Service,erp_intent,RateLimited,ROOT
+from teams_service import Service,erp_intent,RateLimited,ROOT,ApprovalRequired
 from teams_state import GuardError,verify_chat
 from erp_teams import worker_config
 
@@ -134,6 +134,16 @@ class ResponseTests(unittest.TestCase):
         service.identity.side_effect=GuardError('unverified_directory_identity')
         with self.assertRaises(GuardError):service.respond(request,agent,'thread',store)
         agent.answer.assert_not_called();service.server.tool.assert_not_called();store.prepare.assert_not_called()
+    def test_approval_block_stops_generation_and_sends_one_explicit_notice(self):
+        service,request,agent,store=self.service('prepara una preview',[])
+        agent.answer.side_effect=ApprovalRequired('codex_apps.microsoft_sharepoint_upload_file_to_folder')
+        with patch('teams_service.erp_context',return_value=({'financial_access':False,'status':'access_denied'},False)):
+            service.respond(request,agent,'thread',store)
+        agent.answer.assert_called_once()
+        self.assertIn('Richiesta sospesa',store.prepare.call_args.args[0]['text_content'])
+        self.assertEqual(sum(c.args[1]=='send_chat_message' for c in service.server.tool.call_args_list),1)
+        self.assertEqual(store.sent.call_args.args[0]['expected_response_id'],'r1')
+        store.approval_required.assert_called_once_with('test-token','chat','m1')
     def test_readback_rate_limit_retries_only_reads(self):
         service=object.__new__(Service);service.stop=Mock();service.stop.is_set.return_value=False
         service.stop.wait.return_value=False;service.transport='transport'

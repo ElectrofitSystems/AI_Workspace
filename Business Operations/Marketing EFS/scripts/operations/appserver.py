@@ -11,6 +11,26 @@ from pathlib import Path
 class RpcError(RuntimeError):
     pass
 
+class ApprovalRequired(RpcError):
+    def __init__(self, action):
+        # Never put tool arguments, commands or credentials in the error/log.
+        self.action=re.sub(r'[^A-Za-z0-9_.:/-]', '_', str(action))[:160]
+        super().__init__('approval_required:'+self.action)
+
+def approval_failure(item):
+    if item.get('type') not in ('mcpToolCall','dynamicToolCall'):
+        return None
+    result=item.get('result') or {}
+    error=item.get('error')
+    if not (error or item.get('status')=='failed' or
+            (isinstance(result,dict) and result.get('isError'))):
+        return None
+    detail=json.dumps(error or result,ensure_ascii=False).lower()
+    if not any(phrase in detail for phrase in ('requires approval','approval required',
+            'approval policy is never','interactive approval')):
+        return None
+    return '.'.join(str(item.get(key,'')) for key in ('server','tool')).strip('.') or 'tool'
+
 class RateLimited(RpcError):
     def __init__(self, seconds):
         self.retry_after=max(1,int(seconds))
@@ -64,6 +84,7 @@ class AppServer:
                     self._write({'id':message['id'],'error':{'code':-32000,
                         'message':'Interactive approval required; unattended service declines.'}})
                     self.events.put({'method':'operations/approvalRequired','params':{
+                        'threadId':(message.get('params') or {}).get('threadId'),
                         'requestMethod':message.get('method')}})
                 else:self.events.put(message)
         finally:
@@ -97,11 +118,20 @@ class AppServer:
             try:deadline=json.loads(self.cooldown.read_text(encoding='utf-8'))['until']
             except (ValueError,KeyError):deadline=0
             if deadline>time.time():raise RateLimited(deadline-time.time()+1)
-        result=self.request('mcpServer/tool/call',{'threadId':thread,
-            'server':'codex_apps','tool':'microsoft_teams.'+name,'arguments':arguments})
+        try:
+            result=self.request('mcpServer/tool/call',{'threadId':thread,
+                'server':'codex_apps','tool':'microsoft_teams.'+name,'arguments':arguments})
+        except RpcError as error:
+            if any(phrase in str(error).lower() for phrase in ('requires approval',
+                    'approval required','approval policy is never')):
+                raise ApprovalRequired('microsoft_teams.'+name) from error
+            raise
         if result.get('isError'):
             data=result.get('structuredContent') or {}
             detail=' '.join(c.get('text','') for c in result.get('content',[]) if isinstance(c,dict) and c.get('type')=='text')
+            if any(phrase in detail.lower() for phrase in ('requires approval',
+                    'approval required','approval policy is never')):
+                raise ApprovalRequired('microsoft_teams.'+name)
             if data.get('error_code')=='RATE_LIMITED' or '429' in detail or 'HTTPRateLimitError' in detail:
                 match=re.search(r'at least (\d+) seconds',detail)
                 seconds=int(data.get('retry_after_seconds') or (match.group(1) if match else 120))
@@ -127,6 +157,17 @@ class AppServer:
             try:event=self.events.get(timeout=1)
             except queue.Empty:continue
             method,params=event.get('method'),event.get('params',{})
+            # Each server runs one answer at a time, including its specialists.
+            # Stop on the first real approval failure, also in a child thread.
+            action=None
+            if method=='operations/approvalRequired':
+                action=params.get('requestMethod') or 'interactive_request'
+            elif method=='item/completed':
+                action=approval_failure(params.get('item',{}))
+            if action:
+                try:self.request('turn/interrupt',{'threadId':thread,'turnId':turn_id},timeout=10)
+                except RpcError:pass
+                raise ApprovalRequired(action)
             if params.get('threadId')!=thread:continue
             if method=='item/completed':
                 item=params.get('item',{})

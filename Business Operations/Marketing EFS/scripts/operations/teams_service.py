@@ -15,7 +15,7 @@ import time
 from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
-from appserver import AppServer, RpcError, RateLimited
+from appserver import AppServer, RpcError, RateLimited, ApprovalRequired
 from teams_state import Store, GuardError, ROOT, STATE, utc
 from erp_followups import erp_follow_up, explicit_erp_request
 from marketing_runtime import authorized as marketing_authorized
@@ -234,7 +234,18 @@ class Service:
                     self.log('marketing_session_started',chat_id=request['chat_id'],
                         peer_id=identity['binding']['peer_id'],profile='operations_marketing_internal')
                 agent_server,thread=session
-            answer=agent_server.answer(thread,prompt)
+            try:
+                answer=agent_server.answer(thread,prompt)
+            except ApprovalRequired as blocked:
+                self.log('approval_required',chat_id=request['chat_id'],
+                    message_id=request['message_id'],action=blocked.action)
+                answer={'response':
+                    'Richiesta sospesa: l’azione '+blocked.action+
+                    ' richiede un’approvazione che questa sessione automatica non può chiedere. '
+                    'Il tentativo è stato fermato; non verrà ripetuto automaticamente. '
+                    'La consegna non è completata e richiede intervento nella sessione interattiva.',
+                    'agent':'Operations','elapsed_seconds':0,'delegated_roles':[],
+                    'approval_required':blocked.action}
         roles=answer.get('delegated_roles',[])
         if answer['agent']!='Operations' and answer['agent'] not in roles:
             raise GuardError('specialist_not_verified')
@@ -264,7 +275,13 @@ class Service:
             'chat_id':payload['chat_id'],'text_content':payload['text_content']})
         reply=self.readback(payload['chat_id'],sent)
         worker_store.sent({'run_token':self.token,'chat_id':request['chat_id'],
-            'message_id':request['message_id'],'reply':reply})
+            'message_id':request['message_id'],'reply':reply,
+            'expected_response_id':sent['message_id']})
+        if answer.get('approval_required'):
+            worker_store.approval_required(self.token,request['chat_id'],request['message_id'])
+            self.log('request_blocked',chat_id=request['chat_id'],message_id=request['message_id'],
+                response_id=reply['message_id'],action=answer['approval_required'])
+            return
         self.log('reply_verified',chat_id=request['chat_id'],message_id=request['message_id'],
             response_id=reply['message_id'],agent=answer['agent'],
             agent_seconds=answer['elapsed_seconds'],
@@ -294,6 +311,10 @@ class Service:
                             break
                         except RateLimited as limit:
                             if self.stop.wait(limit.retry_after):break
+                except ApprovalRequired as error:
+                    worker_store.approval_required(self.token,request['chat_id'],request['message_id'])
+                    self.log('approval_required',chat_id=request['chat_id'],message_id=request['message_id'],
+                        action=error.action)
                 except Exception as error:
                     worker_store.failed(self.token,request['chat_id'],request['message_id'])
                     self.log('request_failed',chat_id=request['chat_id'],message_id=request['message_id'],

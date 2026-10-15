@@ -18,7 +18,7 @@ Documento di sintesi delle decisioni raccolte nella conversazione. È una base p
 
 ## 2. Brand Identity
 
-Aggiornamento permanente del 6 ottobre 2026: per nuovi documenti e revisioni usare sempre il Corporate Design Kit 4.0 esatto di `brand.md`, salvo diverse indicazioni dell'utente. Logo, font, master e motto grafico sono quelli del kit corrente verificato. Le esplorazioni e le scelte preliminari sotto sono storiche e non sostituiscono questa regola.
+Aggiornamento permanente del 15 ottobre 2026: per nuovi documenti e revisioni usare sempre il Corporate Design Kit 4.1 esatto di `brand.md`, salvo diverse indicazioni dell'utente. Logo, font, master e motto grafico sono quelli del kit corrente verificato. Le esplorazioni e le scelte preliminari sotto sono storiche e non sostituiscono questa regola.
 - Il logo definitivo sarà fornito dall’azienda. Nessuna proposta grafica esplorata è da considerare approvata come definitiva.
 - Palette di riferimento: handbook fornito dall’azienda.
 - Colori estratti dal riferimento: navy #0B2348, cyan #00A8C6, teal #007A8F, lime #BDD63A, bianco #FFFFFF, ice #F2F6F8, graphite #27343D, slate #60717E.

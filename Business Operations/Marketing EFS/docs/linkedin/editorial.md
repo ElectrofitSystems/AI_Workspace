@@ -50,7 +50,7 @@ Scelta editoriale dell'utente del 01/10: per EFS-001 mantenere la riformulazione
 
 | Risorsa disponibile | Uso nel flusso |
 | --- | --- |
-| brand | Identità e tono secondo `docs/company/brand.md`, kit 4.0 esatto predefinito salvo diverse indicazioni: loghi originali con simbolo puntinato, Barlow / Barlow Condensed e motto dell'artwork |
+| brand | Identità e tono secondo `docs/company/brand.md`, kit 4.1 esatto predefinito salvo diverse indicazioni: loghi originali con simbolo puntinato, Barlow / Barlow Condensed e motto dell'artwork |
 | banner-design | Impaginazione di cover e grafiche con gerarchia e leggibilità, applicando il kit aziendale; non ridefinisce il brand |
 | imagegen | Illustrazioni concettuali soltanto quando utili e richieste dal formato. Renderle riconoscibili e denominarle come illustrazioni; non simularle come fotografie di prodotti, installazioni o prove reali |
 | Presentazioni | Sorgente editabile delle slide; usare i template del kit quando pertinenti |

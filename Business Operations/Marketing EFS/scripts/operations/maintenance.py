@@ -1,6 +1,6 @@
 """Twice-daily compatibility and recovery checks, independent of desktop UI."""
 from __future__ import annotations
-import argparse,hashlib,json,os,shutil,subprocess,sys,time,tomllib
+import argparse,hashlib,json,os,shutil,subprocess,sys,time,tomllib,uuid
 from datetime import datetime,timezone
 from pathlib import Path
 from appserver import AppServer,config_value
@@ -18,6 +18,22 @@ REQUIRED={'brand','banner-design','imagegen','product-marketing','content-strate
  'efs-prospect-opportunities','efs-industry-intelligence','efs-company-page-review','efs-lead-handoff'}
 
 def now():return datetime.now(timezone.utc).isoformat()
+def current_brand(root=ROOT):
+    """Validate the selected kit without falling back to a historical logo."""
+    root=Path(root).resolve()
+    manifest=json.loads((root/'docs/company/brand-kit.json').read_text(encoding='utf-8'))
+    def checked(relative,digest):
+        path=(root/relative).resolve()
+        if not path.is_relative_to(root/'input'):
+            raise ValueError('brand_asset_outside_input')
+        if hashlib.sha256(path.read_bytes()).hexdigest()!=digest:
+            raise ValueError('brand_asset_hash_mismatch:'+relative)
+    checked(manifest['archive'],manifest['source']['sha256'])
+    for key,relative in manifest['assets'].items():
+        checked(manifest['asset_root']+'/'+relative,manifest['asset_sha256'][key])
+    return {'version':manifest['version'],'asset_root':manifest['asset_root'],
+        'verified_assets':len(manifest['assets']),'archive_verified':True,'logo_verified':True}
+
 def run(args,**kw):
     return subprocess.run([str(x) for x in args],cwd=ROOT,capture_output=True,text=True,
         encoding='utf-8',errors='replace',creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0),**kw)
@@ -30,11 +46,22 @@ def control(action):
 def sandbox_probe(exe):
     profile=worker_config(ROOT);cmd=[exe]
     for k,v in profile.items():cmd+=['-c',k+'='+config_value(v)]
-    p=WORK/'write-read-check.txt'
-    script="[IO.File]::WriteAllText('"+str(p)+"','MARKETING_HEALTH_OK'); [IO.File]::ReadAllText('"+str(p)+"')"
-    reply=run(cmd+['sandbox','-P',profile['default_permissions'],'-C',ROOT,
+    token='MARKETING_HEALTH_'+uuid.uuid4().hex
+    quote=lambda value:"'"+str(value).replace("'","''")+"'"
+    output=ROOT/'output/Statistics/coordination/runtime-checks/write-read-check.txt'
+    manifest=json.loads((ROOT/'docs/company/brand-kit.json').read_text(encoding='utf-8'))
+    logo=ROOT/manifest['asset_root']/manifest['assets']['logo']
+    script="$ErrorActionPreference='Stop'; "
+    script+="if([IO.File]::ReadAllBytes("+quote(logo)+").Length -eq 0){throw 'Empty brand input'}; "
+    script+="[IO.Directory]::CreateDirectory("+quote(WORK)+") | Out-Null; "
+    script+="[IO.Directory]::CreateDirectory("+quote(output.parent)+") | Out-Null; "
+    for path in (WORK/'write-read-check.txt',output):
+        script+="[IO.File]::WriteAllText("+quote(path)+","+quote(token)+"); "
+        script+="if([IO.File]::ReadAllText("+quote(path)+") -ne "+quote(token)+"){throw 'Probe mismatch'}; "
+    script+="Write-Output "+quote(token)
+    reply=run(cmd+['sandbox','-P',profile['default_permissions'],'-C',ROOT,'--',
         'powershell.exe','-NoProfile','-NonInteractive','-Command',script],timeout=90)
-    return reply.returncode==0 and reply.stdout.strip()=='MARKETING_HEALTH_OK'
+    return reply.returncode==0 and reply.stdout.strip()==token
 
 def snapshot():
     dest=WORK/datetime.now().strftime('backups/%Y%m%dT%H%M%S')
@@ -48,6 +75,7 @@ def snapshot():
 
 def fingerprint(exe,skills):
     h=hashlib.sha256(str(exe).encode())
+    for name in ('brand.md','brand-kit.json'):h.update((ROOT/'docs/company'/name).read_bytes())
     for p in sorted((ROOT/'.codex/agents').glob('*.toml')):h.update(p.read_bytes())
     for p in sorted((Path.home()/'.codex/agents').glob('*.toml')):h.update(p.read_bytes())
     for s in sorted(skills,key=lambda s:s.get('path','')):
@@ -58,13 +86,14 @@ def fingerprint(exe,skills):
 
 def check(exe,model_check=False):
     result={'at':now(),'runtime':str(exe),'repairs':[],'checks':{},'issues':[]}
+    result['checks']['current_brand']=current_brand()
     for p in [ROOT/'.codex/agents/agente-marketing-EFS.toml',Path.home()/'.codex/agents/agente-marketing-EFS.toml']:
         d=tomllib.loads(p.read_text(encoding='utf-8'))
         if d.get('name')!='Agente marketing EFS':raise RuntimeError('marketing_definition_identity_mismatch')
     result['checks']['agent_definitions']=True
     result['checks']['sandbox_write_read']=sandbox_probe(exe)
     if not result['checks']['sandbox_write_read']:
-        # Repair only the exact obsolete Marketing parent deny; private state stays denied.
+        # Repair only obsolete Marketing .local/input/output denies; private state stays denied.
         p=run(['powershell.exe','-NoProfile','-ExecutionPolicy','Bypass','-File',ROOT/'scripts/operations/repair-marketing-scratch.ps1','-Apply'],timeout=45)
         if p.returncode==0 and sandbox_probe(exe):
             result['repairs'].append('legacy_scratch_acl');result['checks']['sandbox_write_read']=True
@@ -95,15 +124,28 @@ def check(exe,model_check=False):
         statusfile=STATE/'maintenance-status.json'
         if statusfile.exists():previous=json.loads(statusfile.read_text(encoding='utf-8'))
         result['configuration_changed']=bool(previous.get('fingerprint') and fp!=previous['fingerprint'])
-        due=model_check or fp!=previous.get('fingerprint') or time.time()-previous.get('last_agent_verified_epoch',0)>86400
+        due=model_check or not previous.get('checks',{}).get('agent_artifact_write_read') or fp!=previous.get('fingerprint') or time.time()-previous.get('last_agent_verified_epoch',0)>86400
         if due:
-            answer=server.answer(thread,'Controllo tecnico autorizzato, nessun messaggio o upload: attiva il ruolo esatto Agente marketing EFS, senza default. Chiedigli solo di rispondere MARKETING_AGENT_OK senza altre operazioni; niente audit, deleghe ulteriori o documenti. Restituisci quel token e il nome esatto del ruolo realmente coinvolto.',timeout=180)
+            proof=ROOT/'output/Statistics/coordination/runtime-checks/agent-production-check.json'
+            nonce=uuid.uuid4().hex
+            payload={'nonce':nonce,'brand':result['checks']['current_brand']['version'],'status':'MARKETING_AGENT_OK'}
+            prompt=('Controllo tecnico di produzione autorizzato dal proprietario; nessun messaggio, upload o pubblicazione. '
+                'Delega al ruolo esatto Agente marketing EFS, senza default e senza eseguire tu la scrittura. '
+                'Chiedigli soltanto di usare il suo strumento shell per scrivere e rileggere il file locale '+str(proof)+
+                ' con questo JSON esatto: '+json.dumps(payload)+'. La cartella padre esiste. '
+                'Deve rispondere MARKETING_AGENT_OK soltanto dopo aver riletto il contenuto corretto. '
+                'Niente altre operazioni, audit, deleghe ulteriori o documenti. Restituisci quel token e il nome esatto del ruolo realmente coinvolto.')
+            answer=server.answer(thread,prompt,timeout=180)
             verified='Agente marketing EFS' in answer.get('delegated_roles',[]) and 'MARKETING_AGENT_OK' in answer.get('response','')
             result['checks']['agent_runtime']=verified
-            if verified:result['last_agent_verified_epoch']=time.time()
+            try:artifact_verified=json.loads(proof.read_text(encoding='utf-8-sig'))==payload
+            except (OSError,ValueError):artifact_verified=False
+            result['checks']['agent_artifact_write_read']=artifact_verified
+            if verified and artifact_verified:result['last_agent_verified_epoch']=time.time()
             else:result['issues'].append('custom_agent_runtime_unverified')
         else:
             result['checks']['agent_runtime']='previous_success_same_configuration'
+            result['checks']['agent_artifact_write_read']='previous_success_same_configuration'
             result['last_agent_verified_epoch']=previous['last_agent_verified_epoch']
     finally:server.close()
     return result

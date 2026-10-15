@@ -4,6 +4,8 @@ Correzione esplicita dell'utente del 5 ottobre 2026: in SharePoint Marketing/Inp
 
 ## Cartelle e perimetro
 
+Per il brand, dal 15 ottobre 2026 prevale il Corporate Design Kit 4.1 EN esatto di `docs/company/brand.md` e `brand-kit.json`, autorizzato dall’utente per tutte le chat e ricorrenze. Il piano storico dei 68 materiali sotto non limita l’adozione del nuovo kit e non autorizza l’uso di loghi precedenti.
+
 Cartella: https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Inputs
 
 La selezione resta limitata ai 68 materiali del piano del 2 ottobre: 25 collegamenti in Technical Documentation, 36 in Media/Pictures, 6 in Media/Videos e il kit 3.4 EN già presente in Brand Identity. Il kit è un originale preesistente, da conservare senza duplicarlo o creare un collegamento a se stesso. Anche prova.c.url preesistente è escluso dalla correzione e resta intatto. Non importare automaticamente altri materiali.

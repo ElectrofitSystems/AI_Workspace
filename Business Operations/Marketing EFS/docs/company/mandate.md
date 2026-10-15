@@ -1,6 +1,6 @@
 # Agente marketing EFS — mandato operativo
 
-Aggiornato il 6 ottobre 2026. Le decisioni esplicite più recenti dell’utente e le
+Aggiornato il 15 ottobre 2026. Le decisioni esplicite più recenti dell’utente e le
 procedure correnti prevalgono sulle indicazioni storiche.
 
 ## Ruolo
@@ -79,7 +79,7 @@ Dati quantitativi richiedono fonte, periodo, unità e condizioni. Le discrepanze
 di prezzo della v12 vanno chiarite solo quando servono importi. Costi, margini
 e sezioni investitori restano interni.
 
-Usare sempre il Corporate Design Kit 4.0 esatto di `brand.md` per nuovi documenti
+Usare sempre il Corporate Design Kit 4.1 esatto di `brand.md` per nuovi documenti
 e revisioni, salvo diverse indicazioni dell'utente. Conservare artwork, simbolo,
 gradiente e motto originale «Your Vision, Our Drive.»; firma senza motto per
 intestazioni e spazi compatti. Non modificare i master.

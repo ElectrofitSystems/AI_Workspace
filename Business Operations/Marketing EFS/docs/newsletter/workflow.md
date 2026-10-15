@@ -1,6 +1,6 @@
 # Newsletter EFS mensile su LinkedIn
 
-Regola corrente del 6 ottobre 2026: per nuove edizioni e revisioni usare il Corporate Design Kit 4.0 esatto di `docs/company/brand.md`, salvo diverse indicazioni dell'utente. L'autorizzazione della brand identity è ora permanente per tutti i documenti Marketing EFS; la v03 sotto conserva le proprie fonti, prove e approvazioni storiche.
+Regola corrente del 15 ottobre 2026: per nuove edizioni e revisioni usare il Corporate Design Kit 4.1 esatto di `docs/company/brand.md`, salvo diverse indicazioni dell'utente. L'autorizzazione della brand identity è ora permanente per tutti i documenti Marketing EFS; la v03 sotto conserva le proprie fonti, prove e approvazioni storiche.
 
 ## Qualità editoriale e visiva — revisione richiesta il 5 ottobre 2026
 

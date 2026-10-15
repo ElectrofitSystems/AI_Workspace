@@ -117,7 +117,7 @@ Obiezioni reali, risposte commerciali e anti-personas: da raccogliere. Non inven
 **Tone:** professionale, concreto, comprensibile a interlocutori tecnici.
 **Style:** italiano per la prima bozza e revisione; inglese tecnico come adattamento quando richiesto o previsto dal pacchetto bilingue ricorrente. Un pubblico, un messaggio e un invito all'azione per post.
 **Personality:** competente, rigorosa, collaborativa, onesta, vicina al cliente.
-**Identità visiva:** dal 06/10/2026 usare sempre il Corporate Design Kit 4.0 esatto indicato dall'utente in SharePoint Marketing/Inputs, salvo diverse indicazioni: logo ufficiale con simbolo puntinato e gradiente, font Barlow / Barlow Condensed e template del kit. Vale per tutti i nuovi documenti e revisioni, anche nelle ricorrenze. Mantenere l'artwork e il motto «Your Vision, Our Drive.» senza ridigitarli; logo senza motto per spazi compatti. File, ambito e verifiche in `docs/company/brand.md`. I kit precedenti restano storici. [S3]
+**Identità visiva:** dal 15/10/2026 usare sempre il Corporate Design Kit 4.1 esatto indicato dall'utente in SharePoint Marketing/Inputs, salvo diverse indicazioni: logo ufficiale con simbolo puntinato e gradiente, font Barlow / Barlow Condensed e template del kit. Vale per tutti i nuovi documenti e revisioni, anche nelle ricorrenze. Mantenere l'artwork e il motto «Your Vision, Our Drive.» senza ridigitarli; logo senza motto per spazi compatti. File, ambito e verifiche in `docs/company/brand.md`. I kit precedenti restano storici. [S3]
 
 ## Proof Points
 
@@ -157,7 +157,7 @@ Obiezioni reali, risposte commerciali e anti-personas: da raccogliere. Non inven
 | --- | --- | --- |
 | S1 | [Company Presentation v12 EN originale](https://efitsys.sharepoint.com/sites/Documentation-Development/_layouts/15/Doc.aspx?sourcedoc=%7BF6250C24-E39C-4D42-92A5-8B7E35BBE60A%7D&file=ElectroFit%20Systems%20-%20Company%20Presentation%20%20v12.pptx&action=edit&mobileredirect=true); note in `docs/company/presentation-notes.md` | Riletta via SharePoint 2026-10-01; versione file 7.0; ultima modifica 2026-09-23T15:25:33Z. GUID sourcedoc F6250C24-E39C-4D42-92A5-8B7E35BBE60A; Graph item ID/eTag non restituiti. Verifica testuale, non audit di certificati/immagini |
 | S2 | `docs/company/framework.md`, `docs/company/mandate.md`, AGENTS.md e istruzioni dell'utente in questa chat | Decisioni aziendali; le istruzioni esplicite più recenti prevalgono. Conservare proposte e questioni aperte |
-| S3 | `docs/company/brand.md` e Corporate Design Kit 4.0 | File esatto EFITSYS_Corporate_Design_Kit_4.0.zip scaricato e verificato il 06/10/2026; master vettoriale, simbolo puntinato, font Barlow e handbook di 16 pagine. Uso permanente per nuovi documenti e revisioni salvo diverse indicazioni dell'utente; copie precedenti conservate |
+| S3 | `docs/company/brand.md` e `brand-kit.json`, Corporate Design Kit 4.1 EN | Recuperato da Teams/SharePoint Marketing Inputs il 15/10/2026; archivio, 154 file e template Office verificati. Logo e varianti solo dal kit 4.1 secondo chiarimento esplicito dell’utente; kit precedenti conservati |
 | S4 | Skill del publisher e `sharepoint-teams-workflow.md` | Architettura a tre sottosistemi e repository designati; verificare accessi/media per ogni pacchetto |
 | S5 | `docs/company/sources.md` | Perimetro approved content del canale ElectroFit Systems; non esteso a tutti i documenti tecnici/clienti. Nuova origine Marketing/Inputs e destinazione Marketing/Outputs indicate il 02/10/2026, lettura delle cartelle verificata |
 | S6 | efitsys.com e nova-energia.it | Il 2026-10-01 il lettore web non ha estratto testo dal sito efitsys; Nova Energia ha restituito un timeout. Non si dichiara una nuova verifica dei loro claim. Le osservazioni del 29/09 sono in `docs/company/knowledge.md` |
@@ -173,6 +173,8 @@ Obiezioni reali, risposte commerciali e anti-personas: da raccogliere. Non inven
 6. Accesso LinkedIn, organizzazione e integrazione Teams-to-publisher: stato da verificare prima di esecuzioni. Non blocca la scrittura locale.
 
 ## Changelog
+
+- 2026-10-15 — Migrazione globale al Design Kit 4.1 EN per agente, chat e schedule; logo e varianti selezionati esclusivamente dal 4.1 secondo chiarimento dell’utente.
 
 - 2026-10-06 — Corporate Design Kit 4.0 esatto scelto come brand identity permanente per tutti i nuovi documenti e revisioni, comprese le ricorrenze; artwork e motto del kit preservati. Regole correnti in `docs/company/brand.md`.
 

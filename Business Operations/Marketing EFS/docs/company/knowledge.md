@@ -1,5 +1,7 @@
 # Efitsys — Base di conoscenza iniziale dell’agente marketing
 
+Riferimento corrente dal 15 ottobre 2026: Corporate Design Kit 4.1 EN, logo e varianti esclusivamente da `brand.md` e `brand-kit.json`. Le ricognizioni iniziali e i riferimenti grafici precedenti sotto sono storici e non costituiscono il default di nuovi lavori.
+
 Versione 0.3 — 29 settembre 2026 (nome file mantenuto per continuità)  
 Stato: base iniziale integrata con la presentazione inglese v12 e le decisioni di configurazione. Informazioni del sito osservate in questa data, senza verifica dei documenti tecnici sottostanti.
 

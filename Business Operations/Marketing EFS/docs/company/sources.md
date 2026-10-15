@@ -1,8 +1,10 @@
 # Fonti marketing — perimetro confermato
 
-## Brand identity predefinita — 6 ottobre 2026
+## Brand identity predefinita — 15 ottobre 2026
 
-Per decisione esplicita dell'utente, usare sempre [EFITSYS_Corporate_Design_Kit_4.0.zip](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Inputs/Brand%20Identity/EFITSYS_Corporate_Design_Kit_4.0.zip) per nuovi documenti e revisioni Marketing EFS, salvo diverse indicazioni. Archivio esatto verificato: 23.941.936 byte, SHA-256 `9d0f4be256ceeb917d5462d603c354398721cec073ccb48e055b9e25f0667b09`; copia locale e regole in `docs/company/brand.md`. L'autorizzazione diretta riguarda la brand identity in tutte le chat e ricorrenze del progetto; supera il precedente ambito limitato alla newsletter, senza approvare nuovi claim o pubblicazioni. Non attribuirle una decisione Microsoft inesistente. Kit e revisioni precedenti restano conservati.
+Per decisione esplicita dell'utente, per tutti i nuovi materiali e revisioni dell'Agente marketing EFS, in tutte le chat e schedule, usare [EFITSYS_Corporate_Design_Kit_4.1_EN.zip](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Inputs/Brand%20Identity/EFITSYS_Corporate_Design_Kit_4.1_EN.zip), salvo diverse indicazioni. Recuperato dalla cartella Teams/SharePoint Documentation / General / Marketing / Inputs / Brand Identity: 26.427.030 byte, SHA-256 `e3e1fca1d8c482acb2d64e89f7895cffb0aea82e383ac3462e04f42af91f44d5`. Copia locale, regole e hash delle varianti in `docs/company/brand.md` e `docs/company/brand-kit.json`.
+
+L'utente ha precisato che il kit 4.1 aggiorna anche il logo rispetto al 4.0: usare esclusivamente gli asset del 4.1, senza ereditare loghi di kit precedenti. Questa autorizzazione diretta sostituisce il default 4.0 e il precedente ambito limitato alla newsletter. Non attribuirle una decisione Microsoft inesistente. Conservare originali, revisioni e approvazioni precedenti nel rispettivo ambito; non pubblicare o rigenerare output storici automaticamente.
 
 ## Fonte corrente — 5 ottobre 2026
 

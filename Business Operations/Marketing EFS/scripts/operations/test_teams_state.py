@@ -60,6 +60,42 @@ class ConversationTests(unittest.TestCase):
         receipt={"run_token":self.token,"chat_id":CHAT,"message_id":"m1","reply":reply}
         with self.assertRaises(GuardError):self.store.sent({**receipt,"reply":{**reply,"chat_id":"other"}})
         self.assertEqual(self.store.sent(receipt)["state"],"sent")
+
+    def test_connector_wrapped_url_matches_original_without_weakening_content(self):
+        payload=self.prepared()
+        payload['text_content']='File [MP4](https://example.com/efs-rebranding/file.mp4?version=2) pronto.'
+        self.store.prepare(payload)
+        reply={'chat_id':CHAT,'author_user_id':OWNER,'message_id':'r1',
+            'content':'File [MP4](https://example.com/efs-\nrebranding/file.mp4?version=2) pronto.'}
+        receipt={'run_token':self.token,'chat_id':CHAT,'message_id':'m1','reply':reply,
+            'expected_response_id':'r1'}
+        for change in ({'content':reply['content'].replace('version=2','version=3')},
+                       {'content':reply['content'].replace('pronto','approvato')},
+                       {'author_user_id':'other'}, {'author_application_id':'bot'},
+                       {'deleted_at':'2026-10-02T12:00:00Z'}, {'message_id':'wrong'}):
+            with self.subTest(change=change):
+                with self.assertRaises(GuardError):
+                    self.store.sent({**receipt,'reply':{**reply,**change}})
+        self.assertEqual(self.store.sent(receipt)['state'],'sent')
+
+    def test_local_url_wrap_can_be_reconciled_but_different_path_cannot(self):
+        payload=self.prepared();payload['text_content']='[GIF](C:/Temp/efs-rebranding/preview.gif)'
+        self.store.prepare(payload)
+        reply={'chat_id':CHAT,'author_user_id':OWNER,'message_id':'r1',
+            'content':'[GIF](C:/Temp/efs-\nrebranding/preview.gif)'}
+        receipt={'run_token':self.token,'chat_id':CHAT,'message_id':'m1','reply':reply}
+        with self.assertRaises(GuardError):
+            self.store.sent({**receipt,'reply':{**reply,'content':reply['content'].replace('preview.gif','other.gif')}})
+        self.assertEqual(self.store.sent(receipt)['state'],'sent')
+
+    def test_approval_block_preserves_uncertain_hash_and_is_never_replayed(self):
+        payload=self.prepared();self.store.prepare(payload)
+        before=self.store.db.execute('SELECT response_hash FROM requests').fetchone()[0]
+        self.store.approval_required(self.token,CHAT,'m1')
+        self.assertEqual(self.store.status()['counts'],{'approval_required':1})
+        self.assertEqual(self.store.db.execute('SELECT response_hash FROM requests').fetchone()[0],before)
+        self.store.config['retry_unsent_claims']=True
+        self.assertEqual(self.scan([self.message])['requests'],[])
     def test_kill_switch_checked_immediately_before_send(self):
         payload=self.prepared()
         (self.store.state/"service.enabled").unlink()
