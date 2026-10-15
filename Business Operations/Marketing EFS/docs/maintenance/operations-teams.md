@@ -4,6 +4,8 @@ Decisione dell'utente del 2 ottobre 2026: il punto di accesso desiderato sono **
 
 Questo documento descrive il perimetro e le decisioni del servizio. L'implementazione locale usa direttamente il connettore Teams esistente tramite Codex app-server; configurazione, avvio e prove effettive del 02/10/2026 sono nel [runbook Operations Teams](operations-teams-runbook.md). Le prove riguardano l'ambiente Operations originale e non attestano l'attivazione su una nuova copia del repository.
 
+Estensione del 15 ottobre 2026: tutti i colleghi interni verificati con dominio esatto efitsys.com hanno accesso alle capacità di produzione Marketing e ai file del progetto tramite il profilo dedicato di `marketing_runtime.py`. Include documenti, presentazioni, visual e animazioni con skill e plugin installati, e consegna in Marketing/Outputs tramite link verificati. Sessioni separate per chat, account e identità verificati; ERP e pubblicazione mantengono i rispettivi controlli. La vecchia limitazione a bozze testuali resta per il worker ristretto, non per la sessione Marketing dedicata.
+
 ## Conversazione prevista
 
 Teams → Operations → agente competente → Operations → risposta nella stessa chat Teams.

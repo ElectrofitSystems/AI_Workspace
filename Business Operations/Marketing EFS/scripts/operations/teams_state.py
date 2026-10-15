@@ -27,6 +27,9 @@ def digest(text):
     value = re.sub(r"\\([\-_*])", r"\1", value)
     return hashlib.sha256(" ".join(value.split()).encode()).hexdigest()
 
+def internal_email(value):
+    return isinstance(value,str) and re.fullmatch(r"[^@\s]+@efitsys\.com",value.strip(),re.I) is not None
+
 def verify_chat(chat, members, users, config):
     if chat.get("chat_type") != "oneOnOne":
         raise GuardError("not_one_on_one")
@@ -37,14 +40,18 @@ def verify_chat(chat, members, users, config):
         raise GuardError("wrong_tenant")
     if len(members) != 2:
         raise GuardError("membership_not_exactly_two")
-    emails = [m.get("email", "").strip().lower() for m in members]
+    if any(not internal_email(m.get("email")) for m in members):
+        raise GuardError("external_or_unverified_member")
+    emails = [m["email"].strip().lower() for m in members]
     if len(set(emails)) != 2 or config["owner_email"] not in emails:
         raise GuardError("owner_or_members_missing")
     pair = []
     for email in emails:
         if email.rsplit("@", 1)[-1] not in config["allowed_domains"]:
             raise GuardError("external_member")
-        matches = [u for u in users if u.get("email", "").lower() == email
+        matches = [u for u in users if internal_email(u.get("email"))
+                   and internal_email(u.get("user_principal_name"))
+                   and u.get("email", "").lower() == email
                    and u.get("user_principal_name", "").lower() == email
                    and u.get("match_type") == "exact" and u.get("id")]
         if len(matches) != 1 or "#ext#" in matches[0]["user_principal_name"].lower():

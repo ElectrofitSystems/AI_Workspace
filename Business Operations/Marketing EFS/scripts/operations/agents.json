@@ -9,7 +9,7 @@
       "definition": ".codex/agents/agente-marketing-EFS.toml",
       "workspace": ".",
       "enabled": true,
-      "request_scope": "Domande, ricerca pertinente, contenuti, materiali commerciali e revisioni; applicare AGENTS.md e docs/rules.md"
+      "request_scope": "Per tutti i membri interni verificati del dominio esatto efitsys.com: ricerca, contenuti, documenti, presentazioni, visual, animazioni e revisioni; profilo marketing_runtime.py con skill/plugin installati e file Marketing. Consegna tramite link SharePoint Outputs verificati. Applicare AGENTS.md e docs/rules.md; pubblicazione e dati ERP conservano autorizzazioni separate."
     },
     {
       "key": "erp",

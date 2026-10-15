@@ -1,5 +1,5 @@
 param(
-    [ValidateSet('Start','Stop','Status','Watchdog','InstallStartup')][string]$Action='Status',
+    [ValidateSet('Start','Stop','Restart','Status','Watchdog','InstallStartup')][string]$Action='Status',
     [string]$PythonPath=$env:OPERATIONS_PYTHON,
     [string]$CodexPath=$env:OPERATIONS_CODEX
 )
@@ -30,17 +30,40 @@ if($Action -in @('Start','Watchdog','InstallStartup')){
         if(Test-Path -LiteralPath $bundledPython -PathType Leaf){$PythonPath=$bundledPython}
     }
     $PythonPath=Resolve-RuntimePath $PythonPath 'python.exe'
+    if(-not $CodexPath){
+        $CodexPath=(& $PythonPath (Join-Path $PSScriptRoot 'runtime_paths.py') | Select-Object -Last 1)
+        if($LASTEXITCODE -ne 0){throw 'Nessun runtime Codex valido individuato.'}
+    }
     $CodexPath=Resolve-RuntimePath $CodexPath 'codex.exe'
     $pythonWindowless=Join-Path (Split-Path $PythonPath) 'pythonw.exe'
     if($Action -ne 'Watchdog' -and -not (Test-Path -LiteralPath $pythonWindowless -PathType Leaf)){
         throw "Python senza console non trovato: $pythonWindowless"
     }
-    $watchdogArguments='"{0}" --codex "{1}"' -f $watchdogPath,$CodexPath
+    $watchdogArguments='"{0}"' -f $watchdogPath
 }
 function Read-ServiceHealth {
     if(Test-Path -LiteralPath $healthPath){Get-Content -LiteralPath $healthPath -Raw | ConvertFrom-Json}
 }
 switch($Action){
+    'Restart' {
+        & $PSCommandPath -Action Stop
+        for($attempt=0;$attempt -lt 60;$attempt++){
+            $health=Read-ServiceHealth
+            $oldProcess=if($health){Get-CimInstance Win32_Process -Filter "ProcessId=$($health.pid)" -ErrorAction SilentlyContinue}
+            if(-not $oldProcess -or $oldProcess.CommandLine -notlike '*teams_service.py*'){break}
+            Start-Sleep -Milliseconds 500
+        }
+        if($oldProcess -and $oldProcess.CommandLine -like '*teams_service.py*'){
+            throw 'Servizio ancora attivo dopo arresto richiesto: non avvio un secondo processo.'
+        }
+        for($attempt=0;$attempt -lt 30;$attempt++){
+            $oldWatchdogs=@(Get-CimInstance Win32_Process -Filter "Name='pythonw.exe'" | Where-Object {$_.CommandLine -and $_.CommandLine.Contains($watchdogPath)})
+            if($oldWatchdogs.Count -eq 0){break}
+            Start-Sleep -Milliseconds 500
+        }
+        if($oldWatchdogs.Count -gt 0){throw 'Watchdog ancora attivo: non avvio un secondo monitor.'}
+        & $PSCommandPath -Action Start -PythonPath $PythonPath -CodexPath $CodexPath
+    }
     'Status' {
         $health=Read-ServiceHealth
         $running=$false

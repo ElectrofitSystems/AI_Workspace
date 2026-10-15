@@ -45,6 +45,14 @@ disponibili. Procedure: [LinkedIn](docs/linkedin/scheduling.md),
 [statistiche](docs/marketing-statistics.md).
 La pubblicazione automatica LinkedIn tramite API resta da completare.
 
+Dal 15 ottobre 2026 tutti i colleghi interni verificati `@efitsys.com` possono
+richiedere tramite Operations anche documenti, presentazioni, visual e animazioni
+reali, con le skill disponibili e consegna dei file in Outputs tramite link verificati.
+Il servizio locale continua indipendentemente dalla finestra desktop. Un task
+Windows controlla compatibilità e disponibilità alle **06:00 e 18:00 Europe/Rome**,
+con recupero del servizio e verifiche di agenti, skill, runtime e connettori.
+Procedure e limiti: [disponibilità Marketing](docs/maintenance/marketing-availability.md).
+
 Cataloghi, brochure, presentazioni, white paper, audit della Pagina,
 intelligence di settore e supporto commerciale sono disponibili su richiesta.
 

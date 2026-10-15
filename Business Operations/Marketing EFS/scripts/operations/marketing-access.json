@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "enabled": true,
+  "authorized_on": "2026-10-15",
+  "source": "Service owner explicitly extended Marketing production tools and file access to all verified internal members with the exact efitsys.com domain on 2026-10-15.",
+  "tenant_id": "3b97374b-4a43-4588-a04f-4c94edc33cf3",
+  "operations": {
+    "user_id": "74ea6b2b-69f5-48dd-95bd-5edb7a4aad38",
+    "email": "operations@efitsys.com"
+  },
+  "allowed_domains": ["efitsys.com"],
+  "runtime_role": "Agente marketing EFS",
+  "scope": "Marketing research, drafting, document and visual production, animations and verified delivery to existing Marketing Outputs. Publication and messages retain their separate authorizations."
+}

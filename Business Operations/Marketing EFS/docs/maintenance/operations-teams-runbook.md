@@ -28,19 +28,41 @@ specialista anche in base al contenuto della richiesta.
 
 ## Perimetro
 
-Conversazione, spiegazioni, analisi e bozze testuali. L'esecutore degli agenti ha
-sandbox read-only e connettori Apps disabilitati: gli invii della risposta sono
-eseguiti soltanto dal trasporto verificato. Il servizio non pubblica su LinkedIn,
-non concede permessi e non acquisisce automaticamente allegati. Le azioni ulteriori
-richiedono gli strumenti e le autorizzazioni del progetto. Non dichiarare allegati,
-upload o operazioni che il servizio non ha eseguito.
+Dal 15 ottobre 2026 il proprietario autorizza strumenti di produzione e file Marketing
+per tutti i colleghi interni verificati con dominio esatto efitsys.com. Dopo la
+verifica di tenant, oneOnOne, membri e identità Entra, le richieste non ERP usano
+una sessione distinta per chat con profilo `operations_marketing_internal` e
+coordinatore `scripts/operations/marketing-coordinator.md`. Policy nominativa di
+dominio e account Operations in `scripts/operations/marketing-access.json`.
+Le richieste del collega non possono modificare questa policy.
+
+Il profilo eredita le skill, i plugin e i connettori installati e abilita shell,
+ricerca e produzione di file in input/, output/ e .local/maintenance/temporary/.
+Configurazioni e codice restano in sola lettura; dati ERP, file di autenticazione,
+cronologie Codex e stato del servizio Operations restano negati. Il profilo ERP
+separato conserva i propri limiti e l'accesso finanziario nominativo.
+
+L'agente può creare documenti, presentazioni, visual e animazioni reali, verificarli
+e consegnare i soli risultati utili nelle categorie esistenti SharePoint
+Marketing/Outputs secondo le regole del progetto. Il trasporto restituisce testo
+e link verificati nella stessa chat: l'assenza di allegati binari Teams non limita
+la produzione e consegna del file. Non dichiarare un asset realizzato o riprodotto
+senza prova; precisare se è PPTX con effetti, media incorporato o video esportato.
+La prima istanza del ruolo registrato e la sua ricreazione dopo riavvio sono
+autorizzate; non confonderle con la registrazione di un agente nuovo.
+
+Il servizio non pubblica su LinkedIn, non concede permessi e non acquisisce
+automaticamente allegati. Review del contenuto, revisione esatta e autorizzazione
+di pubblicazione restano distinte. Il vecchio recupero limitato a testo/storyboard
+non definisce le capacità del nuovo profilo. Gli altri controlli del trasporto,
+claim, deduplicazione e readback rimangono obbligatori.
 
 Estensione ERP del 05/10/2026: progetto canonico ERP EFS, accesso finanziario
 limitato al solo Francesco Lucherini tramite confronto user ID + email + tenant.
 La policy è ERP EFS/config/access.json. Il trasporto legge lo snapshot validato
 solo dopo il controllo; lo ricontrolla prima dell'invio insieme alla versione
 e alla scadenza dei dati. Gli altri colleghi ricevono un diniego deterministico.
-I worker adottano il profilo operations_teams con rete comandi disabilitata,
+I worker ERP adottano il profilo operations_teams con rete comandi disabilitata,
 Apps/MCP/plugin/browser disabilitati e cartelle ERP input/output/.local negate.
 Le istruzioni pubbliche sono leggibili. Il sandbox nativo richiede root read:
 il profilo protegge esplicitamente i dati, senza dichiarare una whitelist globale.
@@ -60,6 +82,13 @@ d'uso, indisponibilità del connettore e sospensione del PC ne interrompono il
 funzionamento. Non è un backend cloud con disponibilità garantita.
 
 ## Stato, avvio e arresto
+
+Aggiornamento del 15 ottobre 2026: disponibilità e compatibilità sono controllate
+anche dal task Windows alle 06:00 e 18:00 Europe/Rome secondo
+`docs/maintenance/marketing-availability.md`. Runtime e helper vengono individuati
+dinamicamente ad ogni riavvio, senza fissare vecchie cartelle hash di aggiornamento.
+Il comando `service-control.ps1 -Action Restart` attende l'arresto del servizio
+e del watchdog prima di ripartire, senza creare monitor concorrenti.
 
 Da PowerShell nella cartella canonica:
 
@@ -148,3 +177,40 @@ collaudo di tutti gli utenti dell'organizzazione.
 - [Codex app-server](https://learn.chatgpt.com/docs/app-server): JSON-RPC,
   mcpServer/tool/call, thread/start e turn/start.
 - [Configurazione Codex](https://learn.chatgpt.com/docs/config-file/config-reference).
+
+## Correzione instradamento e verifica destinatari - 13/10/2026
+
+Il dominio dei destinatari deve essere esattamente efitsys.com, sia nei membri
+Teams sia nelle identità Entra risolte con corrispondenza esatta di email, UPN e
+ID. Domini simili, sottodomini, ospiti, identità mancanti o ambigue non ricevono
+risposte. Il testo dei messaggi e i nomi visualizzati non attribuiscono identità
+né autorizzazioni. Restano invariati tenant, account Operations, filtro oneOnOne,
+policy ERP nominativa e autorizzazioni Marketing/LinkedIn.
+
+L'instradamento ERP considera la richiesta corrente e solo continuazioni
+esplicite di una conversazione ERP del collega. Report e dinieghi di Operations
+non attivano il routing; una domanda generale interrompe il contesto ERP.
+Scadenza della sessione e fornitore del plugin non indicano fatture. I veri
+follow-up restano soggetti agli stessi controlli di identità, accesso, snapshot
+valido e verifica della destinazione prima dell'invio.
+
+Se il readback incontra un rate limit, viene ripetuta soltanto la lettura della
+ricevuta già ottenuta: nessuna nuova generazione o secondo invio. Un esito
+ambiguo continua a richiedere riconciliazione con messaggio e hash esatti.
+Il saluto Mohammad del 12/10, ID 1791820983544, è stato riconciliato senza
+reinviarlo. Le due richieste Francesco in recovery_held restano in attesa;
+un inoltro Lucia privo di testo leggibile è anch'esso trattenuto per verifica.
+Queste modifiche non attestano il collaudo di una nuova domanda generale in
+Teams: registrare richiesta, risposta pertinente, tempi e readback prima di
+confermare il ripristino funzionale.
+
+Collaudo reale del 13/10/2026: Matteo Ravera, verificato tramite email, UPN e
+ID Entra esatti, ha inviato TEST-OPS-INTERNO-13OTT alle 13:35:37.239 UTC
+(ID 1791898537239). Operations ha risposto in modo pertinente alle
+13:36:00.493 UTC (ID 1791898560493): acknowledgement 2,928 s, risposta
+23,254 s, modello 7,484 s. Readback, hash e stato sent verificati; una sola
+risposta finale e un solo acknowledgement, senza duplicati nel controllo
+successivo. Prove locali: .local/maintenance/temporary/operations-routing-20261013/e2e-evidence.json.
+L'utente riferisce che Teams blocca il contatto dall'account esterno; nessun
+aggiramento. Il filtro applicativo esterno è collaudato nei test locali, mentre
+questa prova non certifica un test esterno end-to-end dell'applicazione.

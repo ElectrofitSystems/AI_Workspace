@@ -17,10 +17,18 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from appserver import AppServer, RpcError, RateLimited
 from teams_state import Store, GuardError, ROOT, STATE, utc
+from erp_followups import erp_follow_up, explicit_erp_request
+from marketing_runtime import authorized as marketing_authorized
+from marketing_runtime import worker_config as marketing_worker_config
+from marketing_runtime import instructions as marketing_instructions
+from marketing_runtime import restricted_config
 
 ERP_ROOT=ROOT.parent/'ERP EFS'
 sys.path.insert(0,str(ERP_ROOT/'scripts'))
-from erp_teams import context as erp_context, assert_delivery, erp_intent, worker_config
+from erp_teams import context as erp_context, assert_delivery, erp_intent, worker_config as erp_worker_config
+
+def worker_config(root):
+    return restricted_config(erp_worker_config(root),root)
 
 def now():return datetime.now(timezone.utc).isoformat().replace('+00:00','Z')
 
@@ -34,6 +42,7 @@ class Service:
         self.stop=threading.Event()
         self.jobs=[queue.Queue() for _ in range(3)]
         self.worker_servers=[]
+        self.marketing_sessions={}
         self.readers=ThreadPoolExecutor(max_workers=3)
         self.identities={}
         self.observed={}
@@ -52,7 +61,7 @@ class Service:
     def health(self, **fields):
         path=self.state/'health.json'
         temp=path.with_suffix('.tmp')
-        temp.write_text(json.dumps({'at':now(),'pid':os.getpid(),'live':self.live,
+        temp.write_text(json.dumps({'at':now(),'pid':os.getpid(),'live':self.live,'runtime_executable':str(self.executable),
             'queued':sum(q.qsize() for q in self.jobs),**fields},indent=2),encoding='utf-8')
         temp.replace(path)
 
@@ -87,8 +96,16 @@ class Service:
         return self.identity(chat),self.messages(chat,since)
 
     def readback(self, chat_id, receipt):
-        messages=self.server.tool(self.transport,'list_chat_messages',{
-            'chat_id':chat_id,'sent_after':receipt['created_at'],'top':100})['messages']
+        while not self.stop.is_set():
+            try:
+                messages=self.server.tool(self.transport,'list_chat_messages',{
+                    'chat_id':chat_id,'sent_after':receipt['created_at'],'top':100})['messages']
+                break
+            except RateLimited as limit:
+                if self.stop.wait(limit.retry_after):
+                    raise GuardError('readback_interrupted')
+        else:
+            raise GuardError('readback_interrupted')
         reply=next((m for m in messages if m['message_id']==receipt['message_id']),None)
         if not reply:raise GuardError('missing_send_readback')
         return reply
@@ -181,9 +198,10 @@ class Service:
                 and not m.get('deleted_at') and not m.get('author_application_id')
                 and m['created_at']<request['created_at']
                 and m.get('content')!='Ho ricevuto la richiesta e la sto elaborando.'][-12:]
-        prior_erp=any(erp_intent(m['text']) for m in context)
-        erp_result,financial=erp_context(identity['binding'],self.config,request['content'],prior_erp)
-        erp_requested=erp_intent(request['content']) or prior_erp
+        prior_erp=erp_follow_up(request['content'],context)
+        erp_requested=explicit_erp_request(request['content']) or prior_erp
+        erp_result,financial=erp_context(identity['binding'],self.config,
+            request['content'] if erp_requested else '',prior_erp)
         if erp_requested:
             # A fresh session cannot recycle obsolete or subsequently revoked amounts.
             instructions=(ROOT/'scripts/operations/coordinator.md').read_text(encoding='utf-8')
@@ -200,6 +218,22 @@ class Service:
             answer={'response':'La consultazione delle fatture fornitori è riservata a Francesco Lucherini. Il tuo account non è autorizzato a visualizzare importi e dettagli.',
                     'agent':'Operations','elapsed_seconds':0,'delegated_roles':[]}
         else:
+            if not erp_requested and marketing_authorized(identity['binding'],self.config):
+                sessions=self.marketing_sessions
+                session=sessions.get(request['chat_id'])
+                if session is None:
+                    marketing_server=AppServer(self.executable,ROOT,marketing_worker_config(ROOT))
+                    try:
+                        marketing_thread=marketing_server.start_thread(marketing_instructions(ROOT))
+                    except Exception:
+                        marketing_server.close()
+                        raise
+                    self.worker_servers.append(marketing_server)
+                    session=(marketing_server,marketing_thread)
+                    sessions[request['chat_id']]=session
+                    self.log('marketing_session_started',chat_id=request['chat_id'],
+                        peer_id=identity['binding']['peer_id'],profile='operations_marketing_internal')
+                agent_server,thread=session
             answer=agent_server.answer(thread,prompt)
         roles=answer.get('delegated_roles',[])
         if answer['agent']!='Operations' and answer['agent'] not in roles:

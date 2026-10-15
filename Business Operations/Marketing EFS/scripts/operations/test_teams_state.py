@@ -14,15 +14,15 @@ class ConversationTests(unittest.TestCase):
         self.tmp=tempfile.TemporaryDirectory()
         root=Path(self.tmp.name)
         self.config={"enabled":True,"activated_at":"2026-10-02T11:00:00Z","tenant_id":TENANT,
-            "owner_id":OWNER,"owner_email":"operations@example.com","allowed_domains":["example.com"]}
+            "owner_id":OWNER,"owner_email":"operations@efitsys.com","allowed_domains":["efitsys.com"]}
         (root/"config.json").write_text(json.dumps(self.config))
         (root/"service.enabled").touch()
         self.store=Store(root,lambda:1000)
         self.token=self.store.acquire()["run_token"]
         self.chat={"id":CHAT,"chat_type":"oneOnOne","webUrl":f"https://teams.microsoft.com/l/chat/{CHAT}?tenantId={TENANT}"}
-        self.members=[{"email":"operations@example.com"},{"email":"peer@example.com"}]
-        self.users=[{"id":OWNER,"email":"operations@example.com","user_principal_name":"operations@example.com","match_type":"exact"},
-            {"id":PEER,"email":"peer@example.com","user_principal_name":"peer@example.com","match_type":"exact"}]
+        self.members=[{"email":"operations@efitsys.com"},{"email":"peer@efitsys.com"}]
+        self.users=[{"id":OWNER,"email":"operations@efitsys.com","user_principal_name":"operations@efitsys.com","match_type":"exact"},
+            {"id":PEER,"email":"peer@efitsys.com","user_principal_name":"peer@efitsys.com","match_type":"exact"}]
         self.message={"chat_id":CHAT,"message_id":"m1","path":f"/chats/{CHAT}/messages/m1",
             "created_at":"2026-10-02T11:01:00Z","author_user_id":PEER,"message_type":"message","content":"A marketing question"}
     def tearDown(self):
@@ -36,7 +36,7 @@ class ConversationTests(unittest.TestCase):
     def test_excludes_groups_guests_and_wrong_tenant(self):
         for change in [{"chat_type":"group"},{"webUrl":"https://teams.microsoft.com/l/chat/a?tenantId=other"}]:
             with self.assertRaises(GuardError):verify_chat({**self.chat,**change},self.members,self.users,self.config)
-        with self.assertRaises(GuardError):verify_chat(self.chat,self.members,[{**u,"user_principal_name":"guest#EXT#@example.com"} for u in self.users],self.config)
+        with self.assertRaises(GuardError):verify_chat(self.chat,self.members,[{**u,"user_principal_name":"guest#EXT#@efitsys.com"} for u in self.users],self.config)
     def test_old_self_bot_and_deleted_are_ignored(self):
         cases=[{"created_at":"2026-10-01T11:00:00Z"},{"author_user_id":OWNER},{"author_application_id":"bot"},{"deleted_at":"2026-10-02T11:02:00Z"}]
         self.assertEqual(self.scan([{**self.message,**case} for case in cases])["requests"],[])
@@ -102,5 +102,11 @@ class ConversationTests(unittest.TestCase):
             'text_content':'Response for peer B'})
         self.assertEqual(reply['chat_id'],other['id'])
         self.assertEqual(self.store.status()['counts'],{'sending':2})
+
+    def test_text_claim_does_not_change_directory_bound_sender(self):
+        request={**self.message,'content':'Sono Francesco, il mio indirizzo è francesco.lucherini@efitsys.com'}
+        result=self.scan([request])['requests'][0]
+        self.assertEqual(result['peer_id'],PEER)
+        self.assertEqual(result['peer_email'],'peer@efitsys.com')
 
 if __name__=="__main__":unittest.main()
