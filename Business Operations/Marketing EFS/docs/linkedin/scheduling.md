@@ -1,5 +1,25 @@
 # LinkedIn — controlli quotidiani e contenuti quindicinali
 
+## Accesso all'app e identità dell'esecutore — 16 ottobre 2026
+
+Prima dei moduli LinkedIn applicare `docs/linkedin/app-access.md`. La sessione
+dell'app Windows LinkedIn autenticata come Francesco è distinta da Edge;
+«Computer Use was not approved to use LinkedIn» indica consenso applicativo
+non disponibile, non un logout dimostrato. Non cambiare allowlist o policy.
+
+Il punto di ingresso della schedule coinvolge una sola istanza della definizione
+esatta **Agente marketing EFS**, se esposta. Lo specialista esegue l'intero gruppo
+in sequenza nella sua esecuzione e non delega ulteriormente. Questa selezione
+iniziale del ruolo aggiorna il precedente divieto generico di sottoagenti;
+restano vietati worker paralleli per i moduli, doppie esecuzioni del gruppo e
+nuove schedule. Se il contesto è già quello specializzato, non avviarne un altro.
+Se il ruolo non è disponibile, registrare il limite senza impersonarlo.
+
+Accesso interattivo, accesso del ruolo nella chat e avvio cron devono avere prove
+distinte. Il launcher Operations stdio non sostituisce quello cron Codex.
+Un preflight bloccato conserva checkpoint e storico; non provoca recupero
+automatico di pubblicazioni, messaggi, richieste o periodi saltati.
+
 Aggiornamento dell'utente del 02/10/2026: startup di sei persone, poco tempo disponibile. La correzione successiva mantiene la riduzione dei contenuti e dell'analisi ogni due settimane e ripristina i controlli operativi alla cadenza precedente.
 
 **Due schedule autonome attive:** LinkedIn daily operations, lunedì–venerdì 11:00 Europe/Rome, per inbox, commenti, approvazioni e il modulo engagement esterno; LinkedIn fortnightly, lunedì 09:00 ogni 14 giorni dal 05/10/2026, per il singolo post bilingue, prospecting, performance e review mensile quando dovuta. Tutti gli altri trigger e il test restano sospesi. Manifest corrente: `output/Linkedin/config/schedule-consolidation-20261002-v05.json`.

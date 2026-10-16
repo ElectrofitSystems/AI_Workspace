@@ -1,5 +1,15 @@
 # Efitsys — Regole operative
 
+## Riparazione accesso LinkedIn — 16 ottobre 2026
+
+Per LinkedIn usare il percorso app Windows e il preflight di
+`docs/linkedin/app-access.md`, anche nelle ricorrenze. La sessione Edge e il
+consenso Computer Use sono verifiche distinte dal login nell'app. Non modificare
+autonomamente permessi persistenti, credenziali o live publisher. Le prove di
+chat, ruolo dedicato e launcher cron restano separate. Il collaudo autorizzato
+è soltanto lettura, senza invii, pubblicazioni, follow/reazioni, upload, nuove
+approvazioni o recupero arretrati; checkpoint e storico restano invariati.
+
 ## Risposte Marketing in Teams — decisione del 16 ottobre 2026
 
 Applicare `docs/company/output-delivery.md` e il runbook Operations: produrre il

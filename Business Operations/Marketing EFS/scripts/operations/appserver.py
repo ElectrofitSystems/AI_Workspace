@@ -17,6 +17,24 @@ class ApprovalRequired(RpcError):
         self.action=re.sub(r'[^A-Za-z0-9_.:/-]', '_', str(action))[:160]
         super().__init__('approval_required:'+self.action)
 
+class ComputerUseApprovalRequired(ApprovalRequired):
+    """App-use consent was denied; this says nothing about the app's login."""
+    def __init__(self, action):
+        super().__init__(action)
+        self.args=('computer_use_app_approval_required:'+self.action,)
+
+def computer_use_approval_failure(item):
+    """Recognize an actual failed tool call, never quoted successful content."""
+    if item.get('type') not in ('mcpToolCall','dynamicToolCall'):
+        return False
+    result=item.get('result') or {}
+    error=item.get('error')
+    if not (error or item.get('status')=='failed' or
+            (isinstance(result,dict) and result.get('isError'))):
+        return False
+    detail=json.dumps(error or result,ensure_ascii=False).lower()
+    return bool(re.search(r'\bcomputer use was not approved to use\b',detail))
+
 def approval_failure(item):
     if item.get('type') not in ('mcpToolCall','dynamicToolCall'):
         return None
@@ -26,8 +44,9 @@ def approval_failure(item):
             (isinstance(result,dict) and result.get('isError'))):
         return None
     detail=json.dumps(error or result,ensure_ascii=False).lower()
-    if not any(phrase in detail for phrase in ('requires approval','approval required',
-            'approval policy is never','interactive approval')):
+    if not (computer_use_approval_failure(item) or
+            any(phrase in detail for phrase in ('requires approval','approval required',
+                'approval policy is never','interactive approval'))):
         return None
     return '.'.join(str(item.get(key,'')) for key in ('server','tool')).strip('.') or 'tool'
 
@@ -167,13 +186,18 @@ class AppServer:
             # Each server runs one answer at a time, including its specialists.
             # Stop on the first real approval failure, also in a child thread.
             action=None
+            computer_use_consent=False
             if method=='operations/approvalRequired':
                 action=params.get('requestMethod') or 'interactive_request'
             elif method=='item/completed':
-                action=approval_failure(params.get('item',{}))
+                item=params.get('item',{})
+                computer_use_consent=computer_use_approval_failure(item)
+                action=approval_failure(item)
             if action:
                 try:self.request('turn/interrupt',{'threadId':thread,'turnId':turn_id},timeout=10)
                 except RpcError:pass
+                if computer_use_consent:
+                    raise ComputerUseApprovalRequired(action)
                 raise ApprovalRequired(action)
             if params.get('threadId')!=thread:continue
             if method=='item/completed':

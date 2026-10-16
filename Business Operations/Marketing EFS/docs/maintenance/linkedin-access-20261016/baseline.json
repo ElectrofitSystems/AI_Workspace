@@ -1,0 +1,65 @@
+{
+  "captured_at_utc": "2026-10-16T12:50:20.668685+00:00",
+  "schedule_state_sha256": "7144c0dbffb184d2b98a8bef9bda8950f5bd5305d5277b44a9bee3cda7e4dbe7",
+  "schedule_manifest_sha256": "a30d7eeb8b286171925dede677d37cf4542375d5d496b0fdb38f5e6442404b06",
+  "schedules": [
+    {
+      "id": "electrofit-messaggi-linkedin-e-notifiche-teams",
+      "kind": "cron",
+      "name": "EFS - Daily schedule - Linkedin",
+      "status": "ACTIVE",
+      "rrule": "RRULE:FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR;BYHOUR=11;BYMINUTE=0;BYSECOND=0",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "target": {
+        "type": "project",
+        "project_id": "7093086c-97e3-4218-b768-b6c1ebfff3bf"
+      },
+      "target_thread_id": null,
+      "cwds": [
+        "C:\\Users\\Operations\\Documents\\AI_Workspace\\Business Operations\\Marketing EFS"
+      ]
+    },
+    {
+      "id": "electrofit-due-post-linkedin-settimanali",
+      "kind": "cron",
+      "name": "EFS - Fortnightly schedule - Linkedin",
+      "status": "ACTIVE",
+      "rrule": "DTSTART;TZID=Europe/Rome:20261005T090000\nRRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=MO;BYHOUR=9;BYMINUTE=0;BYSECOND=0",
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "target": {
+        "type": "project",
+        "project_id": "7093086c-97e3-4218-b768-b6c1ebfff3bf"
+      },
+      "target_thread_id": null,
+      "cwds": [
+        "C:\\Users\\Operations\\Documents\\AI_Workspace\\Business Operations\\Marketing EFS"
+      ]
+    },
+    {
+      "id": "efs-newsletter-mensile",
+      "kind": "heartbeat",
+      "name": "EFS - Monthly schedule - Newsletter",
+      "status": "ACTIVE",
+      "rrule": "RRULE:FREQ=MONTHLY;BYDAY=MO;BYSETPOS=1;BYHOUR=10;BYMINUTE=0;BYSECOND=0",
+      "model": null,
+      "reasoning_effort": null,
+      "target": null,
+      "target_thread_id": "01a0fcef-c5ba-74b2-b489-096a77b8ed7a",
+      "cwds": null
+    },
+    {
+      "id": "efs-monthly-schedule-marketing-statistics",
+      "kind": "heartbeat",
+      "name": "EFS - Monthly schedule - Marketing statistics",
+      "status": "ACTIVE",
+      "rrule": "DTSTART;TZID=Europe/Rome:20261102T120000\nRRULE:FREQ=MONTHLY;BYDAY=MO;BYSETPOS=1;BYHOUR=12;BYMINUTE=0;BYSECOND=0",
+      "model": null,
+      "reasoning_effort": null,
+      "target": null,
+      "target_thread_id": "01a0fd13-5047-7e01-8ddf-c5a98a2f58aa",
+      "cwds": null
+    }
+  ]
+}

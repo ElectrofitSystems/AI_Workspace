@@ -5,7 +5,9 @@ import unittest
 import queue
 from pathlib import Path
 from unittest.mock import Mock
-from appserver import AppServer, RateLimited, ApprovalRequired, approval_failure
+from appserver import (AppServer, RateLimited, ApprovalRequired,
+                       ComputerUseApprovalRequired, approval_failure,
+                       computer_use_approval_failure)
 
 class RateLimitTests(unittest.TestCase):
     def test_shared_cooldown_blocks_request_until_retry_after(self):
@@ -33,6 +35,45 @@ class RateLimitTests(unittest.TestCase):
             with self.assertRaises(RateLimited):client.tool('t','get_profile',{})
 
 class ApprovalTests(unittest.TestCase):
+    def test_computer_use_denial_is_distinct_from_login_failure(self):
+        denied={'type':'mcpToolCall','status':'failed','server':'node_repl',
+            'tool':'js','error':{'message':'Computer Use was not approved to use LinkedIn'}}
+        self.assertTrue(computer_use_approval_failure(denied))
+        self.assertEqual(approval_failure(denied),'node_repl.js')
+        login={'type':'mcpToolCall','status':'failed','server':'node_repl',
+            'tool':'js','error':{'message':'LinkedIn sign-in is required'}}
+        self.assertFalse(computer_use_approval_failure(login))
+        self.assertIsNone(approval_failure(login))
+
+    def test_successful_quoted_computer_use_denial_is_not_a_block(self):
+        quoted={'type':'mcpToolCall','status':'completed','result':{'content':[
+            {'type':'text','text':'Historical error: Computer Use was not approved to use LinkedIn'}]}}
+        self.assertFalse(computer_use_approval_failure(quoted))
+        self.assertIsNone(approval_failure(quoted))
+        self.assertFalse(computer_use_approval_failure({'type':'agentMessage',
+            'error':{'message':'Computer Use was not approved to use LinkedIn'}}))
+
+    def test_computer_use_tool_error_result_is_recognized(self):
+        denied={'type':'dynamicToolCall','status':'completed','server':'node_repl',
+            'tool':'js','result':{'isError':True,'content':[{'type':'text',
+                'text':'Computer Use was not approved to use LinkedIn'}]}}
+        self.assertTrue(computer_use_approval_failure(denied))
+        self.assertEqual(approval_failure(denied),'node_repl.js')
+
+    def test_child_computer_use_denial_stops_once_with_typed_error(self):
+        client=AppServer.__new__(AppServer)
+        client.events=queue.Queue()
+        client.events.put({'method':'item/completed','params':{'threadId':'specialist',
+            'item':{'type':'mcpToolCall','status':'failed','server':'node_repl',
+                'tool':'js','error':{'message':'Computer Use was not approved to use LinkedIn'}}}})
+        client.request=Mock(side_effect=[{'turn':{'id':'turn'}},{}])
+        with self.assertRaises(ComputerUseApprovalRequired) as raised:
+            client.answer('parent','read LinkedIn only',timeout=1)
+        self.assertIsInstance(raised.exception,ApprovalRequired)
+        self.assertEqual(str(raised.exception),'computer_use_app_approval_required:node_repl.js')
+        self.assertEqual([c.args[0] for c in client.request.call_args_list],
+                         ['turn/start','turn/interrupt'])
+
     def test_tool_approval_is_explicit_and_not_retried(self):
         with tempfile.TemporaryDirectory() as directory:
             client=AppServer.__new__(AppServer)
