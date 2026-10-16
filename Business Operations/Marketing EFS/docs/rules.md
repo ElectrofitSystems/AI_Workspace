@@ -1,5 +1,20 @@
 # Efitsys — Regole operative
 
+## Risposte Marketing in Teams — decisione del 16 ottobre 2026
+
+Applicare `docs/company/output-delivery.md` e il runbook Operations: produrre il
+file reale, caricarlo prima nella destinazione canonica nota e verificare URL,
+revisione e accesso del richiedente. Per datasheet usare
+`General/Marketing/Outputs/Documentation/Brochures`. Solo se la destinazione esatta
+è ignota, usare file della chat pertinente o OneDrive Operations/Chat con efitsys, dichiarandolo.
+Verificare tenant e identità Teams/Entra con dominio esatto efitsys.com; l'eccezione
+autorizzata concede lettura/scrittura nominativa esclusivamente ai file di quella
+richiesta, senza modificare accessi a cartelle/fonti, all'organizzazione o dati ERP.
+Nessun link pubblico. Messaggi brevi con `html_content` e anchor cliccabili reali,
+firma esatta `- by Agente Marketing EFS`, ricevuta/readback e deduplicazione.
+Esiti incerti richiedono riconciliazione senza reinvio cieco. L'eccezione di
+consegna non autorizza approvazioni come agente, pubblicazione o invii ulteriori.
+
 ## Disponibilità e compatibilità — decisione del 15 ottobre 2026
 
 Il proprietario richiede controlli automatici alle 06:00 e 18:00 Europe/Rome e recupero dagli aggiornamenti che bloccano Marketing, Codex, plugin, agenti e skill collegate. Applicare `docs/maintenance/marketing-availability.md`: watchdog locale indipendente dalla finestra desktop, ricerca del runtime installato corrente, controlli reali di produzione/skill/connessioni/ruolo, backup e riparazioni di compatibilità verificate. Il task Windows è distinto dalle ricorrenze editoriali, che restano invariate. Correzioni solo tecniche nel perimetro autorizzato, senza nuove pubblicazioni o messaggi, modifica di privilegi, approvazioni o dati ERP. Login scaduti e nuovi consensi richiedono intervento umano; non dichiarare disponibilità o riparazioni non verificate.

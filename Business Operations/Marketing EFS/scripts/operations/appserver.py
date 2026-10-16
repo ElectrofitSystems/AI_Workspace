@@ -113,25 +113,27 @@ class AppServer:
         if config:params['config']=config
         return self.request('thread/start',params)['thread']['id']
 
-    def tool(self, thread, name, arguments):
+    def tool(self, thread, name, arguments, namespace='microsoft_teams'):
+        if namespace not in ('microsoft_teams','microsoft_sharepoint'):
+            raise RpcError('unsupported_connector_namespace')
         if self.cooldown.exists():
             try:deadline=json.loads(self.cooldown.read_text(encoding='utf-8'))['until']
             except (ValueError,KeyError):deadline=0
             if deadline>time.time():raise RateLimited(deadline-time.time()+1)
         try:
             result=self.request('mcpServer/tool/call',{'threadId':thread,
-                'server':'codex_apps','tool':'microsoft_teams.'+name,'arguments':arguments})
+                'server':'codex_apps','tool':namespace+'.'+name,'arguments':arguments})
         except RpcError as error:
             if any(phrase in str(error).lower() for phrase in ('requires approval',
                     'approval required','approval policy is never')):
-                raise ApprovalRequired('microsoft_teams.'+name) from error
+                raise ApprovalRequired(namespace+'.'+name) from error
             raise
         if result.get('isError'):
             data=result.get('structuredContent') or {}
             detail=' '.join(c.get('text','') for c in result.get('content',[]) if isinstance(c,dict) and c.get('type')=='text')
             if any(phrase in detail.lower() for phrase in ('requires approval',
                     'approval required','approval policy is never')):
-                raise ApprovalRequired('microsoft_teams.'+name)
+                raise ApprovalRequired(namespace+'.'+name)
             if data.get('error_code')=='RATE_LIMITED' or '429' in detail or 'HTTPRateLimitError' in detail:
                 match=re.search(r'at least (\d+) seconds',detail)
                 seconds=int(data.get('retry_after_seconds') or (match.group(1) if match else 120))
@@ -147,7 +149,12 @@ class AppServer:
         start=time.monotonic()
         result=self.request('turn/start',{'threadId':thread,'input':[{'type':'text','text':text}],
             'outputSchema':{'type':'object','properties':{'response':{'type':'string'},
-                'agent':{'type':'string'}},'required':['response','agent'],
+                'agent':{'type':'string'},'html_content':{'type':'string'},
+                'deliveries':{'type':'array','maxItems':20,'items':{'type':'object',
+                    'properties':{key:{'type':'string'} for key in
+                        ('drive_id','item_id','web_url','e_tag','label','kind')},
+                    'required':['drive_id','item_id','web_url','e_tag','label','kind'],
+                    'additionalProperties':False}}},'required':['response','agent','html_content','deliveries'],
                 'additionalProperties':False}})
         turn_id=result['turn']['id']
         final=[]

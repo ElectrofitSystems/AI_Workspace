@@ -1,0 +1,22 @@
+{
+  "version": "1.0.1.1",
+  "package": "EFSMarketingApprovalReliability_1_0_1_1.zip",
+  "cutover_utc": "2026-10-15T14:01:21Z",
+  "acquisition_enabled": true,
+  "dispatch_enabled": true,
+  "native_status_contract_verified": true,
+  "rollback_original_definition": false,
+  "original_sha256": "a651b8b238bad1d7bd3ed9d8c74b3dd0a7a4e91b34b6fcd5c8d84e4ebcf89e14",
+  "package_sha256": "3394feb45ef669825d78bcacaabb187352dffebd62add70d75e4faefff86404e",
+  "workflow_file": "Workflows/EFSMarketing-Inputs-AutomaticApprovals-90BA7EDD-9FC0-F111-AAAD-70A8A57EDD59.json",
+  "queue_id": "db240db6-c151-40f6-8851-3773be6091f3",
+  "live_status": "pending_verification",
+  "critical_assumptions": [
+    "SharePoint HttpRequest parameters use parameters/* (connector schema must be validated live)",
+    "REST returns verbose d/results and Id, OData__UIVersionString",
+    "Native OData__ApprovalStatus contract must be verified from diagnostics before creates",
+    "Unknown/processing rows are quarantined, not automatically resent",
+    "No retroactive acquisition before persisted cutover",
+    "Original archive and existing approvers/awaitAll unchanged"
+  ]
+}

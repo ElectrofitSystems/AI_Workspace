@@ -61,6 +61,19 @@ class ConversationTests(unittest.TestCase):
         with self.assertRaises(GuardError):self.store.sent({**receipt,"reply":{**reply,"chat_id":"other"}})
         self.assertEqual(self.store.sent(receipt)["state"],"sent")
 
+    def test_html_send_is_frozen_deduplicated_and_href_checked(self):
+        payload=self.prepared();payload.pop('text_content')
+        payload['html_content']='<p><a href="https://efitsys.sharepoint.com/file.pdf">PDF</a></p><p>- by Agente Marketing EFS</p>'
+        frozen=self.store.prepare(payload)
+        self.assertEqual(frozen['html_content'],payload['html_content'])
+        self.assertNotIn('text_content',frozen)
+        reply={'chat_id':CHAT,'author_user_id':OWNER,'message_id':'r1','content':payload['html_content']}
+        receipt={'run_token':self.token,'chat_id':CHAT,'message_id':'m1','reply':reply,'expected_response_id':'r1'}
+        with self.assertRaises(GuardError):self.store.sent({**receipt,'reply':{**reply,'content':reply['content'].replace('file.pdf','other.pdf')}})
+        with self.assertRaises(GuardError):self.store.prepare(payload)
+        with self.assertRaises(GuardError):self.store.require_claim(self.token,CHAT,'m1')
+        self.assertEqual(self.store.sent(receipt)['state'],'sent')
+
     def test_connector_wrapped_url_matches_original_without_weakening_content(self):
         payload=self.prepared()
         payload['text_content']='File [MP4](https://example.com/efs-rebranding/file.mp4?version=2) pronto.'

@@ -5,6 +5,57 @@ interni verificati di efitsys.com. Operations coordina gli agenti; oggi il ruolo
 personalizzato marketing è «Agente marketing EFS». Dal 05/10/2026 è disponibile
 anche «Agente ERP EFS» per il pilota scadenzario fornitori.
 
+## Consegna Marketing e messaggio HTML — 16 ottobre 2026
+
+La risposta Marketing nella chat d'origine è breve, con firma esatta
+`- by Agente Marketing EFS`. Il trasporto usa `html_content` con anchor reali
+`<a href="https://...">Nome file</a>`, escapando testo e attributi; nessun Markdown
+da interpretare dal client Teams e nessun percorso locale presentato come link.
+Il JSON del coordinatore conserva `response` breve, `agent` con il ruolo coinvolto
+e `deliveries`, array di file già caricati e verificati. Ogni voce ha schema
+`{drive_id,item_id,web_url,e_tag,label,kind}` con identificativi reali; `kind` è
+`datasheet|document|presentation|visual|statistics|other`. Non accettare link a file
+consegnati senza una voce in `deliveries`. Link Markdown opzionali in `response`
+devono riferirsi soltanto a quelle voci. L'eventuale `html_content` del worker non
+è considerato affidabile: il trasporto ricostruisce HTML sicuro con anchor e firma
+da `response`/`deliveries` verificati. Congelare destinatario e
+payload nella fase prepare, inviare una sola volta e verificare la ricevuta e il
+readback dello stesso messaggio. Un readback in attesa non autorizza un reinvio.
+
+Il file reale va prima caricato e verificato nella destinazione nota. Per
+datasheet e schede tecniche usare
+`General/Marketing/Outputs/Documentation/Brochures`, non una cartella dedotta
+dalla nuova chat. Se la destinazione esatta è ignota, preferire OneDrive
+Operations/Chat con efitsys; file della chat pertinente sono ammessi soltanto se la cartella
+è effettivamente identificata, risolvendo drive/cartella
+effettivi e dichiarandolo al collega. Applicare `docs/company/output-delivery.md`:
+versioni, metadata, contenuto/hash, URL e ricevuta locale; consegnare solo i file
+necessari. Non aggirare un diniego della destinazione nota con un altro canale.
+
+Prima di condividere rileggere i membri e risolvere le identità Teams/Entra:
+tenant e account Operations attesi, oneOnOne con due membri, ID ed email/UPN
+corrispondenti, dominio esatto `efitsys.com`, nessun ospite o identità ambigua.
+L'autorizzazione del proprietario del 16 ottobre copre, ove necessario, accesso
+nominativo lettura/scrittura **solo ai file della specifica richiesta** per il
+richiedente verificato. Verificare i permessi effettivi; niente link pubblici,
+anonimi, intera organizzazione, cartelle, siti o altre richieste. Non cambiare
+membership Teams o accessi alle fonti. Dati finanziari e regole ERP restano fuori
+da questa eccezione.
+
+Se uno strumento non supporta upload, file chat o permessi nominativi richiesti,
+segnalare precisamente la parte incompleta; non dichiarare la consegna accessibile
+dal solo URL. Per timeout di upload/condivisione riconciliare il file esatto e i
+permessi prima di riprovare; per esiti di invio incerti conservare needs_review.
+Nessuna nuova approvazione o pubblicazione deriva da una ricevuta di consegna.
+
+Il prompt di lavoro contiene i riferimenti verificati della richiesta: chat ID,
+message ID, tenant, Entra user ID ed email del richiedente. Il worker registra nel
+journal locale l'intento prima dell'upload, riconcilia timeout senza retry cieco
+e riporta gli ID/eTag reali in `deliveries`. Non deve effettuare un grant:
+il trasporto rilegge `get_drive_item` e ACL correnti, concede `write` nominativo
+soltanto se necessario, senza email e preservando i permessi ereditati. Verifica
+l'esito prima del messaggio e congela i riferimenti nella ricevuta persistente.
+
 ## Trasporto ed esecuzione
 
 `scripts/operations/teams_service.py` usa il Codex app-server locale su stdio e il
@@ -51,9 +102,10 @@ senza prova; precisare se è PPTX con effetti, media incorporato o video esporta
 La prima istanza del ruolo registrato e la sua ricreazione dopo riavvio sono
 autorizzate; non confonderle con la registrazione di un agente nuovo.
 
-Il servizio non pubblica su LinkedIn, non concede permessi e non acquisisce
+Il servizio non pubblica su LinkedIn, non concede permessi generali e non acquisisce
 automaticamente allegati. Review del contenuto, revisione esatta e autorizzazione
-di pubblicazione restano distinte. Il vecchio recupero limitato a testo/storyboard
+di pubblicazione restano distinte. La sola eccezione di permessi sui file della
+richiesta è descritta nell'aggiornamento del 16 ottobre sopra. Il vecchio recupero limitato a testo/storyboard
 non definisce le capacità del nuovo profilo. Gli altri controlli del trasporto,
 claim, deduplicazione e readback rimangono obbligatori.
 

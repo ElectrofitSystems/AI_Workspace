@@ -1,5 +1,37 @@
 # Fonti marketing — perimetro confermato
 
+## Consegna Teams e accesso ai file — 16 ottobre 2026
+
+Per le richieste Marketing tramite Operations applicare `output-delivery.md`:
+upload e verifica prima della risposta con link HTML. La destinazione esatta per
+datasheet/schede tecniche è
+[Outputs/Documentation/Brochures](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Outputs/Documentation/Brochures),
+parametro percorso del connettore
+`General/Marketing/Outputs/Documentation/Brochures` e copia locale
+`output/Documentation/Brochures/`. Non duplicare `Shared Documents` nel parametro.
+
+Se la destinazione esatta non è nota, preferire OneDrive Operations/Chat con efitsys; i file
+della sola chat Teams pertinente sono ammessi quando la cartella è effettivamente
+identificata, sempre con collocazione dichiarata e verificata. La cartella concreta e il relativo drive vanno risolti nel servizio;
+questo documento non attesta un upload o un URL OneDrive già esistente. La scelta
+alternativa non aggira un diniego sulla destinazione nota.
+
+L'identità richiedente deve essere verificata in Teams/Entra nel tenant autorizzato,
+con dominio esatto `efitsys.com`; è autorizzata la sola concessione nominativa
+lettura/scrittura ai file prodotti per la sua richiesta. Nessun link pubblico,
+permesso generale, accesso alle cartelle/fonti o ampliamento ERP. Restano valide
+la consegna essenziale, la revisione dei contenuti e la verifica delle ricevute.
+Per Operations lo specialista journalizza/carica e restituisce `deliveries` con
+ID ed eTag reali; il trasporto verifica metadati/ACL, applica l'eventuale grant
+nominativo e costruisce i link HTML secondo `output-delivery.md`.
+
+Drive OneDrive Operations individuato il 16 ottobre:
+`b!UBKy4DbC3keBIldRS0U5jV8kYBBAEP1FpK2fllb0YvpmcCX9ubjdQJN5Q35jvnYD`,
+[Documents Operations](https://efitsys-my.sharepoint.com/personal/operations_efitsys_com/Documents).
+Il nome della cartella alternativa è esattamente **Chat con efitsys**: identificarne
+l'item effettivo nel drive prima dell'uso. Il solo inventario del drive non prova
+che la cartella sia già stata risolta, né autorizza l'accesso ad altre sue cartelle.
+
 ## Brand identity predefinita — 15 ottobre 2026
 
 Per decisione esplicita dell'utente, per tutti i nuovi materiali e revisioni dell'Agente marketing EFS, in tutte le chat e schedule, usare [EFITSYS_Corporate_Design_Kit_4.1_EN.zip](https://efitsys.sharepoint.com/sites/Documentation/Shared%20Documents/General/Marketing/Inputs/Brand%20Identity/EFITSYS_Corporate_Design_Kit_4.1_EN.zip), salvo diverse indicazioni. Recuperato dalla cartella Teams/SharePoint Documentation / General / Marketing / Inputs / Brand Identity: 26.427.030 byte, SHA-256 `e3e1fca1d8c482acb2d64e89f7895cffb0aea82e383ac3462e04f42af91f44d5`. Copia locale, regole e hash delle varianti in `docs/company/brand.md` e `docs/company/brand-kit.json`.

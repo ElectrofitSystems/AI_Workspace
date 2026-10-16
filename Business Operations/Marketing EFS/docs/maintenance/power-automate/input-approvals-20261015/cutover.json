@@ -1,0 +1,4 @@
+{
+  "cutover_utc": "2026-10-15T14:01:21Z",
+  "note": "Initial poll cutoff fixed before import; do not reset on rebuild."
+}

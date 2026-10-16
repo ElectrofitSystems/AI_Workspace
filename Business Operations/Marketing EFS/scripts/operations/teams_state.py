@@ -84,6 +84,8 @@ class Store:
         CREATE TABLE IF NOT EXISTS cursors (chat TEXT PRIMARY KEY, since TEXT NOT NULL);
         CREATE TABLE IF NOT EXISTS acknowledgements (chat TEXT, message TEXT, token TEXT,
           body_hash TEXT, state TEXT, response_id TEXT, PRIMARY KEY(chat,message));
+        CREATE TABLE IF NOT EXISTS response_formats (chat TEXT,message TEXT,format TEXT,
+          PRIMARY KEY(chat,message));
         """)
 
     def enabled(self):
@@ -119,6 +121,12 @@ class Store:
         self.check_token(token)
         self.db.execute("UPDATE lease SET expires=? WHERE token=?", (self.clock()+1800, token))
         self.db.commit()
+
+    def require_claim(self,token,chat,message):
+        self.check_token(token)
+        row=self.db.execute('SELECT state,token FROM requests WHERE chat=? AND message=?',(chat,message)).fetchone()
+        if not row or row['state']!='claimed' or row['token']!=token:
+            raise GuardError('request_not_owned_or_already_handled')
 
     def failed(self, token, chat, message):
         self.db.execute("UPDATE requests SET state='needs_review',updated=? WHERE chat=? AND message=? AND token=? AND state='claimed'",
@@ -227,13 +235,20 @@ class Store:
             or original.get("path") != f"/chats/{row['chat']}/messages/{row['message']}"
             or digest(original.get("content")) != row["body_hash"]):
             raise GuardError("request_changed")
-        response = payload["text_content"]
+        format='html_content' if payload.get('html_content') else 'text_content'
+        response = payload[format]
         if not isinstance(response,str) or not response.strip() or len(response)>20000:
             raise GuardError("invalid_response")
+        if format=='html_content':
+            from marketing_delivery import html_fingerprint
+            response_hash=hashlib.sha256(html_fingerprint(response).encode()).hexdigest()
+        else:response_hash=digest(response)
+        self.db.execute('INSERT OR REPLACE INTO response_formats VALUES (?,?,?)',
+            (row['chat'],row['message'],format))
         self.db.execute("UPDATE requests SET state='sending',response_hash=?,updated=? WHERE chat=? AND message=?",
-            (digest(response),self.clock(),row["chat"],row["message"]))
+            (response_hash,self.clock(),row["chat"],row["message"]))
         self.db.commit()
-        return {"chat_id":row["chat"],"text_content":response,"request_message_id":row["message"],"response_hash":digest(response)}
+        return {"chat_id":row["chat"],format:response,"request_message_id":row["message"],"response_hash":response_hash}
 
     def sent(self,payload):
         # A receipt may arrive after the lease expired; match it to the prepared reply.
@@ -241,13 +256,19 @@ class Store:
         if not row or row["state"] not in ("sending","needs_review") or row["token"] != payload["run_token"]:
             raise GuardError("no_prepared_send")
         reply = payload["reply"]
+        format=self.db.execute('SELECT format FROM response_formats WHERE chat=? AND message=?',
+            (row['chat'],row['message'])).fetchone()
+        if format and format[0]=='html_content':
+            from marketing_delivery import html_fingerprint
+            reply_hash=hashlib.sha256(html_fingerprint(reply.get('content')).encode()).hexdigest()
+        else:reply_hash=digest(reply.get('content'))
         if (reply.get("chat_id") != row["chat"] or reply.get("author_user_id") != self.config["owner_id"]
             or not reply.get("message_id")
             or (payload.get('expected_response_id') is not None
                 and reply.get('message_id') != payload['expected_response_id'])
             or reply.get('deleted_at') or reply.get('author_application_id')
             or reply.get('message_type','message') != 'message'
-            or digest(reply.get("content")) != row["response_hash"]):
+            or reply_hash != row["response_hash"]):
             raise GuardError("receipt_mismatch")
         self.db.execute("UPDATE requests SET state='sent',response_id=?,updated=? WHERE chat=? AND message=?",
             (reply["message_id"],self.clock(),row["chat"],row["message"]))

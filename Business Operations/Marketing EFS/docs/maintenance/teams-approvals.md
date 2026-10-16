@@ -1,10 +1,23 @@
 # Teams Approvazioni — procedura unica Marketing EFS
 
+## Affidabilità Inputs — aggiornamento del 15 ottobre 2026
+
+Per la correzione dei failure 429/502 del flusso Inputs applicare
+`docs/maintenance/input-approval-reliability.md`; skill di supporto
+`efs-approval-operations`. Versione cloud `1.0.1.1` attiva e verificata con due
+richieste native e una riesecuzione senza duplicati; prove e limiti nella
+procedura. Riconciliare richieste esistenti sulla revisione esatta prima di
+qualsiasi recupero. Acquisizione e worker sono due fasi dello stesso flusso
+Scheduled, con coda persistente e concorrenza 1.
+Retry e attese non sostituiscono l'accertamento di assenza dopo esiti ambigui.
+Il flusso Outputs sotto non è stato modificato da questa procedura; approvatori,
+decisioni, ricevute e autorizzazioni di esecuzione mantengono il proprio ambito.
+
 **Newsletter — canale aggiornato il 5 ottobre 2026:** solo newsletter della Pagina LinkedIn EFS. La review finale continua in Outputs/Newsletter, categoria newsletter, review_only. Daily operations riconcilia le decisioni come prima; dopo approvazione autenticata registra approved_pending_linkedin_publication. Una conversione da email a LinkedIn conserva l'edizione e lo storico ma richiede nuova review della revisione modificata. I riferimenti storici a approved_pending_send e mailing sono superati. Nessuna pubblicazione autorizzata dalla sola approvazione del contenuto.
 
 ## Input — aggiornamento del 5 ottobre 2026
 
-Ulteriore richiesta esplicita dell'utente: ogni nuovo file/link aggiunto a Marketing/Inputs deve avviare automaticamente la review. Flusso cloud dedicato **EFS Marketing - Inputs - Automatic Approvals**, ID `d566e7c1-4941-77a4-abcc-752887b781dc`, attivo e collaudato mediante azione SharePoint nativa CreateApprovalRequest. Configurazione e prova in `output/Linkedin/config/input-approval-automation.json`; perimetro ricorsivo, esclusioni, controllo della revisione originale e gestione errori in `docs/company/marketing-input-folder.md`. Nessun invio retroattivo dei materiali già presenti, nessun manifest input in Outputs, nessuna nuova schedule Codex. Il flusso Outputs sotto resta invariato.
+Ulteriore richiesta esplicita dell'utente: ogni nuovo file/link aggiunto a Marketing/Inputs deve avviare automaticamente la review. Flusso cloud dedicato **EFS Marketing - Inputs - Automatic Approvals**, ID `d566e7c1-4941-77a4-abcc-752887b781dc`, attivato e collaudato il 5 ottobre mediante azione SharePoint nativa CreateApprovalRequest; la correzione dei failure successivi ha lo stato indicato nell'aggiornamento del 15 ottobre sopra. Configurazione e prova in `output/Linkedin/config/input-approval-automation.json`; perimetro ricorsivo, esclusioni, controllo della revisione originale e gestione errori in `docs/company/marketing-input-folder.md`. Nessun invio retroattivo dei materiali già presenti, nessun manifest input in Outputs, nessuna nuova schedule Codex. Il flusso Outputs sotto resta invariato.
 
 Nuovi input selezionati dai collegamenti nativi .url in SharePoint Marketing/Inputs, con approvazioni moderne sul collegamento vincolate alla revisione esatta dell'originale secondo docs/company/marketing-input-folder.md. Non approvare automaticamente il documento originale in base al solo stato del link; verificare versione/eTag/hash del target prima del riuso. Questo supera i riferimenti alla lista sotto per nuove review. Preservare e riconciliare decisioni Lists pregresse senza duplicarle. Il flusso Outputs dei derivati e le sue autorizzazioni rimangono validi.
 

@@ -1,6 +1,7 @@
 import copy
 import json
 import threading
+import sqlite3
 import unittest
 from unittest.mock import Mock,patch
 from erp_followups import erp_follow_up,explicit_erp_request
@@ -152,6 +153,35 @@ class ResponseTests(unittest.TestCase):
         self.assertEqual(reply['message_id'],'r1')
         self.assertTrue(all(call.args[1]=='list_chat_messages' for call in service.server.tool.call_args_list))
         service.stop.wait.assert_called_once_with(2)
+
+    def test_marketing_delivery_checks_cloud_and_sends_only_html(self):
+        from test_marketing_delivery import FILE,ITEM,WRITE
+        service,request,agent,store=self.service('Prepara il datasheet',[])
+        service.marketing_sessions={'chat':(agent,'marketing-thread')}
+        agent.answer.return_value={'response':'Scheda pronta per la review.','agent':'Agente marketing EFS',
+            'delegated_roles':['Agente marketing EFS'],'elapsed_seconds':1,'deliveries':[FILE],
+            'html_content':'<script>untrusted</script>'}
+        original=service.server.tool.side_effect
+        order=[]
+        def tool(thread,name,args,**kwargs):
+            order.append(name)
+            if kwargs.get('namespace')=='microsoft_sharepoint':
+                return ITEM if name=='get_drive_item' else WRITE
+            return original(thread,name,args)
+        service.server.tool.side_effect=tool
+        store.db=sqlite3.connect(':memory:')
+        store.prepare.side_effect=lambda payload:{'chat_id':'chat','html_content':payload['html_content']}
+        try:
+            with patch('teams_service.marketing_authorized',return_value=True),patch('teams_service.erp_context',
+                    return_value=({'financial_access':False,'status':'access_denied'},False)):
+                service.respond(request,agent,'thread',store)
+        finally:store.db.close()
+        self.assertLess(order.index('get_drive_item'),order.index('send_chat_message'))
+        self.assertLess(order.index('list_item_permissions'),order.index('send_chat_message'))
+        sent=next(c.args[2] for c in service.server.tool.call_args_list if c.args[1]=='send_chat_message')
+        self.assertNotIn('text_content',sent);self.assertNotIn('<script>',sent['html_content'])
+        self.assertIn('<a href="'+FILE['web_url']+'">',sent['html_content'])
+        self.assertIn('- by Agente Marketing EFS',sent['html_content'])
     def test_readback_stop_preserves_uncertain_send(self):
         service=object.__new__(Service);service.stop=Mock();service.stop.is_set.return_value=False
         service.stop.wait.return_value=True;service.transport='transport'

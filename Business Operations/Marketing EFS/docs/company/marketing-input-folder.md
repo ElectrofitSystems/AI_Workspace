@@ -2,6 +2,18 @@
 
 Correzione esplicita dell'utente del 5 ottobre 2026: in SharePoint Marketing/Inputs usare collegamenti nativi ai documenti originali, equivalenti al comando Nuovo > Collegamento in Teams/SharePoint. Le copie create nella prima esecuzione erano errate e vengono sostituite. Questa regola prevale sui riferimenti storici a copie e sulla lista come fonte primaria, anche nelle skill e ricorrenze.
 
+## Affidabilità — aggiornamento del 15 ottobre 2026
+
+La notifica del 7 ottobre e una run del flusso Inputs mostrano throttling 429
+all'interno di un errore 502. Applicare
+[Affidabilità delle approvazioni Inputs](../maintenance/input-approval-reliability.md):
+coda persistente, creazione seriale, attese e riconciliazione prima del retry.
+Correzione cloud `1.0.1.1` attiva e verificata con due input controllati e una
+riesecuzione senza nuove richieste. Stato, ID e limiti dei collaudi sono nella
+procedura collegata. Il successo del test del 5 ottobre sotto resta storico.
+Un errore o timeout non dimostra che la richiesta non sia stata creata.
+Non reinviare in massa le run fallite né creare richieste alternative.
+
 ## Cartelle e perimetro
 
 Per il brand, dal 15 ottobre 2026 prevale il Corporate Design Kit 4.1 EN esatto di `docs/company/brand.md` e `brand-kit.json`, autorizzato dall’utente per tutte le chat e ricorrenze. Il piano storico dei 68 materiali sotto non limita l’adozione del nuovo kit e non autorizza l’uso di loghi precedenti.
@@ -36,19 +48,25 @@ Registro corrente: output/Linkedin/input-approvals/inputs-folder-shortcuts-corre
 
 ## Richiesta automatica sui nuovi input — 5 ottobre 2026
 
-L'utente ha richiesto che ogni nuova aggiunta in Inputs avvii automaticamente la richiesta di approvazione. Flusso cloud dedicato **EFS Marketing - Inputs - Automatic Approvals**, ID `d566e7c1-4941-77a4-abcc-752887b781dc`, salvato e attivo nell'ambiente EFitsys. Configurazione e stato del collaudo in `output/Linkedin/config/input-approval-automation.json`. Il flusso è indipendente dal PC e da Codex.
+L'utente ha richiesto che ogni nuova aggiunta in Inputs avvii automaticamente la richiesta di approvazione. Flusso cloud dedicato **EFS Marketing - Inputs - Automatic Approvals**, ID `d566e7c1-4941-77a4-abcc-752887b781dc`, attivato nell'ambiente EFitsys il 5 ottobre; per i failure successivi e lo stato della correzione vale l'aggiornamento del 15 ottobre sopra. Configurazione e stato del collaudo in `output/Linkedin/config/input-approval-automation.json`. Il flusso è indipendente dal PC e da Codex.
 
-Trigger SharePoint **When a file is created (properties only)** sulla libreria Documents di Documentation, filtrato al prefisso `Shared Documents/General/Marketing/Inputs/`, incluse le sottocartelle; cartelle escluse. La soglia Created dal 05/10/2026 09:30:55 UTC evita l'invio retroattivo dei materiali già presenti. L'azione nativa SharePoint **Create an approval request for an item or file** crea la richiesta sullo stesso elemento e il servizio Microsoft ne gestisce lo stato. Approvers e regola risiedono soltanto nel flusso Microsoft, riusati dalla configurazione Marketing LinkedIn verificata nell'editor; non dalle ricevute storiche. Nessun approvatore predefinito per l'intera libreria.
+Dal 15 ottobre il trigger originario SharePoint è sostituito nello stesso flusso da una ricorrenza cloud ogni 5 minuti, con concorrenza 1. La prima fase acquisisce al massimo 100 nuovi file di Inputs e relative sottocartelle, filtrati nel servizio per percorso e cartelle escluse, e li registra nella coda persistente `EFS Marketing Approval Queue`. Il checkpoint avanza soltanto dopo il salvataggio della pagina. La seconda fase elabora al massimo 3 richieste in sequenza, con almeno 30 secondi di attesa dopo ogni creazione. Unicità della chiave, revisione e stato nativo vengono controllati prima dell'invio. Il cutover persistito `2026-10-15T14:01:21Z`, successivo alla soglia storica del 5 ottobre, evita invii retroattivi: la ricognizione dei 69 file presenti non ha individuato richieste produttive correnti mancanti. L'azione nativa SharePoint **Create an approval request for an item or file** crea la richiesta sullo stesso elemento e il servizio Microsoft ne gestisce lo stato. Approvers e regola restano quelli del flusso Microsoft esistente; nessun approvatore predefinito per l'intera libreria.
 
 La richiesta automatica è una review di ingresso: include elemento, percorso, revisione del riferimento e data di creazione, ambito LinkedIn/newsletter e richiesta esplicita al revisore di verificare l'originale e registrare versione/data e limiti di riuso nella risposta. Per un .url lo stato Approved da solo non prova la revisione dell'originale: prima del riuso l'agente deve riconciliare la risposta autentica e identificare/verificare il target esatto. Revisioni mancanti o accessi bloccati rimangono unknown/access_blocked. Non pubblicare né approvare come agente. Il flusso avvia la richiesta; non autentica il contenuto del target al posto del revisore.
 
-Il trigger è di sola creazione: non avvia nuove richieste per modifiche dell'originale, né assicura di intercettare un file già esistente spostato nella cartella. Questi casi richiedono riconciliazione e una nuova review della revisione interessata. Non reinviare ciecamente una run fallita: verificare prima la richiesta nel servizio originale. Il retry dell'azione di creazione è disabilitato per limitare richieste duplicate dopo esiti ambigui. La latenza dipende da SharePoint/Power Automate; non promettere risposte in pochi secondi senza prova.
+L'acquisizione automatica riguarda nuove creazioni: non avvia nuove richieste per modifiche dell'originale, né assicura di intercettare un file già esistente spostato nella cartella. Questi casi richiedono riconciliazione e una nuova review della revisione interessata. Non reinviare ciecamente una run fallita: verificare prima la richiesta nel servizio originale. Il retry dell'azione non idempotente di creazione resta disabilitato; un esito ambiguo va in `unknown` e richiede riconciliazione, mentre gli altri eventi rimangono nella coda. La latenza dipende da SharePoint/Power Automate e dalla coda; non promettere risposte in pochi secondi senza prova.
 
 Questa nuova autorizzazione riguarda il flusso cloud Inputs; non crea nuove schedule Codex e non modifica il flusso Outputs dei derivati.
 
 Collaudo verificato: un solo collegamento esplicitamente denominato `Test-approvazione-automatica-NON-USARE.url` caricato in Technical Documentation alle 09:34:29 UTC; run `08584104139849401329964467508CU23` riuscita, HTTP 200, approval ID `be8b80d8-2f4e-4a62-8a14-92e3e55cc286` restituito alle 09:35:12 UTC. Tempo dalla creazione del file: 43 secondi, senza garanzia SLA. Titolo, destinatari Microsoft, awaitAll=false e versione 1.0 verificati nei risultati della run; stato Requested osservato nella libreria. Nessuna decisione approvata dall'agente. Il test non è una fonte editoriale.
 
 ## Ricorrenze
+
+I materiali tecnici di collaudo marcati `NON-USARE` o `NON USARE` sono sempre
+esclusi dalle fonti editoriali. Questo comprende il test storico e i due test
+`Test-affidabilita-approvazioni-NON-USARE-20261015-A.txt` e `-B.txt`, elementi
+`656` e `657`: le loro richieste verificano il servizio, non autorizzano riuso o
+pubblicazione. Nessuna decisione umana è stata eseguita dall'agente.
 
 Aggiornare soltanto il riferimento agli input nelle tre ricorrenze esistenti, preservando ID, cadenze, destinazioni, stato, modelli, notifiche e gli aggiornamenti di altre chat. Nessun nuovo monitor o calendario. Per la Newsletter conservare l'attuale canale LinkedIn definito in docs/newsletter/workflow.md.
 

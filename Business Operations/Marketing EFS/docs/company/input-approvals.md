@@ -1,5 +1,19 @@
 # Approvazione degli input — LinkedIn e newsletter
 
+## Affidabilità delle richieste — 15 ottobre 2026
+
+Per errori del flusso automatico Inputs, 429 annidati in 502, timeout o richieste
+mancanti applicare [la procedura di affidabilità](../maintenance/input-approval-reliability.md)
+e, quando disponibile, la skill `efs-approval-operations`. La correzione cloud
+`1.0.1.1` è attiva e collaudata con due richieste native e una riesecuzione senza
+duplicati; prove e limiti sono nella procedura collegata. Gli stati
+`queued`, `retry_wait` e `approval_created` descrivono la consegna, non una
+decisione umana. Un esito ambiguo resta `unknown` e richiede riconciliazione prima
+di creare un'altra richiesta; un failure non prova assenza. LinkedIn e newsletter
+possono continuare le parti indipendenti usando fonti già autorizzate; registrano
+`awaiting_input_approval` per il materiale ancora in attesa, senza inventare
+approvazioni, cambiare destinatari o duplicare review in Outputs.
+
 **Canale newsletter — 5 ottobre 2026:** la newsletter è per ora solo quella nativa della Pagina LinkedIn EFS. Ambiti, limiti e revisioni delle approvazioni input comuni restano invariati. La review finale del derivato è distinta; il suo stato dopo approvazione è approved_pending_linkedin_publication. I riferimenti storici sotto a mailing e approved_pending_send sono superati da docs/newsletter/workflow.md.
 
 ## Procedura corrente — 5 ottobre 2026
