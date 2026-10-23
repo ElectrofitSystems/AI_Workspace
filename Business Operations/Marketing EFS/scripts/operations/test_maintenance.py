@@ -2,11 +2,51 @@ import tempfile,unittest,hashlib
 import json
 from pathlib import Path
 from unittest.mock import patch
-from maintenance import REQUIRED,guarded_digests,current_brand,sandbox_probe
+from maintenance import REQUIRED,guarded_digests,current_brand,sandbox_probe,service_issues
 from marketing_runtime import restricted_config
 from runtime_paths import refresh_node_reference
 
 class MaintenanceTests(unittest.TestCase):
+    def test_service_health_error_is_an_issue_even_when_process_is_running(self):
+        self.assertEqual(service_issues({'Enabled':True,'Running':True,
+            'Health':{'status':'error','error_type':'RpcError'}}),
+            ['service_health_error:RpcError'])
+        self.assertEqual(service_issues({'Enabled':True,'Running':True,
+            'Health':{'status':'error'}}),['service_health_error'])
+
+    def test_service_diagnostic_preserves_explicit_stop_and_existing_states(self):
+        for service,expected in [
+            ({'Enabled':False,'Running':False,'Health':{'status':'error'}},[]),
+            ({'Enabled':False,'Running':True,'Health':{'status':'error'}},[]),
+            ({'Enabled':True,'Running':False,'Health':{'status':'error'}},['service_not_running']),
+            ({'Enabled':True,'Running':True,'Health':{'status':'running'}},[])]:
+            with self.subTest(service=service):
+                self.assertEqual(service_issues(service),expected)
+
+    def test_maintenance_reports_running_heartbeat_error_without_restarting_service(self):
+        import maintenance
+        from datetime import datetime,timezone
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);state=root/'state';state.mkdir()
+            service={'Enabled':True,'Running':True,'Health':{
+                'at':datetime.now(timezone.utc).isoformat(),'status':'error',
+                'error_type':'RpcError','runtime_executable':'codex.exe'}}
+            with patch.object(maintenance,'STATE',state), \
+                 patch.object(maintenance,'WORK',root/'work'), \
+                 patch.object(maintenance,'snapshot',return_value=str(root/'backup')), \
+                 patch.object(maintenance,'refresh_node_reference',return_value=False), \
+                 patch.object(maintenance,'resolve_codex',return_value='codex.exe'), \
+                 patch.object(maintenance,'check',return_value={'issues':[]}), \
+                 patch.object(maintenance,'control',return_value=service) as control, \
+                 patch.object(maintenance.sys,'argv',['maintenance.py']), \
+                 patch('builtins.print'):
+                self.assertEqual(maintenance.main(),1)
+            control.assert_called_once_with('Status')
+            report=json.loads((state/'maintenance-status.json').read_text(encoding='utf-8'))
+            self.assertEqual(report['status'],'attention_required')
+            self.assertIn('service_health_error:RpcError',report['issues'])
+            self.assertEqual(report['repairs'],[])
+
     def test_probe_checks_real_input_and_output_and_does_not_accept_stale_token(self):
         from types import SimpleNamespace
         with patch('maintenance.uuid.uuid4',return_value=SimpleNamespace(hex='fresh')), \

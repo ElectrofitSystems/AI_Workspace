@@ -18,6 +18,19 @@ REQUIRED={'brand','banner-design','imagegen','product-marketing','content-strate
  'efs-prospect-opportunities','efs-industry-intelligence','efs-company-page-review','efs-lead-handoff'}
 
 def now():return datetime.now(timezone.utc).isoformat()
+
+def service_issues(service):
+    """Classify the observed service without changing its enabled state or restarting it."""
+    if not service['Enabled']:
+        return []
+    if not service['Running']:
+        return ['service_not_running']
+    health=service.get('Health') or {}
+    if health.get('status')=='error':
+        error_type=health.get('error_type')
+        return ['service_health_error'+(':'+str(error_type) if error_type else '')]
+    return []
+
 def current_brand(root=ROOT):
     """Validate the selected kit without falling back to a historical logo."""
     root=Path(root).resolve()
@@ -227,7 +240,7 @@ def main():
                     time.sleep(5);service=control('Status')
                     if service['Running'] and service['Health'].get('status')=='running':break
             result['service']=service
-            if service['Enabled'] and not service['Running']:result['issues'].append('service_not_running')
+            result['issues'].extend(service_issues(service))
             result['status']='healthy' if not result['issues'] else 'attention_required'
         except Exception as e:
             result['status']='attention_required';result['issues'].append(type(e).__name__+':'+str(e)[:400])
